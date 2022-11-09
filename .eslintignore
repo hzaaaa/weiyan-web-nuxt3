@@ -1,0 +1,14 @@
+# .eslintignore 以下文件或目录不会被 eslint 处理
+*.sh
+node_modules
+*.md
+.vscode
+dist
+/public
+/docs
+.husky
+.local
+/bin
+.eslintrc.js
+.prettierrc.js
+.nuxt
