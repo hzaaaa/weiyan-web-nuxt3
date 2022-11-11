@@ -97,7 +97,7 @@ npm i prettier eslint-config-prettier eslint-plugin-prettier -D
 module.exports = {
   printWidth: 130, // 超过最大值换行
   tabWidth: 2, // 一个 tab 代表几个空格
-  useTabs: true, // 是否使用 tab 进行缩进(默认false:空格 | true:tab)
+  useTabs: false, // 是否使用 tab 进行缩进(默认false:空格 | true:tab)
   semi: true, // 行尾是否使用分号(默认true:有 | false:没有)
   singleQuote: false, // 使用单引号(默认false:双引号 | true:单引号)
   quoteProps: "as-needed", // 是否自动给对象属性加引号 (默认as-needed:只给需要加的单个属性加 | consistent:有属性需要加时给所有属性加 | preserve:保持输入状态)
@@ -612,7 +612,7 @@ module.exports = {
 module.exports = {
   printWidth: 130, // 超过最大值换行
   tabWidth: 2, // 一个 tab 代表几个空格
-  useTabs: true, // 是否使用 tab 进行缩进(默认false:空格 | true:tab)
+  useTabs: false, // 是否使用 tab 进行缩进(默认false:空格 | true:tab)
   semi: true, // 行尾是否使用分号(默认true:有 | false:没有)
   singleQuote: false, // 使用单引号(默认false:双引号 | true:单引号)
   quoteProps: "as-needed", // 是否自动给对象属性加引号 (默认as-needed:只给需要加的单个属性加 | consistent:有属性需要加时给所有属性加 | preserve:保持输入状态)
