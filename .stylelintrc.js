@@ -34,6 +34,29 @@ module.exports = {
 				ignorePseudoClasses: ["global", "v-deep", "deep"],
 			},
 		],
+		"at-rule-no-unknown": [
+			true,
+			{
+				ignoreAtRules: [
+					"extend",
+					"at-root",
+					"debug",
+					"warn",
+					"error",
+					"if",
+					"else",
+					"for",
+					"each",
+					"while",
+					"mixin",
+					"include",
+					"content",
+					"return",
+					"function",
+				],
+			},
+		],
+		"function-no-unknown": [true, { ignoreFunctions: ["vh", "vw"] }],
 		"order/properties-order": [
 			// 布局属性
 			"display",
