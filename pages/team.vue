@@ -1,5 +1,5 @@
 <template>
-	<NuxtLayout name="base-layout">team</NuxtLayout>
+  <NuxtLayout name="base-layout">team</NuxtLayout>
 </template>
 
 <script setup lang="ts"></script>

@@ -1,5 +1,5 @@
 <template>
-	<NuxtLayout name="base-layout">join</NuxtLayout>
+  <NuxtLayout name="base-layout">join</NuxtLayout>
 </template>
 
 <script setup lang="ts"></script>
