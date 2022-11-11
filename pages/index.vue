@@ -1,27 +1,32 @@
 <template>
-  <div>
-    <div>BD@weiyankeji.cn 0755-8279 5265</div>
-    <NuxtLayout name="base-layout">
-      <h3>此处是pages里的入口文件：你好！！</h3>
-      <div>
-        <NuxtLink to="/about">jump to /about</NuxtLink>
+  <NuxtLayout name="base-layout">
+    <div class="container">
+      <div id="banner">
+        <div id="background">
+          <div class="center" id="banner-content">
+            <div class="title1">
+              <img src="@/assets/image/banner_title.png" />
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <NuxtLink to="/team">jump to /team</NuxtLink>
-      </div>
-      <div>
-        <NuxtLink :to="{ name: 'news' }">jump to {name:'news'}</NuxtLink>
-      </div>
-      <div>
-        <NuxtLink to="/join">jump to join</NuxtLink>
-      </div>
-      <div>
-        <NuxtLink to="/article/1">jump to Danymic Page</NuxtLink>
-      </div>
-    </NuxtLayout>
-  </div>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts"></script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container #banner #background {
+  height: vh(500);
+
+  /* max-height: 750px; */
+  background: url("@/assets/image/banner.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+#banner #background .center .title1 img {
+  width: 656px;
+  height: 105px;
+}
+</style>
