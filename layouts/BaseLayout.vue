@@ -12,7 +12,7 @@
           <NuxtLink to="/">首页</NuxtLink>
           <NuxtLink to="/about">关于我们</NuxtLink>
           <NuxtLink to="/team">微言团队</NuxtLink>
-          <NuxtLink to="/news">微言动态</NuxtLink>
+          <NuxtLink to="/news" :class="{ 'nav-news': isNewsPage }">微言动态</NuxtLink>
           <NuxtLink to="/join">加入我们</NuxtLink>
         </div>
       </div>
@@ -69,12 +69,23 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const route = useRoute();
+onMounted(() => {
+  if (route.path.startsWith("/article")) {
+    isNewsPage.value = true;
+  } else {
+    isNewsPage.value = false;
+  }
+});
+const isNewsPage = ref(false);
+</script>
 
 <style scoped lang="scss">
 header {
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: #ffffff;
   .header {
     display: flex;
@@ -100,8 +111,8 @@ header {
         }
       }
       span {
-        margin: 0 18px;
-        padding-left: 18px;
+        margin: 0 20px;
+        padding-left: 20px;
         border-left: 2px solid #ededed;
         color: #5c6566;
       }
@@ -110,6 +121,19 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
+      .nav-news {
+        font-weight: 700;
+        color: #00cdc4;
+        &::before {
+          position: absolute;
+          left: -7px;
+          top: 5px;
+          width: 2px;
+          height: 18px;
+          background-color: #00cdc4;
+          content: "";
+        }
+      }
       a {
         position: relative;
         margin-right: 32px;
