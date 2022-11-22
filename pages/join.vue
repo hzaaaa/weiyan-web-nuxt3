@@ -102,7 +102,7 @@
                     <dd v-for="(subItem, subIndex) in item.require" :key="subIndex">{{ subItem }}</dd>
                   </dl>
                   <div class="email">
-                    <span>请将您的简历发送至HR@weiyankeji.cn</span>
+                    <span>请将您的简历发送至 zhourunyu@weiyankeji.cn</span>
                   </div>
                 </div>
               </div>
@@ -596,8 +596,8 @@ let jobList = reactive(<any>[
                 padding-top: 44px;
                 span {
                   display: inline-block;
+                  padding: 0 20px;
                   border: 1px solid #34c1af;
-                  width: 325px;
                   height: 40px;
                   line-height: 40px;
                   text-align: center;

@@ -3,7 +3,7 @@
     <div class="article">
       <div class="article-content">
         <div class="article-content-title">{{ article.mainTitle }}</div>
-        <div class="article-content-source">{{ article.source }}</div>
+        <div class="article-content-source" v-html="article.source"></div>
         <div class="article-content-detail">
           <div class="detail-pic" v-if="article.mainPic">
             <img :src="article.mainPic" alt="" />
@@ -31,7 +31,7 @@ const route = useRoute();
 let article;
 article = articles.find((item) => item.id === route.params.id);
 if (!article) {
-  article = articles[0];
+  article = articles[articles.length - 1];
 }
 // console.warn("article", article);
 // console.warn(articles);
@@ -77,6 +77,8 @@ onMounted(() => {
       width: 100%;
       text-align: center;
       img {
+        width: 100%;
+        height: 350px;
         vertical-align: top;
       }
     }
