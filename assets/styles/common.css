@@ -1,18 +1,19 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* html的字体大小随着屏幕的大小而改变 */
 html {
-	/* width: 100vw;
+  /* width: 100vw;
 	height: 100vh; */
-	font-size: calc(100vw / 1920 * 100);
+
+  font-size: calc(100vw / (1903 / 190.3));
 }
 .center {
-	overflow: hidden;
-	margin: 0 auto;
-	width: 1170px;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 1170px;
 }
 
 /*
@@ -20,18 +21,24 @@ html {
 */
 
 /* pc width > 1024px */
+.container #banner #background {
+  min-height: 500px;
+}
 
 /* ipad pro */
 @media screen and (max-width: 1024px) {
-	/* html {
+  /* html {
 		font-size: 50px;
 	} */
-	.center {
-		overflow: hidden;
-		width: 100vw;
-	}
-	#banner #background #banner-content .title1 img {
-		width: 90%;
-		height: auto;
-	}
+  .center {
+    overflow: hidden;
+    width: 100vw;
+  }
+  #banner #background #banner-content .title1 img {
+    width: 90%;
+    height: auto;
+  }
+  .container #banner #background {
+    height: vh(500);
+  }
 }

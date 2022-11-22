@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <div id="index_header">
       <div class="header" id="header_nav">
         <div class="header-top">
@@ -13,19 +13,19 @@
             <a href="index.html">首页</a>
             <a href="/about.html" class="">关于我们</a>
             <a href="/team.html" class="">微言团队</a>
-            <!-- <a href="/solution.html" class="">解决方案<i></i></a> -->
+            <a href="/solution.html" class="">解决方案<i></i></a>
             <a href="/dynamic.html" class="">微言动态</a>
             <a href="/join.html" class="router-link-active">加入我们</a>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div>
-      <slot />
-    </div>
+  <div>
+    <slot />
+  </div>
 
-    <div id="index_footer">
+  <!-- <div id="index_footer">
       <div class="footer">
         <div class="footer-detail">
           <div class="left">
@@ -61,7 +61,7 @@
                   <p><span>深圳总部：</span>深圳市福田区凯丰路10号国际金融科技城13层</p>
                   <p><span>上海分公司：</span>上海市黄浦区外滩街道四川中路33号创业大楼617室</p>
                   <p><span>北京分公司：</span>北京市西城区黄寺大街甲23号院北广大厦A口6层634</p>
-                  <!-- <p><span>广州分公司：</span>广州高新技术产业开发区科丰路85号2007房</p> -->
+                  <p><span>广州分公司：</span>广州高新技术产业开发区科丰路85号2007房</p>
                   <div><span>T：0755-8279 5265</span><span>E：BD@weiyankeji.cn</span></div>
                 </div>
               </div>
@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts"></script>
