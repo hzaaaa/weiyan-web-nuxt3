@@ -11,7 +11,13 @@
                 </div>
                 <div class="title2">深圳微言科技有限公司宣布完成A轮融资，<br />由知名国际顶级投资机构软银中国资本领投。</div>
                 <div class="btn-wrap">
-                  <div class="view-btn"><a href="#" target="_blank">立即查看</a></div>
+                  <!-- <NuxtLink :to="`/article/3`"> -->
+                  <a :href="`${indexURL}article/3`" target="_blank">
+                    <div class="view-btn">
+                      <span>立即查看</span>
+                    </div>
+                  </a>
+                  <!-- </NuxtLink> -->
                 </div>
               </div>
             </div>
@@ -51,7 +57,7 @@
             <div class="content-subtitle">关注微言实时动态获取更多行业信息</div>
             <div class="news-lists">
               <div class="news-item" v-for="item in newsLists" :key="item.id">
-                <a :href="`/dynamicDetail.html?showId=${item.id}`" target="_blank">
+                <a :href="`${indexURL}article/${item.id}`" target="_blank">
                   <div class="img-wrap">
                     <img
                       :src="`https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/dynamic/${item.imgSrc}`"
@@ -75,6 +81,10 @@
 </template>
 
 <script setup lang="ts">
+onMounted(() => {
+  indexURL.value = window.location.href;
+});
+let indexURL = ref("");
 interface NewsListsItem {
   id: number;
   imgSrc: string;
@@ -142,6 +152,7 @@ newsLists.value.reverse();
         }
         .btn-wrap {
           margin-top: 39px;
+          width: 190px;
           .view-btn {
             overflow: hidden;
             position: relative;
