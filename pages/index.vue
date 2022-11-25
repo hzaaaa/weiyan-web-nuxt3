@@ -57,7 +57,7 @@
             <div class="content-subtitle">关注微言实时动态获取更多行业信息</div>
             <div class="news-lists">
               <div class="news-item" v-for="item in newsLists" :key="item.id">
-                <a :href="`${indexURL}+${item.id}`" target="_blank">
+                <a :href="`${indexURL}${item.id}`" target="_blank">
                   <div class="img-wrap">
                     <img
                       :src="`https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/dynamic/${item.imgSrc}`"
