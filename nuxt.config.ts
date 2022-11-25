@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  plugins: [{ src: "@/plugins/baiduTJ" }],
+  // plugins: [{ src: "@/plugins/baiduTJ" }],
   // css: ["@/assets/styles/common.css"],
   postcss: {
     // plugins: {
