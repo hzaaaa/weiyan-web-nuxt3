@@ -1,162 +1,97 @@
-$vh_base: 1080;
-$vw_base: 1903;
-
-// 计算vh
-@function vh($px) {
-  @return calc($px/$vh_base) * 100vh;
-}
-
-// 计算vw
-@function vw($px) {
-  @return calc($px/$vw_base) * 100vw;
-}
+/*
+---------- 初始化样式 ----------
+*/
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Helvetica, "PingFang SC", "Mircrosoft YaHei", Arial, sans-serif;
 }
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-/* html的字体大小随着屏幕的大小而改变 */
-html {
-  /* width: 100vw;
-	height: 100vh; */
-  font-size: 190.3px;
-}
-body {
-  min-width: 1170px;
-  min-height: 831px;
-  font: 12px/1.14 arial, "\5b8b\4f53";
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  font-size: 16px;
-  color: #000000;
-  letter-spacing: 0;
-}
-.center {
-  overflow: hidden;
-  // margin: 0 auto;
-  min-width: 1170px;
-  // max-width: 1170px;
-}
-.content-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 1170px;
-}
-#header-banner {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: space-around;
+html,
+body,
+#app {
   width: 100%;
-  height: 150px;
-  min-height: 150px;
-  background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/about/header_bg.jpg") no-repeat;
-  background-size: cover;
-  .header-wrap {
-    width: 1170px;
-    min-width: 1170px;
-    .header-inner {
-      margin: 42px auto 41px;
+  height: 100%;
+  color: #333333;
+}
 
-      @include clearfix;
-      div:first-child {
-        float: left;
-        width: 411px;
-        height: 67px;
-        &.team {
-          width: 438px;
-        }
-        &.news {
-          width: 619px;
-        }
-        &.join {
-          width: 335px;
-        }
-        &.solution {
-          width: 410px;
-        }
-        img {
-          width: 100%;
-          height: 67px;
-        }
-      }
-      div:nth-child(2) {
-        float: left;
-        margin: 21px 0 0 28px;
-        line-height: 50px;
-        font-size: 36px;
-        color: #ffffff;
-      }
-      div:last-child {
-        float: right;
-        margin-top: 47px;
-        line-height: 20px;
-        font-weight: 300;
-        font-size: 14px;
-        color: #ffffff;
-      }
-    }
+/*
+---------- flex 弹性布局 ----------
+*/
+.flex {
+  display: flex;
+}
+
+%flex {
+  display: flex;
+}
+.flex-center {
+  @extend %flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.flex-align-center {
+  @extend %flex;
+
+  align-items: center;
+}
+
+/*
+---------- 字体大小全局样式 ----------
+*/
+@for $i from 10 to 32 {
+  .font#{$i} {
+    font-size: #{$i}px !important;
   }
 }
 
 /*
- -------------------- 以上为默认样式 --------------------
+---------- 外边距、内边距全局样式 ----------
 */
-
-/* pc width > 1024px */
-.container {
-  overflow: hidden;
-  min-width: 1170px;
+@for $i from 1 to 40 {
+  .mt#{$i} {
+    margin-top: #{$i}px !important;
+  }
+  .mr#{$i} {
+    margin-right: #{$i}px !important;
+  }
+  .mb#{$i} {
+    margin-bottom: #{$i}px !important;
+  }
+  .ml#{$i} {
+    margin-left: #{$i}px !important;
+  }
+  .pt#{$i} {
+    padding-top: #{$i}px !important;
+  }
+  .pr#{$i} {
+    padding-right: #{$i}px !important;
+  }
+  .pb#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+  .pl#{$i} {
+    padding-left: #{$i}px !important;
+  }
 }
 
-// pc width<1903
-// @media screen and (max-width: 1170px) {
-//   .container {
-//     #background {
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: center;
-//       #banner {
-//         .center {
-//           display: flex;
-//           flex-direction: column;
-//           justify-content: space-around;
-//         }
-//       }
-//     }
-//   }
-// }
+/*
+---------- 鼠标样式 ----------
+*/
+.pointer {
+  cursor: pointer;
+}
+#__nuxt {
+  height: 100%;
+  & > div {
+    height: 100%;
+  }
+}
 
-// /* ipad pro */
-// @media screen and (max-width: 1024px) {
-//   /* html {
-// 		font-size: 50px;
-// 	} */
-//   .center {
-//     // overflow: hidden;
-//     width: 100vw;
-//   }
-//   .container #banner #background {
-//     min-height: vh(500);
-//   }
-//   #banner #background #banner-content .title1 img {
-//     width: 90%;
-//     height: auto;
-//   }
-//   #banner #background #banner-content .title2 {
-//     margin-top: 116px;
-//     line-height: 140px;
-//     font-weight: 300;
-//     font-size: 80px;
-//   }
-// }
-// // 810px
-// @media screnn and (max-width: 810px) {
-//   html {
-//     font-size: calc(100vw / (1903 / 190.3));
-//   }
+// .center {
+//   overflow: hidden;
+//   // margin: 0 auto;
+//   min-width: 1170px;
+//   // max-width: 1170px;
 // }
