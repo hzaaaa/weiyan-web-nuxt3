@@ -66,7 +66,7 @@
         <div class="footer-bottom">
           <div>
             <span>Copyright&copy;2021 深圳微言科技有限责任公司 版权所有 </span>
-            <a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17076300号-1</a>
+            <a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17076300号</a>
           </div>
         </div>
       </div>

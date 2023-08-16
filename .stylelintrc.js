@@ -26,6 +26,7 @@ module.exports = {
     "property-no-unknown": null, // 禁止未知的属性(true 为不允许)
     "no-empty-source": null, // 禁止空源码
     "declaration-block-trailing-semicolon": null, // 要求或不允许在声明块中使用尾随分号 string："always(必须始终有一个尾随分号)"|"never(不得有尾随分号)"
+    "selector-id-pattern": null, // 强制选择器id名的格式
     "selector-class-pattern": null, // 强制选择器类名的格式
     "value-no-vendor-prefix": null, // 关闭 vendor-prefix(为了解决多行省略 -webkit-box)
     "selector-pseudo-class-no-unknown": [
