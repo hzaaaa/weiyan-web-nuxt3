@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Neue, Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+/* html的字体大小随着屏幕的大小而改变 */
+html {
+  /* width: 100vw;
+	height: 100vh; */
+
+  /* font-size: calc(100vw / 1903 * 100); */
+
+  /* font-size: 100px; */
+}
+.center {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 1170px;
+}
+html,
+body {
+  min-width: 1170px;
+  height: 100%;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  flex: 0 0 auto;
+}
+.main {
+  flex: 1 0 auto;
+}
+footer {
+  flex: 0 0 auto;
+}
+
+/*
+ -------------------- 以上为默认样式 --------------------
+*/
+
+/* pc width > 1024px */
+.container #banner #background {
+  min-height: 500px;
+}
+
+/* ipad pro */
+@media screen and (max-width: 1024px) {
+  /* html {
+		font-size: 50px;
+	} */
+  .center {
+    overflow: hidden;
+    width: 100vw;
+  }
+  #banner #background #banner-content .title1 img {
+    width: 90%;
+    height: auto;
+  }
+}
