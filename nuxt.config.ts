@@ -34,7 +34,8 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@/assets/styles/mixin.scss";@import "@/assets/styles/global.scss";`,
+          additionalData: `@import "@/assets/styles/mixin.scss";`,
+          // @import "@/assets/styles/global.scss";
         },
       },
     },
@@ -64,4 +65,8 @@ export default defineNuxtConfig({
       script: [{ src: "https://hm.baidu.com/hm.js?ef4978975287b26defd919021350932e" }],
     },
   },
+  modules: [
+    '@element-plus/nuxt'
+  ],
+  elementPlus: { /** Options */ }
 });

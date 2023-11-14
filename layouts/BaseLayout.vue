@@ -15,11 +15,13 @@
         </div>
         <div class="header-right">
           <NuxtLink to="/">首页</NuxtLink>
-          <NuxtLink to="/about">关于我们</NuxtLink>
+          <NuxtLink to="/production">产品中心</NuxtLink>
           <NuxtLink to="/team">微言团队</NuxtLink>
           <NuxtLink to="/news" :class="{ 'nav-news': isNewsPage }">微言动态</NuxtLink>
           <NuxtLink to="/join">加入我们</NuxtLink>
+          <NuxtLink to="/about">关于我们</NuxtLink>
         </div>
+        
       </div>
     </header>
 
