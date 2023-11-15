@@ -7,8 +7,7 @@
       <el-dialog :destroy-on-close="true" v-model="dialogVisible" title="商务咨询" @open="getLabelInfo" width="540px"
         style="height: 684px;" class="common-dialog">
         <!-- :rules="rulesForm" -->
-        <el-form ref="inputInfoRef" :model="inputInfo" :rules="rulesForm" @keyup.enter="submit" label-position="left"
-          label-width="auto">
+        <el-form ref="inputInfoRef" :model="inputInfo" @keyup.enter="submit" label-position="left" label-width="auto">
           <el-form-item label="姓名：" prop="childName">
             <el-input v-model="inputInfo.childName" show-word-limit placeholder="请输入姓名" style="height: 40px;" />
           </el-form-item>
@@ -27,7 +26,16 @@
             <el-input v-model="inputInfo.childName" show-word-limit placeholder="请输入手机号码" style="height: 40px;" />
           </el-form-item>
           <el-form-item label="验证码：" prop="childName">
-            <el-input v-model="inputInfo.childName" show-word-limit placeholder="请输入验证码" style="height: 40px;" />
+            <el-row style="width: 100%;">
+              <el-col :span="17">
+
+                <el-input v-model="inputInfo.childName" show-word-limit placeholder="请输入验证码" style="height: 40px;" />
+              </el-col>
+              <el-col :span="7" style="display: flex;flex-direction: row-reverse;">
+
+                <div class="verifyBtn">获取验证码</div>
+              </el-col>
+            </el-row>
           </el-form-item>
           <el-form-item label="需求描述：" prop="childName" style="height: auto;margin: 8px 0;" class="need-class">
             <el-input v-model="inputInfo.childName" show-word-limit type="textarea" placeholder="请填写您的商务合作重点需求描述"
@@ -35,9 +43,10 @@
           </el-form-item>
         </el-form>
         <template #footer>
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="submit">确定</el-button>
-          <!-- <el-button @click="check">check</el-button> -->
+
+          <div class="submit">
+            提交
+          </div>
         </template>
       </el-dialog>
     </div>
@@ -57,7 +66,7 @@ const rulesForm = reactive<any>({
   childName: [{ required: true, message: "请输入子目录名称!", trigger: "blur" }],
 });
 
-const dialogVisible = ref(true);
+const dialogVisible = ref(false);
 
 const dialogProps = <any>ref({
   row: {
@@ -105,6 +114,24 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
+.verifyBtn {
+  width: 100px;
+  height: 40px;
+  border-radius: 2px 2px 2px 2px;
+  opacity: 1;
+  border: 1px solid #00CDC4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-family: PingFangSC-Regular-, PingFangSC-Regular;
+  font-weight: normal;
+  color: #00CDC4;
+  line-height: 22px;
+}
+
 :deep(.el-dialog) {
   box-sizing: border-box;
 
@@ -148,10 +175,38 @@ defineExpose({
     }
   }
 
+  .el-dialog__body {
+    padding: 32px 30px 28px;
+  }
+
   .el-input {
     height: 40px;
   }
 
+  .el-dialog__footer {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+
+    .submit {
+      width: 140px;
+      height: 40px;
+      background: #00CDC4;
+      border-radius: 4px 4px 4px 4px;
+      opacity: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 16px;
+      font-family: PingFangSC-Medium-, PingFangSC-Medium;
+      font-weight: normal;
+      color: #FFFFFF;
+      line-height: 22px;
+
+    }
+  }
 
 
 

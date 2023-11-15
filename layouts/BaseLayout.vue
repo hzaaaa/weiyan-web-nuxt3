@@ -16,12 +16,13 @@
         <div class="header-right">
           <NuxtLink to="/">首页</NuxtLink>
           <NuxtLink to="/production">产品中心</NuxtLink>
-          <NuxtLink to="/team">微言团队</NuxtLink>
-          <NuxtLink to="/news" :class="{ 'nav-news': isNewsPage }">微言动态</NuxtLink>
+          <NuxtLink to="/solution">解决方案</NuxtLink>
+          <!-- <NuxtLink to="/news" :class="{ 'nav-news': isNewsPage }">微言动态</NuxtLink> -->
+          <NuxtLink to="/news">新闻资讯</NuxtLink>
           <NuxtLink to="/join">加入我们</NuxtLink>
           <NuxtLink to="/about">关于我们</NuxtLink>
         </div>
-        
+
       </div>
     </header>
 
@@ -99,16 +100,20 @@ let headerTopDisplay = ref("");
   border-bottom: 1px solid #efefef;
   width: 100%;
   height: 49px;
+
   .inner {
     margin: 0 auto;
     width: 1170px;
+
     span {
       line-height: 50px;
       font-weight: 300;
       font-size: 14px;
       color: #8a8e99;
+
       &:first-child {
         margin-right: 20px;
+
         i {
           display: inline-block;
           position: relative;
@@ -121,6 +126,7 @@ let headerTopDisplay = ref("");
           vertical-align: middle;
         }
       }
+
       &:last-child {
         i {
           display: inline-block;
@@ -137,11 +143,13 @@ let headerTopDisplay = ref("");
     }
   }
 }
+
 header {
   position: sticky;
   top: 0;
   z-index: 1;
   background-color: #ffffff;
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -151,20 +159,24 @@ header {
     width: 1170px;
     height: 32px;
     line-height: 32px;
+
     &-left {
       display: flex;
       align-items: center;
       font-size: 16px;
+
       a {
         display: inline-block;
         width: 132px;
         min-width: 132px;
         height: 32px;
         cursor: pointer;
+
         img {
           width: 100%;
         }
       }
+
       span {
         margin: 0 20px;
         padding-left: 20px;
@@ -172,13 +184,16 @@ header {
         color: #5c6566;
       }
     }
+
     &-right {
       display: flex;
       justify-content: center;
       align-items: center;
+
       .nav-news {
         font-weight: 700;
         color: #00cdc4;
+
         &::before {
           position: absolute;
           left: -7px;
@@ -189,6 +204,7 @@ header {
           content: "";
         }
       }
+
       a {
         position: relative;
         margin-right: 32px;
@@ -196,15 +212,19 @@ header {
         text-decoration: none;
         font-size: 14px;
         color: #000000;
+
         &:last-child {
           margin-right: 0;
         }
+
         &:hover {
           color: #00cdc4;
         }
+
         &.router-link-active {
           font-weight: 700;
           color: #00cdc4;
+
           &::before {
             position: absolute;
             left: -7px;
@@ -219,10 +239,12 @@ header {
     }
   }
 }
+
 footer {
   padding-top: 60px;
   background-color: #2d3240;
   color: #919899;
+
   .footer {
     &-detail {
       display: flex;
@@ -230,22 +252,27 @@ footer {
       width: 1170px;
       height: 270px;
       font-weight: 300;
+
       &-left {
         position: relative;
         margin-right: 90px;
         width: 300px;
+
         p {
           line-height: 26px;
           font-size: 14px;
         }
       }
+
       &-center {
         position: relative;
         margin-right: 84px;
         width: 115px;
+
         .router {
           display: flex;
           flex-direction: column;
+
           a {
             margin-bottom: 24px;
             line-height: 16px;
@@ -255,29 +282,38 @@ footer {
           }
         }
       }
+
       &-right {
         position: relative;
+
         .contact-info {
           display: flex;
+
           .weiyan-code {
             margin-right: 16px;
             width: 128px;
             height: 128px;
+
             img {
               width: 100%;
             }
           }
+
           .address {
             line-height: 16px;
             font-size: 14px;
+
             p {
               margin-bottom: 8px;
             }
+
             span {
               color: #c8cccc;
             }
+
             div {
               margin-top: 48px;
+
               span:first-child {
                 margin-right: 30px;
               }
@@ -285,12 +321,14 @@ footer {
           }
         }
       }
+
       .translate {
         margin-bottom: 30px;
         line-height: 32px;
         font-size: 24px;
         color: rgb(255 255 255 / 10%);
       }
+
       h6 {
         position: absolute;
         top: 18px;
@@ -298,15 +336,18 @@ footer {
         font-weight: 400;
         font-size: 14px;
         color: #ffffff;
+
         i {
           font-style: normal;
           color: #01cada;
         }
       }
     }
+
     &-bottom {
       padding: 24px 0;
       border-top: 1px solid rgb(255 255 255 / 10%);
+
       div {
         margin: 0 auto;
         width: 1170px;
@@ -314,6 +355,7 @@ footer {
         text-align: center;
         font-size: 14px;
         color: #c8cccc;
+
         a {
           text-decoration: underline;
           color: #c8cccc;

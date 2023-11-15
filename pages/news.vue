@@ -1,186 +1,214 @@
 <template>
   <NuxtLayout name="base-layout">
-    <section class="banner">
-      <div class="banner-inner">
-        <div class="banner-inner-img">
-          <img src="https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/dynamic/weiyan_news.png" alt="" />
-        </div>
-        <div class="banner-inner-title">微言动态</div>
+
+    <div class="banner">
+      <div class="big-title ">
+
+
+        微言科技受联盟数据专委会<br />
+        邀请分享“公共数据金融应用展望”
       </div>
-    </section>
-    <section class="news">
-      <div class="news-inner">
-        <div class="news-inner-title">
-          <span>微言动态</span>
-          <span>Weiyan news</span>
-        </div>
-        <div class="news-inner-list">
-          <article v-for="item in news" :key="item.id">
-            <NuxtLink :to="`/article/${item.id}`">
-              <div class="section">
-                <div class="section-left">
-                  <img :src="item.image" alt="" />
-                  <span>{{ item.feature }}</span>
+    </div>
+    <div class="body news">
+      <div class="list-block">
+        <template v-for="item in 5 ">
+
+          <div class="item-block">
+            <div class="left-block">
+              <div class="date">09.05</div>
+              <div class="year-block">
+                <div class="line"></div>
+                <div class="year">
+                  2023
                 </div>
-                <div class="section-right">
-                  <div class="date">
-                    <span class="date-day">{{ item.day }}</span>
-                    <span class="date-month">{{ item.month }}</span>
-                  </div>
-                  <div class="info">
-                    <h3 class="info-title">{{ item.title }}</h3>
-                    <p class="info-desc">
-                      {{ item.desc }}
-                    </p>
-                    <div>
-                      <span class="info-tips">查看详情</span>
-                    </div>
-                  </div>
-                </div>
+                <div class="line"></div>
               </div>
-            </NuxtLink>
-          </article>
-        </div>
+            </div>
+            <div class="middle-block">
+              <div class="title">深圳微言科技助力温州数安港夏令营活动...</div>
+              <div class="content">
+                2023年8月7日至11日，中国（温州）数安港举办第二届“数据智能夏令营”（以下简称夏令营）。夏令营受到了全国各高校学子们的广泛关注，来自全国30余所高校的50名优秀大学生参加活动。深圳微言科技参与了夏令营的多项活动，助力...
+              </div>
+              <div class="details">查看详情</div>
+            </div>
+            <!-- <div class="right-block-img">
+  
+            </div> -->
+            <el-image class="right-block-img" src="/news/test.png" fit="fill" />
+          </div>
+          <div class="item-line"></div>
+        </template>
       </div>
-    </section>
+      <div class="pagination-block">
+        <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
+          @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
+          :total="pageParams.total" />
+      </div>
+    </div>
+
+
   </NuxtLayout>
 </template>
 
-<script setup lang="ts">
-import news from "@/assets/text/news";
-onMounted(() => {
-  // console.warn(news);
+<script setup  lang="ts">
+const pageParams = reactive({
+  pageNum: 1,
+  pageSize: 5,
+  total: 56,
+  pageSizesList: [5],
 });
-</script>
-<style scoped lang="scss">
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 150px;
-  background-image: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/about/header_bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  &-inner {
-    display: flex;
-    align-items: flex-end;
-    width: 1170px;
-    &-img {
-      height: 68px;
-      img {
-        height: 100%;
-      }
-    }
-    &-title {
-      margin-left: 28px;
-      font-size: 36px;
-      color: #ffffff;
-    }
-  }
+const handleSizeChange = () => {
+
 }
-.news {
+const handleCurrentPageChange = () => {
+
+}
+
+</script>
+
+<style lang="scss" scoped>
+* {
+  box-sizing: border-box;
+
+}
+
+.news {}
+
+.banner {
+
+  height: 800px;
+  width: 100%;
+
+  background: url("@/assets/image/news/banner.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+
+  .big-title {
+    margin-top: 251px;
+    font-size: 60px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 80px;
+    text-shadow: 0px 2px 3px #373D3D;
+    -webkit-background-clip: text;
+    text-align: center;
+
+
+    // -webkit-text-fill-color: transparent;
+  }
+
+
+
+}
+
+.body {
+  margin-top: 38px;
   display: flex;
-  justify-content: center;
-  padding: 100px 0 72px;
-  &-inner {
-    width: 1170px;
-    &-title {
-      margin-bottom: 40px;
-      span {
-        font-size: 48px;
-        &:last-child {
-          margin-left: 20px;
-          font-weight: 300;
-          font-size: 38px;
-          color: #c2c4cc;
-        }
-      }
-    }
-    &-list {
-      a {
-        text-decoration: none;
-      }
-      article {
-        margin-top: 30px;
-      }
-      .section {
+  flex-direction: column;
+  align-items: center;
+
+  &>div {
+    width: 1200px;
+  }
+
+  .list-block {
+    .item-block {
+      height: 377px;
+      display: flex;
+
+      .left-block {
+        width: 178px;
+        height: 100%;
+        padding-right: 60px;
         display: flex;
-        box-sizing: border-box;
-        border: 1px solid #e9eaf0;
-        height: 220px;
-        &-left {
-          position: relative;
-          flex-shrink: 0;
-          width: 370px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-          span {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            width: 60px;
-            height: 24px;
-            background-color: rgb(0 0 0 / 40%);
-            line-height: 24px;
-            text-align: center;
-            font-weight: 300;
-            font-size: 12px;
-            color: rgb(255 255 255 / 80%);
-          }
+        flex-direction: column;
+        align-items: center;
+        padding-top: 48px;
+
+        .date {
+          font-size: 46px;
+          font-family: DIN-Bold, DIN;
+          font-weight: bold;
+          color: #00CDC4;
+          line-height: 1.4;
+          -webkit-background-clip: text;
         }
-        &-right {
+
+        .year-block {
           display: flex;
-          padding: 36px 44px;
-          .date {
-            display: flex;
-            flex-direction: column;
-            margin-right: 32px;
-            &-day {
-              line-height: 48px;
-              font-size: 48px;
-              color: #2d3140;
-            }
-            &-month {
-              line-height: 20px;
-              font-size: 14px;
-              color: #3e4559;
-            }
+          align-items: center;
+
+          .line {
+            width: 24px;
+            height: 0px;
+            opacity: 1;
+            border: 1px solid #959595;
           }
-          .info {
-            display: flex;
-            flex-direction: column;
-            &-title {
-              margin-bottom: 12px;
-              line-height: 24px;
-              font-weight: 700;
-              font-size: 18px;
-              color: #3e4559;
-              &:hover {
-                color: #00cdc4;
-              }
-            }
-            &-desc {
-              flex-grow: 1;
-              line-height: 24px;
-              font-weight: 300;
-              font-size: 14px;
-              color: #5f636d;
-            }
-            &-tips {
-              line-height: 20px;
-              font-size: 14px;
-              color: #5c6566;
-              &:hover {
-                color: #00cdc4;
-              }
-            }
+
+          .year {
+            font-size: 24px;
+            font-family: DIN-Medium, DIN;
+            font-weight: 500;
+            color: #7A7A7A;
+            line-height: 1.4;
+            -webkit-background-clip: text;
+            margin: 0 8px;
           }
         }
       }
+
+      .middle-block {
+        flex: 1;
+        height: 100%;
+        padding-top: 60px;
+
+        .title {
+          font-size: 24px;
+          font-family: PingFang SC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #151717;
+          line-height: 1.4;
+
+          margin-bottom: 20px;
+        }
+
+        .content {
+          font-size: 16px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #505353;
+          line-height: 24px;
+          height: 123px;
+          margin-bottom: 19px;
+        }
+
+        .details {
+          font-size: 16px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #00CDC4;
+          line-height: 1.4;
+        }
+      }
+
+      .right-block-img {
+        width: 460px;
+        height: 260px;
+        margin-left: 98px;
+        margin-top: 52px;
+      }
     }
+
+    .item-line {
+      width: 1200px;
+      height: 0px;
+      opacity: 1;
+      border-bottom: 1px solid #E1E8E8;
+    }
+
   }
 }
 </style>

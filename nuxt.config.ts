@@ -1,4 +1,5 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
+
 export default defineNuxtConfig({
   // plugins: [{ src: "@/plugins/baiduTJ" }],
   // css: ["@/assets/styles/common.css"],
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "@/assets/styles/mixin.scss";`,
+          additionalData: `@import "@/assets/styles/mixin.scss"; `,
           // @import "@/assets/styles/global.scss";
         },
       },
@@ -65,8 +66,5 @@ export default defineNuxtConfig({
       script: [{ src: "https://hm.baidu.com/hm.js?ef4978975287b26defd919021350932e" }],
     },
   },
-  modules: [
-    '@element-plus/nuxt'
-  ],
-  elementPlus: { /** Options */ }
+
 });
