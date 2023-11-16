@@ -29,22 +29,26 @@
               <div class="content">
                 2023年8月7日至11日，中国（温州）数安港举办第二届“数据智能夏令营”（以下简称夏令营）。夏令营受到了全国各高校学子们的广泛关注，来自全国30余所高校的50名优秀大学生参加活动。深圳微言科技参与了夏令营的多项活动，助力...
               </div>
-              <div class="details" @click="gotoDetails(item)">查看详情</div>
+              <div class="details">查看详情</div>
             </div>
-
+            <!-- <div class="right-block-img">
+  
+            </div> -->
+            <!-- <el-image class="right-block-img" src="/news/test.png" fit="fill" /> -->
             <el-image class="right-block-img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
           </div>
-
+          <div v-html="item.content.newsItem[0].content"></div>
           <div class="item-line"></div>
         </template>
 
-
+        <!-- {{ data }} -->
       </div>
       <div class="pagination-block">
         <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
           @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
           :total="pageParams.total" />
       </div>
+
     </div>
 
 
@@ -53,22 +57,12 @@
 
 <script setup  lang="ts">
 import moment from 'moment';
-let router = useRouter()
-const gotoDetails = (item: any) => {
-  router.push({
-    name: 'details',
-    query: {
-      objStr: encodeURI(JSON.stringify(item))
-    }
-  })
-}
 const pageParams = reactive({
   pageNum: 1,
   pageSize: 5,
   total: 56,
   pageSizesList: [5],
 });
-
 const newsList = <any>ref([]);
 const handleSizeChange = () => {
 

@@ -83,19 +83,22 @@
         <div class="content-block">
           <div class="left-block-wrap">
             <div class="left-block">
-              <div class=" item" @click="sceneShow = 'insure'" :class="sceneShow === 'insure' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'insure'" @click="sceneShow = 'insure'"
+                :class="sceneShow === 'insure' ? 'active-item' : ''">
                 <div class="title">
                   保险数据产品订阅
                 </div>
               </div>
               <div class="line"></div>
-              <div class=" item" @click="sceneShow = 'finance'" :class="sceneShow === 'finance' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'finance'" @click="sceneShow = 'finance'"
+                :class="sceneShow === 'finance' ? 'active-item' : ''">
                 <div class="title">
                   金融数据产品订阅
                 </div>
               </div>
               <div class="line"></div>
-              <div class=" item" @click="sceneShow = 'marketing'" :class="sceneShow === 'marketing' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'marketing'" @click="sceneShow = 'marketing'"
+                :class="sceneShow === 'marketing' ? 'active-item' : ''">
                 <div class="title">
                   营销数据产品订阅
                 </div>
