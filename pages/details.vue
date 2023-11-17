@@ -29,9 +29,16 @@
 
 <script setup  lang="ts">
 import moment from 'moment';
+onMounted(() => {
 
+  nextTick(() => {
+
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  })
+})
 let route = <any>useRoute()
-let detailsObj = <any>ref((JSON.parse(decodeURI(route.query.objStr))))
+
+let detailsObj = <any>ref(useState(route.query.articleId))
 
 onMounted(() => {
   console.log('route.params', route.params)

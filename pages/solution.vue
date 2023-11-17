@@ -92,7 +92,13 @@
 </template>
 
 <script setup  lang="ts">
+onMounted(() => {
 
+  nextTick(() => {
+
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  })
+})
 const table_list = ref([
   {
     title: '环境监测系统',

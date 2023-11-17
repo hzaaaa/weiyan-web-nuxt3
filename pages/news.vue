@@ -10,7 +10,21 @@
       </div>
     </div>
     <div class="body news">
-      <div class="list-block">
+      <div class="big-title">
+        <div class="green-title">新闻资讯</div>
+        <div class="green-line"></div>
+        <div class="grey-title">NEWS</div>
+      </div>
+      <div class="grid-class">
+        <div class="grid-item" v-for="item in  newsList" @click="gotoDetails(item)">
+          <!-- <div class="img"></div> -->
+          <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+          <div class="date">{{ moment(item.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
+          <div class="title">{{ item.content.newsItem[0].title }}</div>
+        </div>
+
+      </div>
+      <!-- <div class="list-block">
         <template v-for="item in  newsList">
 
           <div class="item-block">
@@ -27,7 +41,7 @@
             <div class="middle-block">
               <div class="title">{{ item.content.newsItem[0].title }}</div>
               <div class="content">
-                2023年8月7日至11日，中国（温州）数安港举办第二届“数据智能夏令营”（以下简称夏令营）。夏令营受到了全国各高校学子们的广泛关注，来自全国30余所高校的50名优秀大学生参加活动。深圳微言科技参与了夏令营的多项活动，助力...
+                {{ item.content.newsItem[0].digest ? item.content.newsItem[0].digest + '...' : '' }}
               </div>
               <div class="details" @click="gotoDetails(item)">查看详情</div>
             </div>
@@ -39,7 +53,7 @@
         </template>
 
 
-      </div>
+      </div> -->
       <div class="pagination-block">
         <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
           @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
@@ -53,20 +67,29 @@
 
 <script setup  lang="ts">
 import moment from 'moment';
+onMounted(() => {
+
+  nextTick(() => {
+
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  })
+})
 let router = useRouter()
 const gotoDetails = (item: any) => {
+  useState(item.articleId, () => item)
   router.push({
     name: 'details',
     query: {
-      objStr: encodeURI(JSON.stringify(item))
+
+      articleId: item.articleId
     }
   })
 }
 const pageParams = reactive({
   pageNum: 1,
-  pageSize: 5,
-  total: 56,
-  pageSizesList: [5],
+  pageSize: 6,
+  total: 0,
+  pageSizesList: [6],
 });
 
 const newsList = <any>ref([]);
@@ -77,29 +100,23 @@ const handleCurrentPageChange = (pageNum: any) => {
   pageParams.pageNum = pageNum;
   getNewsList()
 }
-// const dataS = <any>ref('')
-// const { data } = await useFetch(`http://172.16.1.44:8189/publish/article/page`,
-//   <any>{
-//     pageNumber: 0,
-//     pageSize: 5,
-//     sorts: 'article_update_time desc'
-//   })
-// dataS.value = data
+
 const getNewsList = async () => {
   let params = <any>{
     pageNumber: pageParams.pageNum,
     pageSize: pageParams.pageSize,
     sorts: 'article_update_time desc'
   }
-  let { data } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
     method: 'get',
     query: params
   })
-  // .then((res: any) => {
 
   newsList.value = data.records;
-  // debugger
-  // })
+
+
+  pageParams.total = data.total;
+
 }
 onMounted(() => {
 
@@ -146,13 +163,51 @@ onMounted(() => {
 }
 
 .body {
-  margin-top: 38px;
+  margin-top: 73px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &>div {
     width: 1200px;
+  }
+
+  .big-title {
+    margin-bottom: 75px;
+    position: relative;
+
+    .green-title {
+      font-size: 34px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 500;
+      color: #00CDC4;
+      line-height: 1.4;
+    }
+
+    .green-line {
+      width: 134px;
+      height: 3px;
+      background: #00CDC4;
+      border-radius: 0px 0px 0px 0px;
+      opacity: 1;
+
+    }
+
+    .grey-title {
+      width: 188px;
+      height: 84px;
+      font-size: 60px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 600;
+      color: #0D4E4B;
+      line-height: 1.4;
+      letter-spacing: 0;
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      z-index: -1;
+      opacity: 0.06;
+    }
   }
 
   .list-block {
@@ -255,6 +310,52 @@ onMounted(() => {
       border-bottom: 1px solid #E1E8E8;
     }
 
+  }
+
+  .grid-class {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 580px);
+    grid-column-gap: 40px; // grid-template-rows: repeat(auto-fill, 200px);
+    grid-row-gap: 40px; // grid-template-rows: repeat(auto-fill, 200px);
+
+    .grid-item {
+      width: 580px;
+      height: 400px;
+      background: #FFFFFF;
+      box-shadow: 0px 6px 12px 1px rgba(228, 238, 237, 0.52);
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      border: 1px solid #F3F6F6;
+
+      .img {
+        height: 240px;
+        width: 100%;
+        // background: #E20404;
+        border-radius: 10px 10px 0px 0px;
+        opacity: 1;
+      }
+
+      .date {
+        font-size: 14px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        color: #909191;
+        line-height: 1.4;
+        margin-top: 34px;
+        margin-left: 28px;
+      }
+
+      .title {
+        margin-left: 28px;
+        margin-top: 35px;
+        font-size: 16px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        color: #151717;
+        line-height: 1.4;
+      }
+
+    }
   }
 
   .pagination-block {

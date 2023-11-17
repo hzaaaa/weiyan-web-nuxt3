@@ -28,15 +28,20 @@
                 <el-dropdown-menu>
                   <el-dropdown-item>
 
-                    <NuxtLink to="/production" style="color: inherit;">数据订阅</NuxtLink>
+                    <NuxtLink to="/production" style="color: inherit;">
+                      <span class="router-link-word">
+                        数据订阅
+                      </span>
+                    </NuxtLink>
                   </el-dropdown-item>
 
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
             <el-dropdown>
-              <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">解决方案
+              <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">
 
+                解决方案
                 <el-icon class="el-icon--right">
                   <arrow-down />
                 </el-icon>
@@ -46,14 +51,19 @@
                 <el-dropdown-menu>
                   <el-dropdown-item>
 
-                    <NuxtLink to="/solution" style="color: inherit;">智慧农业</NuxtLink>
+                    <NuxtLink to="/solution" style="color: inherit;display: flex;align-items: center;">
+                      <el-image class="b-img icon-img" src="/top/zhny-b.png" fit="fill" />
+                      <el-image class="g-img icon-img" src="/top/zhny-g.png" fit="fill" />
+
+                      <span class="router-link-word">智慧农业</span>
+                    </NuxtLink>
                   </el-dropdown-item>
 
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
           </ClientOnly>
-          <NuxtLink class="item-link" to="/news">新闻资讯</NuxtLink>
+          <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage }">新闻资讯</NuxtLink>
           <NuxtLink class="item-link" to="/about">关于我们</NuxtLink>
         </div>
       </div>
@@ -123,7 +133,7 @@
 import { ArrowDown } from "@element-plus/icons-vue";
 const route = useRoute();
 onMounted(() => {
-  if (route.path.startsWith("/article")) {
+  if (route.path.startsWith("/details")) {
     isNewsPage.value = true;
   } else {
     isNewsPage.value = false;
@@ -146,6 +156,7 @@ onMounted(() => {
   } else {
     headerTopDisplay.value = "block";
   }
+
 });
 const isNewsPage = ref(false);
 const isSolutionPage = ref(false);
@@ -314,6 +325,8 @@ header {
       color: var(--el-color-primary) !important;
     }
 
+
+
     .logo {
       width: 144px;
       height: 32px;
@@ -337,6 +350,8 @@ header {
       .item-link-active {
         color: var(--el-color-primary);
       }
+
+
     }
   }
 }
