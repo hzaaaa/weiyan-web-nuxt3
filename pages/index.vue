@@ -9,7 +9,7 @@
             :key="index"
             :class="[item.first ? 'active' : '']"
           >
-            <img :src="getAssetsFile(`${item.imgSrc}${index}${item.imgType}`)" class="carousel-img" />
+            <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
             <div class="desc-item">
               <span class="title">{{ item.titleText }}</span>
               <span class="desc">{{ item.descText }}</span>
@@ -160,7 +160,7 @@
         </div>
         <div class="customer-wrapper">
           <div class="customer" v-for="(item, index) in customerItemList" :key="index">
-            <img :src="getAssetsFile(`${item.imgSrc}${item.imgType}`)" />
+            <img :src="`/${item.imgSrc}${item.imgType}`" />
           </div>
         </div>
       </div>
@@ -593,9 +593,9 @@ onUnmounted(() => {
       font-size: 42px;
       font-weight: 500;
       color: #151717;
+      margin-bottom: 31px;
     }
     .desc {
-      margin-top: 31px;
       font-size: 20px;
       font-weight: 400;
       color: #505353;
@@ -603,12 +603,15 @@ onUnmounted(() => {
     }
   }
   #ace-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .ace-product-list {
       // width: 1924.5px;
       min-width: 1924.5px;
       width: 100%;
       height: 600px;
-      margin: auto;
+      // margin: auto;
 
       position: relative;
       background-color: #8e9f9e;
@@ -625,6 +628,7 @@ onUnmounted(() => {
           background-image: url("@/assets/image/home/product_1.png");
           height: 100%;
           background-size: cover;
+
           background-repeat: no-repeat;
           .product-detail-wrapper {
             margin-left: 144px;
