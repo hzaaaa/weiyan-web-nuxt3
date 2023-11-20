@@ -166,34 +166,26 @@
         <div class="desc-wrapper">
           <span class="desc-title">新闻资讯</span>
         </div>
+        <div class="news-wrapper">
+          <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
+            <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+            <div class="news-info-content">
+              <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
+              <div class="title">{{ item.content.newsItem[0].title }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="more-new-btn">
+          <span>查看更多</span>
+          <img src="@/assets/image/home/arrow_white.png" />
+        </div>
       </div>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-onMounted(() => {
-  clearInterval(timer);
-  clearTimeout(timeOuter);
-  indexURL.value = window.location.href + "article/";
-  // carouselItem.value = document.getElementsByClassName("carousel-item");
-
-  // timer.value = setInterval(function () {
-  //   carouselMove();
-  // }, 5000);
-  timeOuter = setTimeout(() => {
-    nextTick(() => {
-      carouselItem = document.getElementsByClassName("carousel-item");
-      carouselNavItem.value = document.getElementsByClassName("nav-item");
-      console.log("carouselItem.value: ", carouselItem);
-      console.log(carouselNavItem.value);
-      timer = setInterval(function () {
-        carouselIndexLoop();
-        carouselMove();
-      }, 5000);
-    });
-  }, 500);
-});
+import moment from "moment";
 let indexURL = ref("");
 
 interface BannerCarouselItem {
@@ -417,6 +409,65 @@ const customerItemList = [
   },
 ];
 
+let router = useRouter();
+const gotoDetails = (item: any) => {
+  useState(item.articleId, () => item);
+  router.push({
+    name: "details",
+    query: {
+      articleId: item.articleId,
+    },
+  });
+};
+const pageParams = reactive({
+  pageNum: 1,
+  pageSize: 3,
+  total: 0,
+  pageSizesList: [3],
+});
+
+const newsList = <any>ref([]);
+const getNewsList = async () => {
+  let params = <any>{
+    pageNumber: pageParams.pageNum,
+    pageSize: pageParams.pageSize,
+    sorts: "article_update_time desc",
+  };
+  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+    method: "get",
+    query: params,
+  });
+
+  newsList.value = data.records;
+  pageParams.total = data.total;
+};
+
+onMounted(() => {
+  nextTick(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  });
+  clearInterval(timer);
+  clearTimeout(timeOuter);
+  indexURL.value = window.location.href + "article/";
+  // carouselItem.value = document.getElementsByClassName("carousel-item");
+
+  // timer.value = setInterval(function () {
+  //   carouselMove();
+  // }, 5000);
+  timeOuter = setTimeout(() => {
+    nextTick(() => {
+      carouselItem = document.getElementsByClassName("carousel-item");
+      carouselNavItem.value = document.getElementsByClassName("nav-item");
+      console.log("carouselItem.value: ", carouselItem);
+      console.log(carouselNavItem.value);
+      timer = setInterval(function () {
+        carouselIndexLoop();
+        carouselMove();
+      }, 5000);
+    });
+  }, 500);
+  getNewsList();
+});
 onUnmounted(() => {
   clearInterval(timer);
   clearTimeout(timeOuter);
@@ -871,8 +922,77 @@ onUnmounted(() => {
     }
   }
   #news-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .desc-wrapper {
       padding: 77px 0 70px 0;
+    }
+    .news-wrapper {
+      width: 1206px;
+      display: flex;
+      flex-wrap: wrap;
+      .news-item {
+        width: 380px;
+        height: 360px;
+        background: #ffffff;
+        box-shadow: 0px 6px 12px 1px rgba(228, 238, 237, 0.52);
+        border-radius: 10px;
+
+        border: 1px solid #f3f6f6;
+        margin-right: 30px;
+        overflow: hidden;
+        .el-image.img {
+          width: 380px;
+          height: 200px;
+        }
+        &:nth-of-type(3n) {
+          margin-right: 0;
+        }
+        .news-info-content {
+          height: 160px;
+          width: 380px;
+          padding: 26px 40px 55px 28px;
+          box-sizing: border-box;
+          .date {
+            font-size: 14px;
+            font-weight: 400;
+            color: #909191;
+          }
+          .title {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #151717;
+          }
+        }
+        &:hover {
+          .title {
+            color: #00cdc4;
+          }
+        }
+      }
+    }
+    .more-new-btn {
+      width: 160px;
+      height: 44px;
+      background: #00cdc4;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 58px 0 63px 0;
+      span {
+        font-size: 20px;
+        font-weight: 400;
+        color: #ffffff;
+        margin-right: 6px;
+      }
+      img {
+        width: 16px;
+        height: 6px;
+      }
     }
   }
 }
