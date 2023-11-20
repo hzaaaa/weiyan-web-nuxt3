@@ -99,9 +99,11 @@
             <div class="mask"></div>
             <span class="card-title">智慧保险</span>
             <span class="card-desc"
-              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
-            >
-            <div class="card-btn">
+              >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+              生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
+              风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
+            </span>
+            <div class="card-btn" @click="goToSolution">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
             </div>
@@ -110,9 +112,9 @@
             <div class="mask"></div>
             <span class="card-title">智慧银行</span>
             <span class="card-desc"
-              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+              >覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span
             >
-            <div class="card-btn">
+            <div class="card-btn" @click="goToSolution">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
             </div>
@@ -123,7 +125,7 @@
             <span class="card-desc"
               >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
             >
-            <div class="card-btn">
+            <div class="card-btn" @click="goToSolution">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
             </div>
@@ -132,9 +134,9 @@
             <div class="mask"></div>
             <span class="card-title">智能营销</span>
             <span class="card-desc"
-              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+              >秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span
             >
-            <div class="card-btn">
+            <div class="card-btn" @click="goToSolution">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
             </div>
@@ -143,9 +145,9 @@
             <div class="mask"></div>
             <span class="card-title">智慧工地</span>
             <span class="card-desc"
-              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+              >以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span
             >
-            <div class="card-btn">
+            <div class="card-btn" @click="goToSolution">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
             </div>
@@ -175,7 +177,7 @@
             </div>
           </div>
         </div>
-        <div class="more-new-btn">
+        <div class="more-new-btn" @click="goToNews">
           <span>查看更多</span>
           <img src="@/assets/image/home/arrow_white.png" />
         </div>
@@ -275,10 +277,14 @@ const handleProductClick = () => {
   console.log("productItemDomList: ", productItemDomList);
 
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_active_1.png")})`;
-  productItemDomList[0].style.width = "1551px";
-  productItemDomList[1].style.left = "1346px";
-  productItemDomList[1].style.width = "456px";
-  productItemDomList[2].style.width = "289px";
+  // productItemDomList[0].style.width = "1551px";
+  productItemDomList[0].style.width = "80.59%";
+  // productItemDomList[1].style.left = "1346px";
+  productItemDomList[1].style.left = "69.94%";
+  // productItemDomList[1].style.width = "456px";
+  productItemDomList[1].style.width = "23.69%";
+  // productItemDomList[2].style.width = "289px";
+  productItemDomList[2].style.width = "15.01%";
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_2.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_3.png")})`;
   productDetailIndex.value = 1;
@@ -289,10 +295,14 @@ const handleProduct3Click = () => {
   console.log("productItemDomList: ", productItemDomList);
 
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_active_3.png")})`;
-  productItemDomList[2].style.width = "1551px";
-  productItemDomList[1].style.left = "122px";
-  productItemDomList[1].style.width = "456px";
-  productItemDomList[0].style.width = "289px";
+  // productItemDomList[2].style.width = "1551px";
+  productItemDomList[2].style.width = "80.59%";
+  // productItemDomList[1].style.left = "122px";
+  productItemDomList[1].style.left = "6.33%";
+  // productItemDomList[1].style.width = "456px";
+  productItemDomList[1].style.width = "23.69%";
+  // productItemDomList[0].style.width = "289px";
+  productItemDomList[0].style.width = "15.01%";
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_1.png")})`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_2.png")})`;
   productDetailIndex.value = 3;
@@ -303,10 +313,14 @@ const handleProduct2Click = () => {
   console.log("productItemDomList: ", productItemDomList);
 
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_active_2.png")})`;
-  productItemDomList[1].style.width = "1680px";
-  productItemDomList[1].style.left = "122px";
-  productItemDomList[0].style.width = "289px";
-  productItemDomList[2].style.width = "289px";
+  // productItemDomList[1].style.width = "1680px";
+  productItemDomList[1].style.width = "87.29%";
+  // productItemDomList[1].style.left = "122px";
+  productItemDomList[1].style.left = "6.33%";
+  // productItemDomList[0].style.width = "289px";
+  productItemDomList[0].style.width = "15.01%";
+  // productItemDomList[2].style.width = "289px";
+  productItemDomList[2].style.width = "15.01%";
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_1.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_3.png")})`;
   productDetailIndex.value = 2;
@@ -315,10 +329,14 @@ const handleProduct2Click = () => {
 const handleMouseLeaveProduct = () => {
   const productItemDomList = document.querySelectorAll(".product-item") as NodeListOf<HTMLElement>;
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_1.png")})`;
-  productItemDomList[0].style.width = "640px";
-  productItemDomList[1].style.left = "534px";
-  productItemDomList[1].style.width = "750px";
-  productItemDomList[2].style.width = "727px";
+  // productItemDomList[0].style.width = "640px";
+  productItemDomList[0].style.width = "33.25%";
+  // productItemDomList[1].style.left = "534px";
+  productItemDomList[1].style.left = "27.74%";
+  // productItemDomList[1].style.width = "750px";
+  productItemDomList[1].style.width = "38.97%";
+  // productItemDomList[2].style.width = "727px";
+  productItemDomList[2].style.width = " 37.77%";
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_2.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_3.png")})`;
   productDetailIndex.value = 0;
@@ -442,6 +460,16 @@ const getNewsList = async () => {
   pageParams.total = data.total;
 };
 
+const goToNews = (item: any) => {
+  router.push({
+    name: "news",
+  });
+};
+const goToSolution = (item: any) => {
+  router.push({
+    name: "solution",
+  });
+};
 onMounted(() => {
   nextTick(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -478,7 +506,8 @@ onUnmounted(() => {
 .container {
   #banner-carousel {
     margin: auto;
-    width: 1920px;
+    // width: 1920px;
+    width: 100%;
     height: 820px;
     position: relative;
     #carousel {
@@ -490,6 +519,7 @@ onUnmounted(() => {
         transition: all 1s;
         width: 100%;
         height: 100%;
+        list-style: none;
         img.carousel-img {
           width: 100%;
           height: 100%;
@@ -574,7 +604,9 @@ onUnmounted(() => {
   }
   #ace-product {
     .ace-product-list {
-      width: 1924.5px;
+      // width: 1924.5px;
+      min-width: 1924.5px;
+      width: 100%;
       height: 600px;
       margin: auto;
 
@@ -588,30 +620,36 @@ onUnmounted(() => {
         transition: all 0.5s;
         &:first-of-type {
           // width: 534px;
-          width: 640px;
+          // width: 640px;
+          width: 33.25%;
           background-image: url("@/assets/image/home/product_1.png");
           height: 100%;
-
+          background-size: cover;
           background-repeat: no-repeat;
           .product-detail-wrapper {
             margin-left: 144px;
           }
         }
         &:nth-of-type(2) {
-          width: 750px;
+          // width: 750px;
+          width: 38.97%;
           background-image: url("@/assets/image/home/product_2.png");
           height: 100%;
+          background-size: cover;
           background-repeat: no-repeat;
-          left: 534px;
+          // left: 534px;
+          left: 27.74%;
           .product-detail-wrapper {
             margin-left: 300px;
           }
         }
         &:last-of-type {
-          width: 727px;
+          // width: 727px;
+          width: 37.77%;
           background-image: url("@/assets/image/home/product_3.png");
           height: 100%;
           right: 0;
+          background-size: cover;
           background-repeat: no-repeat;
           .product-detail-wrapper {
             margin-left: 342px;
