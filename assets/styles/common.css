@@ -16,11 +16,11 @@ html {
 .center {
   overflow: hidden;
   margin: 0 auto;
-  width: 1170px;
+  width: 1200px;
 }
 html,
 body {
-  min-width: 1170px;
+  min-width: 1200px;
   height: 100%;
 }
 #container {

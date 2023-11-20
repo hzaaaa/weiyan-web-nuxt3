@@ -1,186 +1,368 @@
 <template>
   <NuxtLayout name="base-layout">
-    <section class="banner">
-      <div class="banner-inner">
-        <div class="banner-inner-img">
-          <img src="https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/dynamic/weiyan_news.png" alt="" />
-        </div>
-        <div class="banner-inner-title">微言动态</div>
+
+    <div class="banner">
+      <div class="big-title ">
+
+
+        微言科技受联盟数据专委会<br />
+        邀请分享“公共数据金融应用展望”
       </div>
-    </section>
-    <section class="news">
-      <div class="news-inner">
-        <div class="news-inner-title">
-          <span>微言动态</span>
-          <span>Weiyan news</span>
+    </div>
+    <div class="body news">
+      <div class="big-title">
+        <div class="green-title">新闻资讯</div>
+        <div class="green-line"></div>
+        <div class="grey-title">NEWS</div>
+      </div>
+      <div class="grid-class">
+        <div class="grid-item" v-for="item in  newsList" @click="gotoDetails(item)">
+          <!-- <div class="img"></div> -->
+          <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+          <div class="date">{{ moment(item.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
+          <div class="title">{{ item.content.newsItem[0].title }}</div>
         </div>
-        <div class="news-inner-list">
-          <article v-for="item in news" :key="item.id">
-            <NuxtLink :to="`/article/${item.id}`">
-              <div class="section">
-                <div class="section-left">
-                  <img :src="item.image" alt="" />
-                  <span>{{ item.feature }}</span>
+
+      </div>
+      <!-- <div class="list-block">
+        <template v-for="item in  newsList">
+
+          <div class="item-block">
+            <div class="left-block">
+              <div class="date">{{ moment(item.articleUpdateTime * 1000).format('MM.DD') }}</div>
+              <div class="year-block">
+                <div class="line"></div>
+                <div class="year">
+                  {{ moment(item.articleUpdateTime * 1000).format('YYYY') }}
                 </div>
-                <div class="section-right">
-                  <div class="date">
-                    <span class="date-day">{{ item.day }}</span>
-                    <span class="date-month">{{ item.month }}</span>
-                  </div>
-                  <div class="info">
-                    <h3 class="info-title">{{ item.title }}</h3>
-                    <p class="info-desc">
-                      {{ item.desc }}
-                    </p>
-                    <div>
-                      <span class="info-tips">查看详情</span>
-                    </div>
-                  </div>
-                </div>
+                <div class="line"></div>
               </div>
-            </NuxtLink>
-          </article>
-        </div>
+            </div>
+            <div class="middle-block">
+              <div class="title">{{ item.content.newsItem[0].title }}</div>
+              <div class="content">
+                {{ item.content.newsItem[0].digest ? item.content.newsItem[0].digest + '...' : '' }}
+              </div>
+              <div class="details" @click="gotoDetails(item)">查看详情</div>
+            </div>
+
+            <el-image class="right-block-img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+          </div>
+
+          <div class="item-line"></div>
+        </template>
+
+
+      </div> -->
+      <div class="pagination-block">
+        <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
+          @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
+          :total="pageParams.total" />
       </div>
-    </section>
+    </div>
+
+
   </NuxtLayout>
 </template>
 
-<script setup lang="ts">
-import news from "@/assets/text/news";
+<script setup  lang="ts">
+import moment from 'moment';
 onMounted(() => {
-  // console.warn(news);
-});
-</script>
-<style scoped lang="scss">
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 150px;
-  background-image: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/about/header_bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  &-inner {
-    display: flex;
-    align-items: flex-end;
-    width: 1170px;
-    &-img {
-      height: 68px;
-      img {
-        height: 100%;
-      }
+
+  nextTick(() => {
+
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  })
+})
+let router = useRouter()
+const gotoDetails = (item: any) => {
+  useState(item.articleId, () => item)
+  router.push({
+    name: 'details',
+    query: {
+
+      articleId: item.articleId
     }
-    &-title {
-      margin-left: 28px;
-      font-size: 36px;
-      color: #ffffff;
+  })
+}
+const pageParams = reactive({
+  pageNum: 1,
+  pageSize: 6,
+  total: 0,
+  pageSizesList: [6],
+});
+
+const newsList = <any>ref([]);
+const handleSizeChange = () => {
+
+}
+const handleCurrentPageChange = (pageNum: any) => {
+  pageParams.pageNum = pageNum;
+  getNewsList()
+}
+
+const getNewsList = async () => {
+  let params = <any>{
+    pageNumber: pageParams.pageNum,
+    pageSize: pageParams.pageSize,
+    sorts: 'article_update_time desc'
+  }
+  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+    method: 'get',
+    query: params
+  })
+
+  newsList.value = data.records;
+
+
+  pageParams.total = data.total;
+
+}
+onMounted(() => {
+
+  getNewsList();
+})
+</script>
+
+<style lang="scss" scoped>
+* {
+  box-sizing: border-box;
+
+}
+
+.news {}
+
+.banner {
+
+  height: 800px;
+  width: 100%;
+
+  background: url("@/assets/image/news/banner.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+
+  .big-title {
+    margin-top: 251px;
+    font-size: 60px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 80px;
+    text-shadow: 0px 2px 3px #373D3D;
+    -webkit-background-clip: text;
+    text-align: center;
+
+
+    // -webkit-text-fill-color: transparent;
+  }
+
+
+
+}
+
+.body {
+  margin-top: 73px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &>div {
+    width: 1200px;
+  }
+
+  .big-title {
+    margin-bottom: 75px;
+    position: relative;
+
+    .green-title {
+      font-size: 34px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 500;
+      color: #00CDC4;
+      line-height: 1.4;
+    }
+
+    .green-line {
+      width: 134px;
+      height: 3px;
+      background: #00CDC4;
+      border-radius: 0px 0px 0px 0px;
+      opacity: 1;
+
+    }
+
+    .grey-title {
+      width: 188px;
+      height: 84px;
+      font-size: 60px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 600;
+      color: #0D4E4B;
+      line-height: 1.4;
+      letter-spacing: 0;
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      z-index: -1;
+      opacity: 0.06;
     }
   }
-}
-.news {
-  display: flex;
-  justify-content: center;
-  padding: 100px 0 72px;
-  &-inner {
-    width: 1170px;
-    &-title {
-      margin-bottom: 40px;
-      span {
-        font-size: 48px;
-        &:last-child {
-          margin-left: 20px;
-          font-weight: 300;
-          font-size: 38px;
-          color: #c2c4cc;
-        }
-      }
-    }
-    &-list {
-      a {
-        text-decoration: none;
-      }
-      article {
-        margin-top: 30px;
-      }
-      .section {
+
+  .list-block {
+    .item-block {
+      height: 377px;
+      display: flex;
+
+      .left-block {
+        width: 178px;
+        height: 100%;
+        padding-right: 60px;
         display: flex;
-        box-sizing: border-box;
-        border: 1px solid #e9eaf0;
-        height: 220px;
-        &-left {
-          position: relative;
-          flex-shrink: 0;
-          width: 370px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-          span {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            width: 60px;
-            height: 24px;
-            background-color: rgb(0 0 0 / 40%);
-            line-height: 24px;
-            text-align: center;
-            font-weight: 300;
-            font-size: 12px;
-            color: rgb(255 255 255 / 80%);
-          }
+        flex-direction: column;
+        align-items: center;
+        padding-top: 48px;
+
+        .date {
+          font-size: 46px;
+          font-family: DIN-Bold, DIN;
+          font-weight: bold;
+          color: #00CDC4;
+          line-height: 1.4;
+          -webkit-background-clip: text;
         }
-        &-right {
+
+        .year-block {
           display: flex;
-          padding: 36px 44px;
-          .date {
-            display: flex;
-            flex-direction: column;
-            margin-right: 32px;
-            &-day {
-              line-height: 48px;
-              font-size: 48px;
-              color: #2d3140;
-            }
-            &-month {
-              line-height: 20px;
-              font-size: 14px;
-              color: #3e4559;
-            }
+          align-items: center;
+
+          .line {
+            width: 24px;
+            height: 0px;
+            opacity: 1;
+            border: 1px solid #959595;
           }
-          .info {
-            display: flex;
-            flex-direction: column;
-            &-title {
-              margin-bottom: 12px;
-              line-height: 24px;
-              font-weight: 700;
-              font-size: 18px;
-              color: #3e4559;
-              &:hover {
-                color: #00cdc4;
-              }
-            }
-            &-desc {
-              flex-grow: 1;
-              line-height: 24px;
-              font-weight: 300;
-              font-size: 14px;
-              color: #5f636d;
-            }
-            &-tips {
-              line-height: 20px;
-              font-size: 14px;
-              color: #5c6566;
-              &:hover {
-                color: #00cdc4;
-              }
-            }
+
+          .year {
+            font-size: 24px;
+            font-family: DIN-Medium, DIN;
+            font-weight: 500;
+            color: #7A7A7A;
+            line-height: 1.4;
+            -webkit-background-clip: text;
+            margin: 0 8px;
           }
         }
       }
+
+      .middle-block {
+        flex: 1;
+        width: 0;
+        height: 100%;
+        padding-top: 60px;
+
+        .title {
+          font-size: 24px;
+          font-family: PingFang SC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #151717;
+          line-height: 1.4;
+
+          margin-bottom: 20px;
+
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .content {
+          font-size: 16px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #505353;
+          line-height: 24px;
+          height: 123px;
+          margin-bottom: 19px;
+        }
+
+        .details {
+          font-size: 16px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #00CDC4;
+          line-height: 1.4;
+        }
+      }
+
+      .right-block-img {
+        width: 460px;
+        height: 260px;
+        margin-left: 98px;
+        margin-top: 52px;
+      }
     }
+
+    .item-line {
+      width: 1200px;
+      height: 0px;
+      opacity: 1;
+      border-bottom: 1px solid #E1E8E8;
+    }
+
+  }
+
+  .grid-class {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 580px);
+    grid-column-gap: 40px; // grid-template-rows: repeat(auto-fill, 200px);
+    grid-row-gap: 40px; // grid-template-rows: repeat(auto-fill, 200px);
+
+    .grid-item {
+      width: 580px;
+      height: 400px;
+      background: #FFFFFF;
+      box-shadow: 0px 6px 12px 1px rgba(228, 238, 237, 0.52);
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      border: 1px solid #F3F6F6;
+
+      .img {
+        height: 240px;
+        width: 100%;
+        // background: #E20404;
+        border-radius: 10px 10px 0px 0px;
+        opacity: 1;
+      }
+
+      .date {
+        font-size: 14px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        color: #909191;
+        line-height: 1.4;
+        margin-top: 34px;
+        margin-left: 28px;
+      }
+
+      .title {
+        margin-left: 28px;
+        margin-top: 35px;
+        font-size: 16px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        color: #151717;
+        line-height: 1.4;
+      }
+
+    }
+  }
+
+  .pagination-block {
+    margin-top: 29px;
+    margin-bottom: 79px;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>

@@ -1,27 +1,71 @@
 <template>
   <div id="container">
-    <div class="header-top" :style="{ display: headerTopDisplay }">
+    <!-- <div class="header-top" :style="{ display: headerTopDisplay }">
       <div class="inner">
         <span><i></i>BD@weiyankeji.cn</span><span><i></i>0755-8279 5265</span>
       </div>
-    </div>
+    </div> -->
     <header>
-      <div class="header">
-        <div class="header-left">
-          <NuxtLink to="/">
-            <img src="https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/logo.png" alt="" />
-          </NuxtLink>
-          <span>普惠的人工智能基础设施提供商</span>
+
+
+      <div class="new-header">
+
+        <el-image class="logo" src="/top/logo.png" fit="fill" />
+        <div class="nav">
+
+          <NuxtLink class="item-link" to="/">首页</NuxtLink>
+          <ClientOnly>
+
+            <el-dropdown>
+              <div class="item-link" :class="{ 'item-link-active': isProductionPage }">产品中心
+
+                <el-icon class="el-icon--right">
+                  <arrow-down />
+                </el-icon>
+              </div>
+
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production" style="color: inherit;">
+                      <span class="router-link-word">
+                        数据订阅
+                      </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <el-dropdown>
+              <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">
+
+                解决方案
+                <el-icon class="el-icon--right">
+                  <arrow-down />
+                </el-icon>
+              </div>
+
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution" style="color: inherit;display: flex;align-items: center;">
+                      <el-image class="b-img icon-img" src="/top/zhny-b.png" fit="fill" />
+                      <el-image class="g-img icon-img" src="/top/zhny-g.png" fit="fill" />
+
+                      <span class="router-link-word">智慧农业</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </ClientOnly>
+          <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage }">新闻资讯</NuxtLink>
+          <NuxtLink class="item-link" to="/about">关于我们</NuxtLink>
         </div>
-        <div class="header-right">
-          <NuxtLink to="/">首页</NuxtLink>
-          <NuxtLink to="/production">产品中心</NuxtLink>
-          <NuxtLink to="/team">微言团队</NuxtLink>
-          <NuxtLink to="/news" :class="{ 'nav-news': isNewsPage }">微言动态</NuxtLink>
-          <NuxtLink to="/join">加入我们</NuxtLink>
-          <NuxtLink to="/about">关于我们</NuxtLink>
-        </div>
-        
       </div>
     </header>
 
@@ -32,37 +76,46 @@
     <footer>
       <div class="footer">
         <div class="footer-detail">
-          <div class="footer-detail-left">
-            <div class="translate">About us</div>
-            <h6>关于<i>微言</i></h6>
-            <p>
-              微言科技，成立于2017年，是普惠的人工智能基础设施提供商。公司基于AutoML自动建模平台及隐私计算技术，为政府、金融机构及企业提供PaaS+SaaS服务，助力其加速数字化变革。微言科技已经获得包括软银中国在内的顶级投资机构投资，目前在北京、上海及深圳均设有分支机构。
-            </p>
-          </div>
-          <div class="footer-detail-center">
-            <div class="translate">Quick line</div>
-            <h6>快速链接</h6>
-            <div class="router">
-              <NuxtLink to="/about">关于我们</NuxtLink>
-              <NuxtLink to="/team">微言团队</NuxtLink>
-              <NuxtLink to="/news">微言动态</NuxtLink>
-              <NuxtLink to="/join">加入我们</NuxtLink>
+          <div class="col0">
+
+            <el-image class="logo" src="/bottom/logo.png" fit="fill" />
+            <div class="phone-block">
+
+              <el-image class="phone-img" src="/bottom/phone.png" fit="fill" />
+              <div class="phone-num">0755-8279 5265</div>
             </div>
           </div>
-          <div class="footer-detail-right">
-            <div class="translate">Contact us</div>
-            <h6>联系我们</h6>
-            <div class="contact-info">
-              <div class="weiyan-code">
-                <img src="https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/code.png" alt="" />
+          <div class="col1 col1-2">
+            <div class="title">快速链接</div>
+            <div class="content-block">
+              <div class="content-item">
+                <NuxtLink to="/production" style="color: inherit;">产品中心</NuxtLink>
               </div>
-              <div class="address">
-                <p><span>深圳总部：</span>深圳市福田区凯丰路10号国际金融科技城13层</p>
-                <p><span>上海分公司：</span>上海市黄浦区外滩街道四川中路33号创业大楼617室</p>
-                <p><span>北京分公司：</span>北京市西城区黄寺大街甲23号院北广大厦A口6层634</p>
-                <div><span>T：0755-8279 5265</span><span>E：BD@weiyankeji.cn</span></div>
+              <div class="content-item">
+                <NuxtLink to="/solution" style="color: inherit;">解决方案</NuxtLink>
+              </div>
+              <div class="content-item">
+                <NuxtLink to="/news" style="color: inherit;">新闻资讯</NuxtLink>
+              </div>
+              <div class="content-item">
+                <NuxtLink to="/about" style="color: inherit;">关于我们</NuxtLink>
               </div>
             </div>
+          </div>
+          <div class="col2 col1-2">
+            <div class="title">联系我们</div>
+            <div class="content-block">
+              <div class="content-item">深圳总部：深圳市福田区凯丰路10号国际金融科技城13层</div>
+              <div class="content-item">上海分公司：上海市黄浦区外滩街道四川中路33号创业大楼617室</div>
+              <div class="content-item">北京分公司：北京市西城区黄寺大街甲23号院北广大厦A口6层634</div>
+              <div class="content-item">成都分公司：四川省成都市新津区花源街道青瓷路51号17栋B区1-5楼编号066</div>
+            </div>
+          </div>
+          <div class="col3">
+            <div class="title">微言科技公众号</div>
+
+            <el-image class="QR-code-img" src="/bottom/QRcode.png" fit="fill" />
+
           </div>
         </div>
         <div class="footer-bottom">
@@ -77,20 +130,37 @@
 </template>
 
 <script setup lang="ts">
+import { ArrowDown } from "@element-plus/icons-vue";
 const route = useRoute();
 onMounted(() => {
-  if (route.path.startsWith("/article")) {
+  if (route.path.startsWith("/details")) {
     isNewsPage.value = true;
   } else {
     isNewsPage.value = false;
   }
+  if (route.path.startsWith("/solution")) {
+    isSolutionPage.value = true;
+  } else {
+    isSolutionPage.value = false;
+  }
+  if (route.path.startsWith("/production")) {
+    isProductionPage.value = true;
+  } else {
+    isProductionPage.value = false;
+  }
+
+
+
   if (!route.path.endsWith("/")) {
     headerTopDisplay.value = "none";
   } else {
     headerTopDisplay.value = "block";
   }
+
 });
 const isNewsPage = ref(false);
+const isSolutionPage = ref(false);
+const isProductionPage = ref(false);
 let headerTopDisplay = ref("");
 </script>
 
@@ -99,16 +169,20 @@ let headerTopDisplay = ref("");
   border-bottom: 1px solid #efefef;
   width: 100%;
   height: 49px;
+
   .inner {
     margin: 0 auto;
-    width: 1170px;
+    width: 1200px;
+
     span {
       line-height: 50px;
       font-weight: 300;
       font-size: 14px;
       color: #8a8e99;
+
       &:first-child {
         margin-right: 20px;
+
         i {
           display: inline-block;
           position: relative;
@@ -121,6 +195,7 @@ let headerTopDisplay = ref("");
           vertical-align: middle;
         }
       }
+
       &:last-child {
         i {
           display: inline-block;
@@ -137,34 +212,45 @@ let headerTopDisplay = ref("");
     }
   }
 }
+
+* {
+  box-sizing: border-box;
+  outline: none !important;
+}
+
 header {
   position: sticky;
   top: 0;
   z-index: 1;
   background-color: #ffffff;
+
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     padding: 28px 0;
-    width: 1170px;
+    width: 1200px;
     height: 32px;
     line-height: 32px;
+
     &-left {
       display: flex;
       align-items: center;
       font-size: 16px;
+
       a {
         display: inline-block;
         width: 132px;
         min-width: 132px;
         height: 32px;
         cursor: pointer;
+
         img {
           width: 100%;
         }
       }
+
       span {
         margin: 0 20px;
         padding-left: 20px;
@@ -172,13 +258,16 @@ header {
         color: #5c6566;
       }
     }
+
     &-right {
       display: flex;
       justify-content: center;
       align-items: center;
+
       .nav-news {
         font-weight: 700;
         color: #00cdc4;
+
         &::before {
           position: absolute;
           left: -7px;
@@ -189,6 +278,7 @@ header {
           content: "";
         }
       }
+
       a {
         position: relative;
         margin-right: 32px;
@@ -196,15 +286,19 @@ header {
         text-decoration: none;
         font-size: 14px;
         color: #000000;
+
         &:last-child {
           margin-right: 0;
         }
+
         &:hover {
           color: #00cdc4;
         }
+
         &.router-link-active {
           font-weight: 700;
           color: #00cdc4;
+
           &::before {
             position: absolute;
             left: -7px;
@@ -218,102 +312,178 @@ header {
       }
     }
   }
+
+  .new-header {
+    height: 60px;
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a.router-link-active {
+      color: var(--el-color-primary) !important;
+    }
+
+
+
+    .logo {
+      width: 144px;
+      height: 32px;
+
+    }
+
+    .nav {
+      display: flex;
+
+      .item-link {
+        margin-left: 60px;
+        font-size: 16px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #363636;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+      }
+
+      .item-link-active {
+        color: var(--el-color-primary);
+      }
+
+
+    }
+  }
 }
+
 footer {
-  padding-top: 60px;
+  // padding-top: 60px;
   background-color: #2d3240;
   color: #919899;
+
   .footer {
     &-detail {
       display: flex;
       margin: 0 auto;
-      width: 1170px;
-      height: 270px;
+      width: 1200px;
+      height: 240px;
       font-weight: 300;
-      &-left {
-        position: relative;
-        margin-right: 90px;
-        width: 300px;
-        p {
-          line-height: 26px;
+      display: flex;
+
+      .col0 {
+        width: 307px;
+        height: 100%;
+
+        .logo {
+          width: 122px;
+          height: 27px;
+          margin-top: 48px;
+          margin-bottom: 19px;
+
+        }
+
+        .phone-block {
+          width: 180px;
+          height: 36px;
+          background: #00CDC4;
+          border-radius: 4px 4px 4px 4px;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+
+          .phone-img {
+            width: 21px;
+            height: 21px;
+            margin-left: 11px;
+            margin-right: 7px;
+
+          }
+
+          .phone-num {
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 1.4;
+          }
+        }
+      }
+
+      .col1 {
+        width: 225px;
+        height: 100%;
+
+
+      }
+
+      .col2 {
+        // width: 550;
+        flex: 1;
+        height: 100%;
+      }
+
+      .col1-2 {
+        .title {
+          margin-top: 46px;
+          margin-bottom: 20px;
           font-size: 14px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #FFFFFF;
+          line-height: 1.4;
         }
-      }
-      &-center {
-        position: relative;
-        margin-right: 84px;
-        width: 115px;
-        .router {
-          display: flex;
-          flex-direction: column;
-          a {
-            margin-bottom: 24px;
-            line-height: 16px;
-            text-decoration: none;
+
+        .content-block {
+          .content-item {
+            margin-bottom: 10px;
             font-size: 14px;
-            color: #919899;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #949494;
+            line-height: 1.4;
           }
         }
       }
-      &-right {
-        position: relative;
-        .contact-info {
-          display: flex;
-          .weiyan-code {
-            margin-right: 16px;
-            width: 128px;
-            height: 128px;
-            img {
-              width: 100%;
-            }
-          }
-          .address {
-            line-height: 16px;
-            font-size: 14px;
-            p {
-              margin-bottom: 8px;
-            }
-            span {
-              color: #c8cccc;
-            }
-            div {
-              margin-top: 48px;
-              span:first-child {
-                margin-right: 30px;
-              }
-            }
-          }
+
+      .col3 {
+        width: 119px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+          font-size: 14px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #FFFFFF;
+          line-height: 1.4;
+          margin-top: 46px;
+          margin-bottom: 9px;
+        }
+
+        .QR-code-img {
+          width: 119px;
+          height: 119px;
+
         }
       }
-      .translate {
-        margin-bottom: 30px;
-        line-height: 32px;
-        font-size: 24px;
-        color: rgb(255 255 255 / 10%);
-      }
-      h6 {
-        position: absolute;
-        top: 18px;
-        line-height: 20px;
-        font-weight: 400;
-        font-size: 14px;
-        color: #ffffff;
-        i {
-          font-style: normal;
-          color: #01cada;
-        }
-      }
+
+
     }
+
     &-bottom {
       padding: 24px 0;
       border-top: 1px solid rgb(255 255 255 / 10%);
+
       div {
         margin: 0 auto;
-        width: 1170px;
+        width: 1200px;
         line-height: 20px;
         text-align: center;
         font-size: 14px;
         color: #c8cccc;
+
         a {
           text-decoration: underline;
           color: #c8cccc;

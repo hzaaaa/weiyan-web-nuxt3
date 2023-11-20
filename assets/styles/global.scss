@@ -26,7 +26,7 @@ html {
   font-size: 190.3px;
 }
 body {
-  min-width: 1170px;
+  min-width: 1200px;
   min-height: 831px;
   font: 12px/1.14 arial, "\5b8b\4f53";
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -37,14 +37,14 @@ body {
 .center {
   overflow: hidden;
   // margin: 0 auto;
-  min-width: 1170px;
-  // max-width: 1170px;
+  min-width: 1200px;
+  // max-width: 1200px;
 }
 .content-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 1170px;
+  min-width: 1200px;
 }
 #header-banner {
   display: flex;
@@ -57,8 +57,8 @@ body {
   background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/about/header_bg.jpg") no-repeat;
   background-size: cover;
   .header-wrap {
-    width: 1170px;
-    min-width: 1170px;
+    width: 1200px;
+    min-width: 1200px;
     .header-inner {
       margin: 42px auto 41px;
 
@@ -110,11 +110,11 @@ body {
 /* pc width > 1024px */
 .container {
   overflow: hidden;
-  min-width: 1170px;
+  min-width: 1200px;
 }
 
 // pc width<1903
-// @media screen and (max-width: 1170px) {
+// @media screen and (max-width: 1200px) {
 //   .container {
 //     #background {
 //       display: flex;
@@ -160,3 +160,35 @@ body {
 //     font-size: calc(100vw / (1903 / 190.3));
 //   }
 // }
+:root {
+	$--el-color-primary: #00cdc4 !important;
+}
+a.router-link-active {
+  color: var(--el-color-primary) !important;
+  .b-img{
+    display: none !important; 
+  }
+  .g-img{
+    display: block !important; 
+  }
+  .router-link-word{
+    color: #00cdc4 !important;
+  }
+}
+
+.b-img {
+  display: block;
+}
+
+.g-img {
+  display: none;
+}
+.router-link-word{
+  color: #363636 !important;
+}
+.icon-img{
+  width: 16px;
+  height: 18px;
+  margin-right: 12px;
+}
+

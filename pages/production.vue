@@ -83,19 +83,22 @@
         <div class="content-block">
           <div class="left-block-wrap">
             <div class="left-block">
-              <div class=" item" @click="sceneShow = 'insure'" :class="sceneShow === 'insure' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'insure'" @click="sceneShow = 'insure'"
+                :class="sceneShow === 'insure' ? 'active-item' : ''">
                 <div class="title">
                   保险数据产品订阅
                 </div>
               </div>
               <div class="line"></div>
-              <div class=" item" @click="sceneShow = 'finance'" :class="sceneShow === 'finance' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'finance'" @click="sceneShow = 'finance'"
+                :class="sceneShow === 'finance' ? 'active-item' : ''">
                 <div class="title">
                   金融数据产品订阅
                 </div>
               </div>
               <div class="line"></div>
-              <div class=" item" @click="sceneShow = 'marketing'" :class="sceneShow === 'marketing' ? 'active-item' : ''">
+              <div class=" item" @mouseenter="sceneShow = 'marketing'" @click="sceneShow = 'marketing'"
+                :class="sceneShow === 'marketing' ? 'active-item' : ''">
                 <div class="title">
                   营销数据产品订阅
                 </div>
@@ -119,11 +122,10 @@
           <div class="right-block" v-show="sceneShow === 'finance'">
             <div class="content-top">
               <div class="title">
-                保险数据产品订阅
+                金融数据产品订阅
               </div>
               <div class="content-word">
-                核定载两吨以下货车评分、家庭自用车行驶评分、机动车承保异地风险评估、家庭自用车车险综合评分、二手车承保风险评估
-                等车险相关产品服务接入。
+                资质评分-借款意愿、信用贷类评分、偿债能力、征信白户分、综合信用评分、信用贷类评分（贷前\贷中）等金融产品服务接入。
               </div>
             </div>
 
@@ -132,11 +134,10 @@
           <div class="right-block" v-show="sceneShow === 'marketing'">
             <div class="content-top">
               <div class="title">
-                保险数据产品订阅
+                营销数据产品订阅
               </div>
               <div class="content-word">
-                核定载两吨以下货车评分、家庭自用车行驶评分、机动车承保异地风险评估、家庭自用车车险综合评分、二手车承保风险评估
-                等车险相关产品服务接入。
+                运营商社交圈评级、运营商活跃度评级、兴趣广泛度评级、消费稳定度评级、社交健康度等营销产品服务接入。
               </div>
             </div>
 
@@ -199,6 +200,14 @@ const contactDialogRef = ref(null);
 const openContactDialogClick = () => {
   contactDialogRef.value.acceptParams({})
 }
+
+onMounted(() => {
+
+  nextTick(() => {
+    // debugger
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  })
+})
 </script>
 
 <style lang="scss" scoped>
