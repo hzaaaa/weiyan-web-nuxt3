@@ -1,79 +1,185 @@
 <template>
   <NuxtLayout name="base-layout">
     <div class="container">
-      <div id="banner">
-        <div id="background">
-          <div class="center">
-            <div class="content-inner">
-              <div id="banner-content">
-                <div class="title1">
-                  <img src="@/assets/image/banner_title.png" />
-                </div>
-                <div class="title2">深圳微言科技有限公司宣布完成A轮融资，<br />由知名国际顶级投资机构软银中国资本领投。</div>
-                <div class="btn-wrap">
-                  <!-- <NuxtLink :to="`/article/3`"> -->
-                  <a :href="`${indexURL}3`" target="_blank">
-                    <div class="view-btn">
-                      <span>立即查看</span>
-                    </div>
-                  </a>
-                  <!-- </NuxtLink> -->
-                </div>
+      <div id="banner-carousel">
+        <ul id="carousel">
+          <li
+            class="carousel-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+          >
+            <img :src="getAssetsFile(`${item.imgSrc}${index}${item.imgType}`)" class="carousel-img" />
+            <div class="desc-item">
+              <span class="title">{{ item.titleText }}</span>
+              <span class="desc">{{ item.descText }}</span>
+            </div>
+          </li>
+        </ul>
+        <ul id="carousel-nav">
+          <li
+            class="nav-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+            @click="handleCarouselNavItemClick(index)"
+          ></li>
+        </ul>
+      </div>
+      <div id="ace-product" class="">
+        <div class="desc-wrapper">
+          <span class="desc-title">三大王牌产品</span>
+          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+        </div>
+        <div class="ace-product-list" @mouseleave="handleMouseLeaveProduct()">
+          <!-- <img class="product-item" src="@/assets/image/home/product_1.png" /> -->
+          <div class="product-item">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">数据智能平台</span>
+              <span class="product-desc">数据智能平台数据智能平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProductClick()" />
+            </div>
+
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 1">
+              <span class="product-name">数据智能平台</span>
+              <span class="product-desc">数据智能平台数据智能平台</span>
+              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+              <div class="product-btn-wrapper">
+                <div class="btn-simple"><span>产品功能</span></div>
+                <div class="btn"><span>应用场景</span></div>
+                <div class="btn-simple"><span>产品优势</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">算力管理平台</span>
+              <span class="product-desc">算力管理平台算力管理平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct2Click()" />
+            </div>
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 2">
+              <span class="product-name">算力管理平台</span>
+              <span class="product-desc">算力管理平台算力管理平台</span>
+              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+              <div class="product-btn-wrapper">
+                <div class="btn-simple"><span>产品功能</span></div>
+                <div class="btn"><span>应用场景</span></div>
+                <div class="btn-simple"><span>产品优势</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-item">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">数据安全平台</span>
+              <span class="product-desc">数据安全平台数据安全平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct3Click()" />
+            </div>
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 3">
+              <span class="product-name">数据安全平台</span>
+              <span class="product-desc">数据安全平台数据安全平台</span>
+              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+              <div class="product-btn-wrapper">
+                <div class="btn-simple"><span>产品功能</span></div>
+                <div class="btn"><span>应用场景</span></div>
+                <div class="btn-simple"><span>产品优势</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div id="content-wrap" class="center">
-        <div class="content-inner">
-          <div id="four-value">
-            <div class="content-title"><span>四大价值</span><span>Four values</span></div>
-            <div class="content-subtitle">以AI驱动 为您创造四大价值</div>
-            <div class="content">
-              <div class="content-card">
-                <span class="card-img1"></span>
-                <p>产业布局</p>
-                <div class="card-detail">赋予产业平等获取AI的能力，推动AI在多个产业的应用和布局。</div>
-              </div>
-              <div class="content-card">
-                <span class="card-img2"></span>
-                <p>模式升级</p>
-                <div class="card-detail">让AI和场景充分融合，实现从商业智能化到产业链的智能化。</div>
-              </div>
-              <div class="content-card">
-                <span class="card-img3"></span>
-                <p>降本增效</p>
-                <div class="card-detail">结合产业痛点，用AI驱动促进产业降本增效，提升用户体验。</div>
-              </div>
-              <div class="content-card">
-                <span class="card-img4"></span>
-                <p>公司增值</p>
-                <div class="card-detail">凭借AI进入“风口”，提升资本市场对公司整体估值。</div>
-              </div>
+      <div id="service-product">
+        <div class="desc-wrapper">
+          <span class="desc-title">专业智能决策服务商，赋能行业发展</span>
+          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+        </div>
+        <div class="service-cards-wrapper">
+          <div class="s-card">
+            <div class="mask"></div>
+            <span class="card-title">智慧保险</span>
+            <span class="card-desc"
+              >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+              生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
+              风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
+            </span>
+            <div class="card-btn" @click="goToSolution">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
           </div>
-          <div id="news">
-            <div class="content-title"><span>微言动态</span><span>News</span></div>
-            <div class="content-subtitle">关注微言实时动态获取更多行业信息</div>
-            <div class="news-lists">
-              <div class="news-item" v-for="item in newsLists" :key="item.id">
-                <a :href="`${indexURL}${item.id}`" target="_blank">
-                  <div class="img-wrap">
-                    <img
-                      :src="`https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/dynamic/${item.imgSrc}`"
-                      width="370"
-                      height="218"
-                      alt=""
-                    />
-                  </div>
-                  <p class="news-title">{{ item.title }}</p>
-                  <p class="news-time">{{ item.time }}</p>
-                  <p class="news-summary">{{ item.summary }}</p>
-                  <p class="news-detail">查看详情</p>
-                </a>
-              </div>
+          <div class="s-card">
+            <div class="mask"></div>
+            <span class="card-title">智慧银行</span>
+            <span class="card-desc"
+              >覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span
+            >
+            <div class="card-btn" @click="goToSolution">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
           </div>
+          <div class="s-card" style="margin-right: 0">
+            <div class="mask"></div>
+            <span class="card-title">智慧农业</span>
+            <span class="card-desc"
+              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+            >
+            <div class="card-btn" @click="goToSolution">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
+            </div>
+          </div>
+          <div class="b-card market">
+            <div class="mask"></div>
+            <span class="card-title">智能营销</span>
+            <span class="card-desc"
+              >秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span
+            >
+            <div class="card-btn" @click="goToSolution">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
+            </div>
+          </div>
+          <div class="b-card construction" style="margin-right: 0">
+            <div class="mask"></div>
+            <span class="card-title">智慧工地</span>
+            <span class="card-desc"
+              >以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span
+            >
+            <div class="card-btn" @click="goToSolution">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="operate-customer">
+        <div class="desc-wrapper">
+          <span class="desc-title">合作用户</span>
+        </div>
+        <div class="customer-wrapper">
+          <div class="customer" v-for="(item, index) in customerItemList" :key="index">
+            <img :src="getAssetsFile(`${item.imgSrc}${item.imgType}`)" />
+          </div>
+        </div>
+      </div>
+      <div id="news-info">
+        <div class="desc-wrapper">
+          <span class="desc-title">新闻资讯</span>
+        </div>
+        <div class="news-wrapper">
+          <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
+            <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+            <div class="news-info-content">
+              <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
+              <div class="title">{{ item.content.newsItem[0].title }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="more-new-btn" @click="goToNews">
+          <span>查看更多</span>
+          <img src="@/assets/image/home/arrow_white.png" />
         </div>
       </div>
     </div>
@@ -81,299 +187,850 @@
 </template>
 
 <script setup lang="ts">
-onMounted(() => {
-  indexURL.value = window.location.href + "article/";
-});
+import moment from "moment";
 let indexURL = ref("");
-interface NewsListsItem {
-  id: number;
+
+interface BannerCarouselItem {
   imgSrc: string;
-  title: string;
-  time: string;
-  summary: string;
+  imgType: string;
+  titleText: string;
+  descText: string;
+  first?: boolean;
 }
 
-const newsLists = ref<NewsListsItem[]>([
+const bannerCarouselItem = ref<BannerCarouselItem[]>([
   {
-    id: 31,
-    imgSrc: "31/1.png",
-    title: "微言科技获2020第四届中国零售金融创新实践大奖",
-    time: "2021-01-21",
-    summary:
-      "过去的2020年，是中国零售金融迅猛发展的一年。各大银行、金融科技公司、资产管理公司和其他金融服务公司积极配合国家发展战略...",
+    imgSrc: "home/home_top_carousel_",
+    imgType: ".png",
+    titleText: "惠普AI 智造美好未来",
+    descText: "惠普AI智造美好未来惠普AI，智造美好未来惠普AI智造美好未来",
+    first: true,
   },
   {
-    id: 32,
-    imgSrc: "32/1.png",
-    title: "荣获毕马威中国2020领先金融科技50企业",
-    time: "2021-01-22",
-    summary:
-      "毕马威中国自2016年开始，已连续成功举办四届中国领先金融科技企业评选，见证了中国金融科技的发展并成为了宣传和推动中国金融科技...",
+    imgSrc: "home/home_top_carousel_",
+    imgType: ".jpeg",
+    titleText: "title1",
+    descText: "惠普AI智造美好未来惠普AI，智造美好未来惠普AI智造美好未来",
   },
   {
-    id: 33,
-    imgSrc: "33/1.png",
-    title: "微言科技入选腾讯AI加速器四期40强",
-    time: "2021-01-23",
-    summary: "腾讯AI加速器四期入选名单近日揭晓：包括微言科技在内的40家企业经过激烈角逐，从超1000家优质AI企业中...",
+    imgSrc: "home/home_top_carousel_",
+    imgType: ".jpeg",
+    titleText: "title2",
+    descText: "惠普AI智造美好未来惠普AI，智造美好未来惠普AI智造美好未来",
   },
 ]);
 
-newsLists.value.reverse();
+// const carouselItem = ref<any>(null);
+let carouselItem = null;
+let carouselItemIndex = 0;
+
+const carouselNavItem = ref<any>(null);
+
+const clearCarouselClass = () => {
+  for (let i = 0; i < carouselItem.length; i++) {
+    carouselItem[i].className = "carousel-item";
+    carouselNavItem.value[i].className = "nav-item";
+  }
+};
+
+const carouselIndexLoop = () => {
+  if (carouselItemIndex < carouselItem.length - 1) {
+    carouselItemIndex++;
+  } else {
+    carouselItemIndex = 0;
+  }
+};
+const carouselMove = () => {
+  clearCarouselClass();
+  console.log(carouselItemIndex);
+  carouselItem[carouselItemIndex].className = "carousel-item active";
+  carouselNavItem.value[carouselItemIndex].className = "nav-item active";
+};
+
+let timer = null;
+let timeOuter = null;
+
+const carouselMouseEnter = () => {
+  clearInterval(timer);
+};
+
+const carouselMouseLeave = () => {
+  timer = setInterval(function () {
+    carouselIndexLoop();
+    carouselMove();
+  }, 5000);
+};
+
+const handleCarouselNavItemClick = (index: number) => {
+  clearInterval(timer);
+  carouselItemIndex = index;
+  carouselMove();
+  timer = setInterval(function () {
+    carouselIndexLoop();
+    carouselMove();
+  }, 5000);
+};
+
+// 产品点击
+const handleProductClick = () => {
+  const productItemDomList = document.querySelectorAll(".product-item") as NodeListOf<HTMLElement>;
+  console.log("productItemDomList: ", productItemDomList);
+
+  productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_active_1.png")})`;
+  // productItemDomList[0].style.width = "1551px";
+  productItemDomList[0].style.width = "80.59%";
+  // productItemDomList[1].style.left = "1346px";
+  productItemDomList[1].style.left = "69.94%";
+  // productItemDomList[1].style.width = "456px";
+  productItemDomList[1].style.width = "23.69%";
+  // productItemDomList[2].style.width = "289px";
+  productItemDomList[2].style.width = "15.01%";
+  productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_2.png")})`;
+  productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_3.png")})`;
+  productDetailIndex.value = 1;
+};
+
+const handleProduct3Click = () => {
+  const productItemDomList = document.querySelectorAll(".product-item") as NodeListOf<HTMLElement>;
+  console.log("productItemDomList: ", productItemDomList);
+
+  productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_active_3.png")})`;
+  // productItemDomList[2].style.width = "1551px";
+  productItemDomList[2].style.width = "80.59%";
+  // productItemDomList[1].style.left = "122px";
+  productItemDomList[1].style.left = "6.33%";
+  // productItemDomList[1].style.width = "456px";
+  productItemDomList[1].style.width = "23.69%";
+  // productItemDomList[0].style.width = "289px";
+  productItemDomList[0].style.width = "15.01%";
+  productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_1.png")})`;
+  productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_2.png")})`;
+  productDetailIndex.value = 3;
+};
+
+const handleProduct2Click = () => {
+  const productItemDomList = document.querySelectorAll(".product-item") as NodeListOf<HTMLElement>;
+  console.log("productItemDomList: ", productItemDomList);
+
+  productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_active_2.png")})`;
+  // productItemDomList[1].style.width = "1680px";
+  productItemDomList[1].style.width = "87.29%";
+  // productItemDomList[1].style.left = "122px";
+  productItemDomList[1].style.left = "6.33%";
+  // productItemDomList[0].style.width = "289px";
+  productItemDomList[0].style.width = "15.01%";
+  // productItemDomList[2].style.width = "289px";
+  productItemDomList[2].style.width = "15.01%";
+  productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_1.png")})`;
+  productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_3.png")})`;
+  productDetailIndex.value = 2;
+};
+
+const handleMouseLeaveProduct = () => {
+  const productItemDomList = document.querySelectorAll(".product-item") as NodeListOf<HTMLElement>;
+  productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_1.png")})`;
+  // productItemDomList[0].style.width = "640px";
+  productItemDomList[0].style.width = "33.25%";
+  // productItemDomList[1].style.left = "534px";
+  productItemDomList[1].style.left = "27.74%";
+  // productItemDomList[1].style.width = "750px";
+  productItemDomList[1].style.width = "38.97%";
+  // productItemDomList[2].style.width = "727px";
+  productItemDomList[2].style.width = " 37.77%";
+  productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_2.png")})`;
+  productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_3.png")})`;
+  productDetailIndex.value = 0;
+};
+
+const productDetailIndex = ref(0);
+
+const customerItemList = [
+  {
+    imgSrc: "home/donge",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/anta",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/lining",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/wufangzhai",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/panpan",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/sinian",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/aux",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/lanyueliang",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/yuanqi",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/health100",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/EF",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/wangyigame",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/37Interactive",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/hisense",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/pingan",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/baicaowei",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/tal",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/kaiying",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/lexin",
+    imgType: ".png",
+  },
+  {
+    imgSrc: "home/baidu",
+    imgType: ".png",
+  },
+];
+
+let router = useRouter();
+const gotoDetails = (item: any) => {
+  useState(item.articleId, () => item);
+  router.push({
+    name: "details",
+    query: {
+      articleId: item.articleId,
+    },
+  });
+};
+const pageParams = reactive({
+  pageNum: 1,
+  pageSize: 3,
+  total: 0,
+  pageSizesList: [3],
+});
+
+const newsList = <any>ref([]);
+const getNewsList = async () => {
+  let params = <any>{
+    pageNumber: pageParams.pageNum,
+    pageSize: pageParams.pageSize,
+    sorts: "article_update_time desc",
+  };
+  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+    method: "get",
+    query: params,
+  });
+
+  newsList.value = data.records;
+  pageParams.total = data.total;
+};
+
+const goToNews = (item: any) => {
+  router.push({
+    name: "news",
+  });
+};
+const goToSolution = (item: any) => {
+  router.push({
+    name: "solution",
+  });
+};
+onMounted(() => {
+  nextTick(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  });
+  clearInterval(timer);
+  clearTimeout(timeOuter);
+  indexURL.value = window.location.href + "article/";
+  // carouselItem.value = document.getElementsByClassName("carousel-item");
+
+  // timer.value = setInterval(function () {
+  //   carouselMove();
+  // }, 5000);
+  timeOuter = setTimeout(() => {
+    nextTick(() => {
+      carouselItem = document.getElementsByClassName("carousel-item");
+      carouselNavItem.value = document.getElementsByClassName("nav-item");
+      console.log("carouselItem.value: ", carouselItem);
+      console.log(carouselNavItem.value);
+      timer = setInterval(function () {
+        carouselIndexLoop();
+        carouselMove();
+      }, 5000);
+    });
+  }, 500);
+  getNewsList();
+});
+onUnmounted(() => {
+  clearInterval(timer);
+  clearTimeout(timeOuter);
+});
 </script>
 
 <style lang="scss">
 .container {
-  #banner {
-    #background {
-      min-height: 500px;
-      background: url("@/assets/image/banner.jpg") no-repeat;
-      background-position: center;
-      background-size: cover;
-      .center {
-        padding: 111px 0 94px;
-        // width: 1170px;
-        min-width: 1170px;
-        font-size: 16px;
-        .title1 {
-          img {
-            width: 656px;
-            min-width: 656px;
-            height: 105px;
-            min-height: 105px;
+  #banner-carousel {
+    margin: auto;
+    // width: 1920px;
+    width: 100%;
+    height: 820px;
+    position: relative;
+    #carousel {
+      width: 100%;
+      height: 100%;
+      .carousel-item {
+        position: absolute;
+        opacity: 0;
+        transition: all 1s;
+        width: 100%;
+        height: 100%;
+        list-style: none;
+        img.carousel-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .desc-item {
+          position: absolute;
+          top: 265px;
+          left: 363px;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          .title {
+            font-size: 60px;
+            font-weight: 500;
           }
-        }
-        .title2 {
-          margin-top: 29px;
-          line-height: 35px;
-          font-weight: 300;
-          font-size: 20px;
-          color: #ffffff;
-        }
-        .btn-wrap {
-          margin-top: 39px;
-          width: 190px;
-          .view-btn {
-            overflow: hidden;
-            position: relative;
-            border: 1px solid hsl(0deg 0% 100% / 50%);
-            width: 190px;
-            min-width: 190px;
-            height: 50px;
-            min-height: 50px;
-            cursor: pointer;
-            line-height: 48px;
-            text-align: center;
+          .desc {
+            width: 600px;
+            margin-top: 32px;
+            font-size: 32px;
             font-weight: 300;
-            color: #ffffff;
-            &::before,
-            &::after {
-              display: block;
-              position: absolute;
-              border: 2px solid #ffffff;
-              width: 25px;
-              height: 25px;
-              background: transparent;
-              content: "";
-              transition: width 0.5s, height 0.5s;
-            }
-            &::before {
-              bottom: 0;
-              border-color: transparent transparent #ffffff #ffffff;
-            }
-            &::after {
-              right: 0;
-              top: 0;
-              border-color: #ffffff #ffffff transparent transparent;
-            }
-            &:hover {
-              &::before {
-                width: 190px;
-                height: 50px;
-              }
-              &::after {
-                width: 190px;
-                height: 50px;
-              }
-            }
+            color: #eef1f1;
+            line-height: 45px;
           }
+        }
+        &.active {
+          opacity: 1;
         }
       }
     }
-  }
-  #four-value {
-    margin: 80px auto 0;
-    min-width: 1170px;
-    .content {
+    #carousel-nav {
+      position: absolute;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .content-card {
-      // float: left;
-      box-sizing: border-box;
-      margin-right: 30px;
-      padding: 49px 10px 65px 25px;
-      border: 1px solid #e9eaf0;
-      width: 270px;
-      min-width: 270px;
-      &:last-child {
-        margin-right: 0;
-      }
-      p {
-        line-height: 36px;
-        font-size: 18px;
-      }
-      .card-detail {
-        line-height: 26px;
-        font-weight: 300;
-        font-size: 14px;
-        color: #8a8e99;
-      }
-      .card-img1 {
-        display: inline-block;
-        margin: 5px 0 33px;
-        width: 59px;
-        height: 54px;
-        background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/zybx.png") no-repeat;
-        background-size: contain;
-      }
-      .card-img2 {
-        display: inline-block;
-        margin: 7px 0 31px;
-        width: 54px;
-        height: 54px;
-        background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/yhyy.png") no-repeat;
-        background-size: contain;
-      }
-      .card-img3 {
-        display: inline-block;
-        margin: 2px 0 31px;
-        width: 56px;
-        height: 59px;
-        background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/gszz.png") no-repeat;
-        background-size: contain;
-      }
-      .card-img4 {
-        display: inline-block;
-        margin: 8px 0 30px;
-        width: 53px;
-        height: 54px;
-        background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/cybj.png") no-repeat;
-        background-size: contain;
-      }
-    }
-  }
-  #news {
-    padding: 81px 0 98px;
-    width: 1170px;
-    min-width: 1170px;
-    .news-lists {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 40px;
-      .news-item {
-        // float: left;
-        margin-right: 30px;
-        width: 370px;
-        min-width: 370px;
-        &:last-child {
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: fit-content;
+      list-style: none;
+
+      .nav-item {
+        width: 30px;
+        height: 6px;
+        background: #ffffff;
+        border-radius: 8px 8px 8px 8px;
+        opacity: 0.8;
+        margin-right: 10px;
+        transition: all 0.5s;
+        &:last-of-type {
           margin-right: 0;
         }
-        .img-wrap {
-          // width: 370px;
-          // height: 218px;
-          width: 100%;
-          img {
-            width: 100%;
+        &.active {
+          width: 50px;
+          background: #00cdc4;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .desc-wrapper {
+    padding: 96px 0 69px 0;
+    display: flex;
+    flex-direction: column;
+    // align-content: center;
+    justify-content: center;
+    // width: fit-content;
+    span {
+      text-align: center;
+    }
+    .desc-title {
+      font-size: 42px;
+      font-weight: 500;
+      color: #151717;
+    }
+    .desc {
+      margin-top: 31px;
+      font-size: 20px;
+      font-weight: 400;
+      color: #505353;
+      line-height: 30px;
+    }
+  }
+  #ace-product {
+    .ace-product-list {
+      // width: 1924.5px;
+      min-width: 1924.5px;
+      width: 100%;
+      height: 600px;
+      margin: auto;
+
+      position: relative;
+      background-color: #8e9f9e;
+      .product-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transition: all 0.5s;
+        &:first-of-type {
+          // width: 534px;
+          // width: 640px;
+          width: 33.25%;
+          background-image: url("@/assets/image/home/product_1.png");
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          .product-detail-wrapper {
+            margin-left: 144px;
           }
         }
-        p.news-title {
-          margin-top: 27px;
-          height: 50px;
-          line-height: 25px;
-          font-size: 18px;
-          color: #243233;
+        &:nth-of-type(2) {
+          // width: 750px;
+          width: 38.97%;
+          background-image: url("@/assets/image/home/product_2.png");
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          // left: 534px;
+          left: 27.74%;
+          .product-detail-wrapper {
+            margin-left: 300px;
+          }
         }
-        p.news-time {
-          margin-top: 10px;
-          line-height: 20px;
-          font-size: 14px;
-          color: #919899;
+        &:last-of-type {
+          // width: 727px;
+          width: 37.77%;
+          background-image: url("@/assets/image/home/product_3.png");
+          height: 100%;
+          right: 0;
+          background-size: cover;
+          background-repeat: no-repeat;
+          .product-detail-wrapper {
+            margin-left: 342px;
+          }
         }
-        p.news-summary {
-          margin-top: 16px;
-          padding-right: 40px;
-          line-height: 24px;
-          font-size: 14px;
-          color: #5c6566;
+        .product-desc-wrapper,
+        .product-detail-wrapper {
+          display: flex;
+          flex-direction: column;
+          color: #fff;
+
+          align-items: center;
+          .product-name {
+            font-size: 40px;
+            font-weight: 400;
+          }
+          .product-desc {
+            margin-top: 26px;
+            font-size: 22px;
+            font-weight: 300;
+          }
+          img.arrow {
+            margin-top: 58px;
+            width: 116px;
+            height: 53px;
+          }
+          img.arrow_tow {
+            margin-top: 28px;
+            width: 32px;
+            height: 11px;
+          }
         }
-        p.news-detail {
-          margin-top: 22px;
-          line-height: 20px;
-          font-size: 14px;
-          color: #5c6566;
-          &:hover {
+        .product-detail-wrapper {
+          align-items: flex-start;
+          align-self: start;
+          margin-right: auto;
+          margin-top: 148px;
+          .product-btn-wrapper {
+            margin-top: 110px;
+            display: flex;
+            div[class^="btn"] {
+              width: 160px;
+              height: 44px;
+              border-radius: 4px;
+              margin-right: 48px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              span {
+                font-size: 22px;
+
+                font-weight: 300;
+              }
+            }
+            .btn-simple {
+              border: 1px solid #ffffff;
+            }
+            .btn {
+              background-color: #00cdc4;
+            }
+          }
+        }
+      }
+    }
+  }
+  #service-product {
+    .desc-wrapper {
+      padding: 112px 0 100px 0;
+    }
+    .service-cards-wrapper {
+      width: 1207px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      div[class$="-card"] {
+        position: relative;
+        .mask {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.5s;
+        }
+        .card-title {
+          width: fit-content;
+          height: fit-content;
+          font-size: 28px;
+          font-weight: 400;
+          color: #ffffff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+        }
+        .card-desc {
+          width: fit-content;
+          height: fit-content;
+          font-size: 16px;
+          font-weight: 300;
+          color: #ffffff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          padding: 0 28px;
+          opacity: 0;
+        }
+        .card-btn {
+          width: 120px;
+          height: 36px;
+          background: #ffffff;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 70px;
+
+          margin: auto;
+          opacity: 0;
+          span {
+            font-size: 14px;
+
+            font-weight: 400;
+            color: #00cdc4;
+            margin-right: 10px;
+          }
+          img {
+            width: 14px;
+            height: 5px;
+          }
+        }
+        &:hover {
+          .mask {
+            background: linear-gradient(
+              180deg,
+              rgba(0, 205, 196, 0.52) 0%,
+              #11afa8 30%,
+              rgba(11, 186, 178, 0.98) 62%,
+              rgba(0, 205, 196, 0.55) 100%
+            );
+            opacity: 0.8;
+          }
+          .card-title {
+            top: 69px;
+            bottom: auto;
+          }
+          .card-desc {
+            opacity: 1;
+          }
+          .card-btn {
+            opacity: 1;
+          }
+        }
+      }
+      .s-card {
+        width: 385px;
+
+        height: 400px;
+        border-radius: 10px;
+
+        margin-right: 24px;
+        background-size: auto;
+        background-repeat: no-repeat;
+        &:nth-of-type(1) {
+          background-image: url("@/assets/image/home/insure.png");
+        }
+        &:nth-of-type(2) {
+          background-image: url("@/assets/image/home/bank.png");
+        }
+        &:nth-of-type(3) {
+          background-image: url("@/assets/image/home/agriculture.png");
+        }
+      }
+      .b-card {
+        margin-top: 30px;
+        width: 587px;
+        height: 340px;
+        border-radius: 10px;
+        margin-right: 30px;
+        background-size: auto;
+        background-repeat: no-repeat;
+        position: relative;
+        &.market {
+          background-image: url("@/assets/image/home/market.png");
+        }
+        &.construction {
+          background-image: url("@/assets/image/home/construction_site.png");
+        }
+        .mask {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.5s;
+        }
+        .card-title {
+          width: fit-content;
+          height: fit-content;
+          font-size: 28px;
+          font-weight: 400;
+          color: #ffffff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+        }
+        .card-desc {
+          width: fit-content;
+          height: fit-content;
+          font-size: 16px;
+          font-weight: 300;
+          color: #ffffff;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          padding: 0 28px;
+          opacity: 0;
+        }
+        .card-btn {
+          width: 120px;
+          height: 36px;
+          background: #ffffff;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 70px;
+
+          margin: auto;
+          opacity: 0;
+          span {
+            font-size: 14px;
+
+            font-weight: 400;
+            color: #00cdc4;
+            margin-right: 10px;
+          }
+          img {
+            width: 14px;
+            height: 5px;
+          }
+        }
+        &:hover {
+          .mask {
+            background: linear-gradient(
+              180deg,
+              rgba(0, 205, 196, 0.52) 0%,
+              #11afa8 30%,
+              rgba(11, 186, 178, 0.98) 62%,
+              rgba(0, 205, 196, 0.55) 100%
+            );
+            opacity: 0.8;
+          }
+          .card-title {
+            top: 69px;
+            bottom: auto;
+          }
+
+          .card-desc {
+            opacity: 1;
+          }
+          .card-btn {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  #operate-customer {
+    .desc-wrapper {
+      padding: 92px 0 68px 0;
+    }
+    .customer-wrapper {
+      width: 1210px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      .customer {
+        width: 224px;
+        height: 86px;
+        border-radius: 8px 8px 8px 8px;
+        border: 1px solid #d9e8e7;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        &:nth-of-type(5n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  #news-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .desc-wrapper {
+      padding: 77px 0 70px 0;
+    }
+    .news-wrapper {
+      width: 1206px;
+      display: flex;
+      flex-wrap: wrap;
+      .news-item {
+        width: 380px;
+        height: 360px;
+        background: #ffffff;
+        box-shadow: 0px 6px 12px 1px rgba(228, 238, 237, 0.52);
+        border-radius: 10px;
+
+        border: 1px solid #f3f6f6;
+        margin-right: 30px;
+        overflow: hidden;
+        .el-image.img {
+          width: 380px;
+          height: 200px;
+        }
+        &:nth-of-type(3n) {
+          margin-right: 0;
+        }
+        .news-info-content {
+          height: 160px;
+          width: 380px;
+          padding: 26px 40px 55px 28px;
+          box-sizing: border-box;
+          .date {
+            font-size: 14px;
+            font-weight: 400;
+            color: #909191;
+          }
+          .title {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #151717;
+          }
+        }
+        &:hover {
+          .title {
             color: #00cdc4;
           }
         }
       }
-      // tip 使用felx布局
-      // &.clearfix {
-      //   &::after {
-      //     display: block;
-      //     clear: both;
-      //     content: "";
-      //   }
-      // }
     }
-  }
-  #content-wrap {
-    .content-title {
-      font-size: 32px;
+    .more-new-btn {
+      width: 160px;
+      height: 44px;
+      background: #00cdc4;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 58px 0 63px 0;
       span {
-        &:first-child {
-          line-height: 48px;
-          font-size: 48px;
-          color: #000000;
-        }
-        &:last-child {
-          margin-left: 21px;
-          line-height: 48px;
-          font-weight: 300;
-          font-size: 38px;
-          color: #c2c4cc;
-        }
+        font-size: 20px;
+        font-weight: 400;
+        color: #ffffff;
+        margin-right: 6px;
       }
-    }
-    .content-subtitle {
-      margin-top: 20px;
-      line-height: 20px;
-      font-weight: 300;
-      font-size: 20px;
-      color: #8a8e99;
-    }
-    .content {
-      margin-top: 40px;
-      // tip 使用flex布局
-      // &.clearfix {
-      //   &::after {
-      //     display: block;
-      //     clear: both;
-      //     content: "";
-      //   }
-      // }
-    }
-  }
-  .content-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 1170px;
-    #banner-content {
-      width: 1170px;
-      min-width: 1170px;
+      img {
+        width: 16px;
+        height: 6px;
+      }
     }
   }
 }
