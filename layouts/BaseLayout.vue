@@ -13,8 +13,8 @@
         <el-image class="logo" src="/top/logo.png" fit="fill" />
         <div class="nav">
 
-          <NuxtLink class="item-link" to="/">首页</NuxtLink>
           <ClientOnly>
+            <NuxtLink class="item-link" to="/">首页</NuxtLink>
 
             <el-dropdown>
               <div class="item-link" :class="{ 'item-link-active': isProductionPage }">产品中心
@@ -62,9 +62,9 @@
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
+            <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage }">新闻资讯</NuxtLink>
+            <NuxtLink class="item-link" to="/about">关于我们</NuxtLink>
           </ClientOnly>
-          <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage }">新闻资讯</NuxtLink>
-          <NuxtLink class="item-link" to="/about">关于我们</NuxtLink>
         </div>
       </div>
     </header>
