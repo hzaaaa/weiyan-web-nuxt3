@@ -1,188 +1,177 @@
 <template>
   <NuxtLayout name="base-layout">
-    <div class="container">
-      <div id="banner-carousel">
-        <ul id="carousel">
-          <li
-            class="carousel-item"
-            v-for="(item, index) in bannerCarouselItem"
-            :key="index"
-            :class="[item.first ? 'active' : '']"
-          >
-            <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
-            <div class="desc-item">
-              <span class="title">{{ item.titleText }}</span>
-              <span class="desc">{{ item.descText }}</span>
-            </div>
-          </li>
-        </ul>
-        <ul id="carousel-nav">
-          <li
-            class="nav-item"
-            v-for="(item, index) in bannerCarouselItem"
-            :key="index"
-            :class="[item.first ? 'active' : '']"
-            @click="handleCarouselNavItemClick(index)"
-          ></li>
-        </ul>
-      </div>
-      <div id="ace-product" class="">
-        <div class="desc-wrapper">
-          <span class="desc-title">三大王牌产品</span>
-          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
-          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+    <client-only>
+      <div class="container">
+        <div id="banner-carousel">
+          <ul id="carousel">
+            <li class="carousel-item" v-for="(item, index) in bannerCarouselItem" :key="index"
+              :class="[item.first ? 'active' : '']">
+              <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
+              <div class="desc-item">
+                <span class="title">{{ item.titleText }}</span>
+                <span class="desc">{{ item.descText }}</span>
+              </div>
+            </li>
+          </ul>
+          <ul id="carousel-nav">
+            <li class="nav-item" v-for="(item, index) in bannerCarouselItem" :key="index"
+              :class="[item.first ? 'active' : '']" @click="handleCarouselNavItemClick(index)"></li>
+          </ul>
         </div>
-        <div class="ace-product-list" @mouseleave="handleMouseLeaveProduct()">
-          <!-- <img class="product-item" src="@/assets/image/home/product_1.png" /> -->
-          <div class="product-item">
-            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-              <span class="product-name">数据智能平台</span>
-              <span class="product-desc">数据智能平台数据智能平台</span>
-              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProductClick()" />
-            </div>
 
-            <div class="product-detail-wrapper" v-if="productDetailIndex == 1">
-              <span class="product-name">数据智能平台</span>
-              <span class="product-desc">数据智能平台数据智能平台</span>
-              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-              <div class="product-btn-wrapper">
-                <div class="btn-simple"><span>产品功能</span></div>
-                <div class="btn"><span>应用场景</span></div>
-                <div class="btn-simple"><span>产品优势</span></div>
+        <div id="ace-product" class="">
+          <div class="desc-wrapper">
+            <span class="desc-title">三大王牌产品</span>
+            <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+            <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+          </div>
+          <div class="ace-product-list" @mouseleave="handleMouseLeaveProduct()">
+            <!-- <img class="product-item" src="@/assets/image/home/product_1.png" /> -->
+            <div class="product-item">
+              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+                <span class="product-name">数据智能平台</span>
+                <span class="product-desc">数据智能平台数据智能平台</span>
+                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProductClick()" />
+              </div>
+
+              <div class="product-detail-wrapper" v-if="productDetailIndex == 1">
+                <span class="product-name">数据智能平台</span>
+                <span class="product-desc">数据智能平台数据智能平台</span>
+                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+                <div class="product-btn-wrapper">
+                  <div class="btn-simple"><span>产品功能</span></div>
+                  <div class="btn"><span>应用场景</span></div>
+                  <div class="btn-simple"><span>产品优势</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+                <span class="product-name">算力管理平台</span>
+                <span class="product-desc">算力管理平台算力管理平台</span>
+                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct2Click()" />
+              </div>
+              <div class="product-detail-wrapper" v-if="productDetailIndex == 2">
+                <span class="product-name">算力管理平台</span>
+                <span class="product-desc">算力管理平台算力管理平台</span>
+                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+                <div class="product-btn-wrapper">
+                  <div class="btn-simple"><span>产品功能</span></div>
+                  <div class="btn"><span>应用场景</span></div>
+                  <div class="btn-simple"><span>产品优势</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+                <span class="product-name">数据安全平台</span>
+                <span class="product-desc">数据安全平台数据安全平台</span>
+                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct3Click()" />
+              </div>
+              <div class="product-detail-wrapper" v-if="productDetailIndex == 3">
+                <span class="product-name">数据安全平台</span>
+                <span class="product-desc">数据安全平台数据安全平台</span>
+                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+                <div class="product-btn-wrapper">
+                  <div class="btn-simple"><span>产品功能</span></div>
+                  <div class="btn"><span>应用场景</span></div>
+                  <div class="btn-simple"><span>产品优势</span></div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="product-item">
-            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-              <span class="product-name">算力管理平台</span>
-              <span class="product-desc">算力管理平台算力管理平台</span>
-              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct2Click()" />
+        </div>
+
+        <div id="service-product">
+          <div class="desc-wrapper">
+            <span class="desc-title">专业智能决策服务商，赋能行业发展</span>
+            <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+            <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+          </div>
+          <div class="service-cards-wrapper">
+            <div class="s-card">
+              <div class="mask"></div>
+              <span class="card-title">智慧保险</span>
+              <span class="card-desc">覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+                生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
+                风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
+              </span>
+              <div class="card-btn" @click="goToSolution">
+                <span>查看详情</span>
+                <img src="@/assets/image/home/arrow_green.png" />
+              </div>
             </div>
-            <div class="product-detail-wrapper" v-if="productDetailIndex == 2">
-              <span class="product-name">算力管理平台</span>
-              <span class="product-desc">算力管理平台算力管理平台</span>
-              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-              <div class="product-btn-wrapper">
-                <div class="btn-simple"><span>产品功能</span></div>
-                <div class="btn"><span>应用场景</span></div>
-                <div class="btn-simple"><span>产品优势</span></div>
+            <div class="s-card">
+              <div class="mask"></div>
+              <span class="card-title">智慧银行</span>
+              <span
+                class="card-desc">覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span>
+              <div class="card-btn" @click="goToSolution">
+                <span>查看详情</span>
+                <img src="@/assets/image/home/arrow_green.png" />
+              </div>
+            </div>
+            <div class="s-card" style="margin-right: 0">
+              <div class="mask"></div>
+              <span class="card-title">智慧农业</span>
+              <span
+                class="card-desc">通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span>
+              <div class="card-btn" @click="goToSolution">
+                <span>查看详情</span>
+                <img src="@/assets/image/home/arrow_green.png" />
+              </div>
+            </div>
+            <div class="b-card market">
+              <div class="mask"></div>
+              <span class="card-title">智能营销</span>
+              <span class="card-desc">秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span>
+              <div class="card-btn" @click="goToSolution">
+                <span>查看详情</span>
+                <img src="@/assets/image/home/arrow_green.png" />
+              </div>
+            </div>
+            <div class="b-card construction" style="margin-right: 0">
+              <div class="mask"></div>
+              <span class="card-title">智慧工地</span>
+              <span
+                class="card-desc">以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span>
+              <div class="card-btn" @click="goToSolution">
+                <span>查看详情</span>
+                <img src="@/assets/image/home/arrow_green.png" />
               </div>
             </div>
           </div>
-          <div class="product-item">
-            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-              <span class="product-name">数据安全平台</span>
-              <span class="product-desc">数据安全平台数据安全平台</span>
-              <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct3Click()" />
+        </div>
+        <div id="operate-customer">
+          <div class="desc-wrapper">
+            <span class="desc-title">合作用户</span>
+          </div>
+          <div class="customer-wrapper">
+            <div class="customer" v-for="(item, index) in customerItemList" :key="index">
+              <img :src="`/${item.imgSrc}${item.imgType}`" />
             </div>
-            <div class="product-detail-wrapper" v-if="productDetailIndex == 3">
-              <span class="product-name">数据安全平台</span>
-              <span class="product-desc">数据安全平台数据安全平台</span>
-              <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-              <div class="product-btn-wrapper">
-                <div class="btn-simple"><span>产品功能</span></div>
-                <div class="btn"><span>应用场景</span></div>
-                <div class="btn-simple"><span>产品优势</span></div>
+          </div>
+        </div>
+        <div id="news-info">
+          <div class="desc-wrapper">
+            <span class="desc-title">新闻资讯</span>
+          </div>
+          <div class="news-wrapper">
+            <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
+              <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+              <div class="news-info-content">
+                <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
+                <div class="title">{{ item.content.newsItem[0].title }}</div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div id="service-product">
-        <div class="desc-wrapper">
-          <span class="desc-title">专业智能决策服务商，赋能行业发展</span>
-          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
-          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
-        </div>
-        <div class="service-cards-wrapper">
-          <div class="s-card">
-            <div class="mask"></div>
-            <span class="card-title">智慧保险</span>
-            <span class="card-desc"
-              >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
-              生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
-              风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
-            </span>
-            <div class="card-btn" @click="goToSolution">
-              <span>查看详情</span>
-              <img src="@/assets/image/home/arrow_green.png" />
-            </div>
-          </div>
-          <div class="s-card">
-            <div class="mask"></div>
-            <span class="card-title">智慧银行</span>
-            <span class="card-desc"
-              >覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span
-            >
-            <div class="card-btn" @click="goToSolution">
-              <span>查看详情</span>
-              <img src="@/assets/image/home/arrow_green.png" />
-            </div>
-          </div>
-          <div class="s-card" style="margin-right: 0">
-            <div class="mask"></div>
-            <span class="card-title">智慧农业</span>
-            <span class="card-desc"
-              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
-            >
-            <div class="card-btn" @click="goToSolution">
-              <span>查看详情</span>
-              <img src="@/assets/image/home/arrow_green.png" />
-            </div>
-          </div>
-          <div class="b-card market">
-            <div class="mask"></div>
-            <span class="card-title">智能营销</span>
-            <span class="card-desc"
-              >秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span
-            >
-            <div class="card-btn" @click="goToSolution">
-              <span>查看详情</span>
-              <img src="@/assets/image/home/arrow_green.png" />
-            </div>
-          </div>
-          <div class="b-card construction" style="margin-right: 0">
-            <div class="mask"></div>
-            <span class="card-title">智慧工地</span>
-            <span class="card-desc"
-              >以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span
-            >
-            <div class="card-btn" @click="goToSolution">
-              <span>查看详情</span>
-              <img src="@/assets/image/home/arrow_green.png" />
-            </div>
+          <div class="more-new-btn" @click="goToNews">
+            <span>查看更多</span>
+            <img src="@/assets/image/home/arrow_white.png" />
           </div>
         </div>
       </div>
-      <div id="operate-customer">
-        <div class="desc-wrapper">
-          <span class="desc-title">合作用户</span>
-        </div>
-        <div class="customer-wrapper">
-          <div class="customer" v-for="(item, index) in customerItemList" :key="index">
-            <img :src="`/${item.imgSrc}${item.imgType}`" />
-          </div>
-        </div>
-      </div>
-      <div id="news-info">
-        <div class="desc-wrapper">
-          <span class="desc-title">新闻资讯</span>
-        </div>
-        <div class="news-wrapper">
-          <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
-            <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
-            <div class="news-info-content">
-              <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
-              <div class="title">{{ item.content.newsItem[0].title }}</div>
-            </div>
-          </div>
-        </div>
-        <div class="more-new-btn" @click="goToNews">
-          <span>查看更多</span>
-          <img src="@/assets/image/home/arrow_white.png" />
-        </div>
-      </div>
-    </div>
+    </client-only>
   </NuxtLayout>
 </template>
 
@@ -510,9 +499,11 @@ onUnmounted(() => {
     width: 100%;
     height: 820px;
     position: relative;
+
     #carousel {
       width: 100%;
       height: 100%;
+
       .carousel-item {
         position: absolute;
         opacity: 0;
@@ -520,11 +511,13 @@ onUnmounted(() => {
         width: 100%;
         height: 100%;
         list-style: none;
+
         img.carousel-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
+
         .desc-item {
           position: absolute;
           top: 265px;
@@ -532,10 +525,12 @@ onUnmounted(() => {
           color: #fff;
           display: flex;
           flex-direction: column;
+
           .title {
             font-size: 60px;
             font-weight: 500;
           }
+
           .desc {
             width: 600px;
             margin-top: 32px;
@@ -545,11 +540,13 @@ onUnmounted(() => {
             line-height: 45px;
           }
         }
+
         &.active {
           opacity: 1;
         }
       }
     }
+
     #carousel-nav {
       position: absolute;
       display: flex;
@@ -568,9 +565,11 @@ onUnmounted(() => {
         opacity: 0.8;
         margin-right: 10px;
         transition: all 0.5s;
+
         &:last-of-type {
           margin-right: 0;
         }
+
         &.active {
           width: 50px;
           background: #00cdc4;
@@ -579,22 +578,26 @@ onUnmounted(() => {
       }
     }
   }
+
   .desc-wrapper {
     padding: 96px 0 69px 0;
     display: flex;
     flex-direction: column;
     // align-content: center;
     justify-content: center;
+
     // width: fit-content;
     span {
       text-align: center;
     }
+
     .desc-title {
       font-size: 42px;
       font-weight: 500;
       color: #151717;
       margin-bottom: 31px;
     }
+
     .desc {
       font-size: 20px;
       font-weight: 400;
@@ -602,10 +605,12 @@ onUnmounted(() => {
       line-height: 30px;
     }
   }
+
   #ace-product {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .ace-product-list {
       // width: 1924.5px;
       min-width: 1924.5px;
@@ -615,12 +620,14 @@ onUnmounted(() => {
 
       position: relative;
       background-color: #8e9f9e;
+
       .product-item {
         display: flex;
         justify-content: center;
         align-items: center;
         position: absolute;
         transition: all 0.5s;
+
         &:first-of-type {
           // width: 534px;
           // width: 640px;
@@ -630,10 +637,12 @@ onUnmounted(() => {
           background-size: cover;
 
           background-repeat: no-repeat;
+
           .product-detail-wrapper {
             margin-left: 144px;
           }
         }
+
         &:nth-of-type(2) {
           // width: 750px;
           width: 38.97%;
@@ -643,10 +652,12 @@ onUnmounted(() => {
           background-repeat: no-repeat;
           // left: 534px;
           left: 27.74%;
+
           .product-detail-wrapper {
             margin-left: 300px;
           }
         }
+
         &:last-of-type {
           // width: 727px;
           width: 37.77%;
@@ -655,10 +666,12 @@ onUnmounted(() => {
           right: 0;
           background-size: cover;
           background-repeat: no-repeat;
+
           .product-detail-wrapper {
             margin-left: 342px;
           }
         }
+
         .product-desc-wrapper,
         .product-detail-wrapper {
           display: flex;
@@ -666,34 +679,41 @@ onUnmounted(() => {
           color: #fff;
 
           align-items: center;
+
           .product-name {
             font-size: 40px;
             font-weight: 400;
           }
+
           .product-desc {
             margin-top: 26px;
             font-size: 22px;
             font-weight: 300;
           }
+
           img.arrow {
             margin-top: 58px;
             width: 116px;
             height: 53px;
           }
+
           img.arrow_tow {
             margin-top: 28px;
             width: 32px;
             height: 11px;
           }
         }
+
         .product-detail-wrapper {
           align-items: flex-start;
           align-self: start;
           margin-right: auto;
           margin-top: 148px;
+
           .product-btn-wrapper {
             margin-top: 110px;
             display: flex;
+
             div[class^="btn"] {
               width: 160px;
               height: 44px;
@@ -702,15 +722,18 @@ onUnmounted(() => {
               display: flex;
               justify-content: center;
               align-items: center;
+
               span {
                 font-size: 22px;
 
                 font-weight: 300;
               }
             }
+
             .btn-simple {
               border: 1px solid #ffffff;
             }
+
             .btn {
               background-color: #00cdc4;
             }
@@ -719,17 +742,21 @@ onUnmounted(() => {
       }
     }
   }
+
   #service-product {
     .desc-wrapper {
       padding: 112px 0 100px 0;
     }
+
     .service-cards-wrapper {
       width: 1207px;
       margin: auto;
       display: flex;
       flex-wrap: wrap;
+
       div[class$="-card"] {
         position: relative;
+
         .mask {
           width: 100%;
           height: 100%;
@@ -739,6 +766,7 @@ onUnmounted(() => {
           align-items: center;
           transition: all 0.5s;
         }
+
         .card-title {
           width: fit-content;
           height: fit-content;
@@ -752,6 +780,7 @@ onUnmounted(() => {
           bottom: 0;
           margin: auto;
         }
+
         .card-desc {
           width: fit-content;
           height: fit-content;
@@ -767,6 +796,7 @@ onUnmounted(() => {
           padding: 0 28px;
           opacity: 0;
         }
+
         .card-btn {
           width: 120px;
           height: 36px;
@@ -782,6 +812,7 @@ onUnmounted(() => {
 
           margin: auto;
           opacity: 0;
+
           span {
             font-size: 14px;
 
@@ -789,34 +820,38 @@ onUnmounted(() => {
             color: #00cdc4;
             margin-right: 10px;
           }
+
           img {
             width: 14px;
             height: 5px;
           }
         }
+
         &:hover {
           .mask {
-            background: linear-gradient(
-              180deg,
-              rgba(0, 205, 196, 0.52) 0%,
-              #11afa8 30%,
-              rgba(11, 186, 178, 0.98) 62%,
-              rgba(0, 205, 196, 0.55) 100%
-            );
+            background: linear-gradient(180deg,
+                rgba(0, 205, 196, 0.52) 0%,
+                #11afa8 30%,
+                rgba(11, 186, 178, 0.98) 62%,
+                rgba(0, 205, 196, 0.55) 100%);
             opacity: 0.8;
           }
+
           .card-title {
             top: 69px;
             bottom: auto;
           }
+
           .card-desc {
             opacity: 1;
           }
+
           .card-btn {
             opacity: 1;
           }
         }
       }
+
       .s-card {
         width: 385px;
 
@@ -826,16 +861,20 @@ onUnmounted(() => {
         margin-right: 24px;
         background-size: auto;
         background-repeat: no-repeat;
+
         &:nth-of-type(1) {
           background-image: url("@/assets/image/home/insure.png");
         }
+
         &:nth-of-type(2) {
           background-image: url("@/assets/image/home/bank.png");
         }
+
         &:nth-of-type(3) {
           background-image: url("@/assets/image/home/agriculture.png");
         }
       }
+
       .b-card {
         margin-top: 30px;
         width: 587px;
@@ -845,12 +884,15 @@ onUnmounted(() => {
         background-size: auto;
         background-repeat: no-repeat;
         position: relative;
+
         &.market {
           background-image: url("@/assets/image/home/market.png");
         }
+
         &.construction {
           background-image: url("@/assets/image/home/construction_site.png");
         }
+
         .mask {
           width: 100%;
           height: 100%;
@@ -860,6 +902,7 @@ onUnmounted(() => {
           align-items: center;
           transition: all 0.5s;
         }
+
         .card-title {
           width: fit-content;
           height: fit-content;
@@ -873,6 +916,7 @@ onUnmounted(() => {
           bottom: 0;
           margin: auto;
         }
+
         .card-desc {
           width: fit-content;
           height: fit-content;
@@ -888,6 +932,7 @@ onUnmounted(() => {
           padding: 0 28px;
           opacity: 0;
         }
+
         .card-btn {
           width: 120px;
           height: 36px;
@@ -903,6 +948,7 @@ onUnmounted(() => {
 
           margin: auto;
           opacity: 0;
+
           span {
             font-size: 14px;
 
@@ -910,22 +956,23 @@ onUnmounted(() => {
             color: #00cdc4;
             margin-right: 10px;
           }
+
           img {
             width: 14px;
             height: 5px;
           }
         }
+
         &:hover {
           .mask {
-            background: linear-gradient(
-              180deg,
-              rgba(0, 205, 196, 0.52) 0%,
-              #11afa8 30%,
-              rgba(11, 186, 178, 0.98) 62%,
-              rgba(0, 205, 196, 0.55) 100%
-            );
+            background: linear-gradient(180deg,
+                rgba(0, 205, 196, 0.52) 0%,
+                #11afa8 30%,
+                rgba(11, 186, 178, 0.98) 62%,
+                rgba(0, 205, 196, 0.55) 100%);
             opacity: 0.8;
           }
+
           .card-title {
             top: 69px;
             bottom: auto;
@@ -934,6 +981,7 @@ onUnmounted(() => {
           .card-desc {
             opacity: 1;
           }
+
           .card-btn {
             opacity: 1;
           }
@@ -941,15 +989,18 @@ onUnmounted(() => {
       }
     }
   }
+
   #operate-customer {
     .desc-wrapper {
       padding: 92px 0 68px 0;
     }
+
     .customer-wrapper {
       width: 1210px;
       margin: auto;
       display: flex;
       flex-wrap: wrap;
+
       .customer {
         width: 224px;
         height: 86px;
@@ -957,23 +1008,28 @@ onUnmounted(() => {
         border: 1px solid #d9e8e7;
         margin-right: 20px;
         margin-bottom: 20px;
+
         &:nth-of-type(5n) {
           margin-right: 0;
         }
       }
     }
   }
+
   #news-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .desc-wrapper {
       padding: 77px 0 70px 0;
     }
+
     .news-wrapper {
       width: 1206px;
       display: flex;
       flex-wrap: wrap;
+
       .news-item {
         width: 380px;
         height: 360px;
@@ -984,23 +1040,28 @@ onUnmounted(() => {
         border: 1px solid #f3f6f6;
         margin-right: 30px;
         overflow: hidden;
+
         .el-image.img {
           width: 380px;
           height: 200px;
         }
+
         &:nth-of-type(3n) {
           margin-right: 0;
         }
+
         .news-info-content {
           height: 160px;
           width: 380px;
           padding: 26px 40px 55px 28px;
           box-sizing: border-box;
+
           .date {
             font-size: 14px;
             font-weight: 400;
             color: #909191;
           }
+
           .title {
             margin-top: 15px;
             font-size: 16px;
@@ -1009,6 +1070,7 @@ onUnmounted(() => {
             color: #151717;
           }
         }
+
         &:hover {
           .title {
             color: #00cdc4;
@@ -1016,6 +1078,7 @@ onUnmounted(() => {
         }
       }
     }
+
     .more-new-btn {
       width: 160px;
       height: 44px;
@@ -1025,12 +1088,14 @@ onUnmounted(() => {
       justify-content: center;
       align-items: center;
       margin: 58px 0 63px 0;
+
       span {
         font-size: 20px;
         font-weight: 400;
         color: #ffffff;
         margin-right: 6px;
       }
+
       img {
         width: 16px;
         height: 6px;
