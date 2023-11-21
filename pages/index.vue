@@ -606,11 +606,14 @@ onUnmounted(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .ace-product-list {
       // width: 1924.5px;
       min-width: 1924.5px;
       width: 100%;
+
       height: 600px;
+
       // margin: auto;
 
       position: relative;
