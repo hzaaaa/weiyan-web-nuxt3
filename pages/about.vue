@@ -363,7 +363,7 @@ onUnmounted(() => {
         .desc {
           width: 445px;
           font-size: 16px;
-
+          line-height: 22px;
           font-weight: 400;
           color: #151717;
           margin-bottom: 18px;
@@ -396,6 +396,7 @@ onUnmounted(() => {
         background: #f8f8f8;
         width: 585px;
         height: 446px;
+        width: 600px;
         // background: #ffffff;
         // box-shadow: 0px 4px 10px 1px rgba(226, 226, 226, 0.5);
         display: flex;
@@ -405,6 +406,7 @@ onUnmounted(() => {
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
+        margin-bottom: 43px;
         .top {
           padding: 25px 0 30px 36px;
           height: 154px;
@@ -435,12 +437,20 @@ onUnmounted(() => {
           flex: 1;
           padding: 23px 28px 23px 36px;
           .desc-list {
+            padding-left: 10px;
             .list-item {
               line-height: 30px;
               font-size: 16px;
 
               font-weight: 400;
               color: #151717;
+              &::marker {
+                // content: "";
+                // width: 4px;
+                // height: 4px;
+                background-color: #505353;
+                color: #505353;
+              }
             }
           }
         }

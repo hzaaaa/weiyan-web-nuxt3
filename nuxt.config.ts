@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   // plugins: [{ src: "@/plugins/baiduTJ" }],
   // css: ["@/assets/styles/common.css"],
-
+  plugins: [{ src: "@/plugins/directives", ssr: false }],
   postcss: {
     // plugins: {
     //   autoprefixer: { overrideBrowserslist: ["Android 4.1", "iOS 7.1", "Chrome > 31", "ff > 31", "ie >= 8"], grid: true },
@@ -67,5 +67,4 @@ export default defineNuxtConfig({
       script: [{ src: "https://hm.baidu.com/hm.js?ef4978975287b26defd919021350932e" }],
     },
   },
-
 });
