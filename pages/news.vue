@@ -23,15 +23,9 @@
       </div>
 
       <div class="pagination-block">
-        <el-pagination
-          background
-          layout="total,prev, pager, next,jumper"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentPageChange"
-          :current-page="pageParams.pageNum"
-          :page-size="pageParams.pageSize"
-          :total="pageParams.total"
-        />
+        <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
+          @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
+          :total="pageParams.total" />
       </div>
     </div>
   </NuxtLayout>
@@ -62,7 +56,7 @@ const pageParams = reactive({
 });
 
 const newsList = <any>ref([]);
-const handleSizeChange = () => {};
+const handleSizeChange = () => { };
 const handleCurrentPageChange = (pageNum: any) => {
   pageParams.pageNum = pageNum;
   getNewsList();
@@ -92,8 +86,7 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-.news {
-}
+.news {}
 
 .banner {
   height: 800px;
@@ -125,7 +118,7 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
 
-  & > div {
+  &>div {
     width: 1200px;
   }
 
@@ -282,6 +275,7 @@ onMounted(() => {
       opacity: 1;
       border: 1px solid #f3f6f6;
       transition: all 0.2s;
+      cursor: pointer;
 
       &:hover {
         .title {

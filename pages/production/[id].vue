@@ -405,7 +405,7 @@ onMounted(() => {
           .item {
             width: 100%;
             height: 80px;
-
+            cursor: pointer;
 
             display: flex;
             justify-content: center;
@@ -423,7 +423,7 @@ onMounted(() => {
 
           .line {
             width: 270px;
-            height: 1px;
+            // height: 1px;
             opacity: 1;
             border-bottom: 1px solid #B8DEDB;
           }
@@ -573,6 +573,7 @@ onMounted(() => {
     color: #FFFFFF;
     line-height: 1.4;
     -webkit-background-clip: text;
+    cursor: pointer;
   }
 }
 </style>

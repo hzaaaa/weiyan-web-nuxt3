@@ -308,11 +308,13 @@ const nextItemClick = () => {
         height: 29px;
         // background-color: red;
         // margin-right: ;
+        cursor: pointer;
       }
 
       .right-btn {
         width: 29px;
         height: 29px;
+        cursor: pointer;
         // background-color: red
       }
     }
