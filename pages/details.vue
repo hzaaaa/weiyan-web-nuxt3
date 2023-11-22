@@ -13,7 +13,7 @@
       <div class="plane">
 
         <div class="title">{{ detailsObj.content.newsItem[0].title }}</div>
-        <div class="date"> 发布时间：2017-11-27</div>
+        <div class="date"> 发布时间：{{ moment(item.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
         <div class="" style="display: flex;justify-content: center;">
 
           <div style="max-width:667px ;" class="h-content"
@@ -54,6 +54,9 @@ onMounted(() => {
 }
 
 :deep(.h-content) {
+  line-height: 1.75;
+  letter-spacing: 1px;
+
   img {
     max-width: 667px;
   }
