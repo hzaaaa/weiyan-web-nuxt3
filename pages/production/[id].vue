@@ -197,7 +197,7 @@ onMounted(() => {
   width: 100%;
 
   // background:  no-repeat;
-  // background-image: url("@/assets/image/production/#{v-bind('$routeId')}_banner.png");
+
   background-repeat: no-repeat;
   // background: v-bind("$props.size") no-repeat;
   background-position: center;
