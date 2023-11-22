@@ -48,7 +48,7 @@
                   <el-dropdown-item>
 
                     <NuxtLink to="/production/privacyComputing" style="color: inherit;display: flex;align-items: center;">
-                      <span class=" "> weFlow隐私计算平台 </span>
+                      <span class=" "> 隐私计算平台 </span>
                     </NuxtLink>
                   </el-dropdown-item>
                   <el-dropdown-item>
