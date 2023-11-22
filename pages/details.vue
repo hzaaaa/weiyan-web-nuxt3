@@ -73,7 +73,7 @@ onMounted(() => {
   overflow: hidden;
 
   .big-title {
-    margin-top: 251px;
+    margin-top: 204px;
     font-size: 60px;
     font-family: PingFang SC-Medium, PingFang SC;
     font-weight: 500;

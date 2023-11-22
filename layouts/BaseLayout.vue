@@ -17,7 +17,8 @@
             <NuxtLink class="item-link" to="/">首页</NuxtLink>
 
             <el-dropdown>
-              <div class="item-link" :class="{ 'item-link-active': isProductionPage }">产品中心
+              <div class="item-link" :class="{ 'item-link-active': isProductionPage }">
+                产品中心
 
                 <el-icon class="el-icon--right">
                   <arrow-down />
@@ -28,10 +29,56 @@
                 <el-dropdown-menu>
                   <el-dropdown-item>
 
-                    <NuxtLink to="/production" style="color: inherit;">
-                      <span class="router-link-word">
-                        数据订阅
-                      </span>
+                    <NuxtLink to="/production/dataServe" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据服务平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataGovernance" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据治理平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataAssets" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据资产管理平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/privacyComputing" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> weFlow隐私计算平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/strategy" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 策略平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataSubscription" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据订阅平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/Modeling" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 微言建模平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataIndicators" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据指标平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/AIComputingPower" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> AI算力管理平台 </span>
                     </NuxtLink>
                   </el-dropdown-item>
 
@@ -51,11 +98,49 @@
                 <el-dropdown-menu>
                   <el-dropdown-item>
 
-                    <NuxtLink to="/solution" style="color: inherit;display: flex;align-items: center;">
-                      <el-image class="b-img icon-img" src="/top/zhny-b.png" fit="fill" />
-                      <el-image class="g-img icon-img" src="/top/zhny-g.png" fit="fill" />
+                    <NuxtLink to="/solution/marketing" style="color: inherit;display: flex;align-items: center; ">
+                      <!-- <el-icon :size="16">
+                        <svgIcon name="icon-_shichangyingxiao"></svgIcon>
+                      </el-icon> -->
+                      <span class=" ">智慧营销</span>
+                    </NuxtLink>
 
-                      <span class="router-link-word">智慧农业</span>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/agriculture" style="color: inherit;display: flex;align-items: center;">
+                      <!-- <el-icon :size="16">
+                        <svgIcon name="icon-industry06"></svgIcon>
+                      </el-icon> -->
+                      <span class=" ">智慧农业</span>
+                    </NuxtLink>
+
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/insurance" style="color: inherit;display: flex;align-items: center;">
+                      <!-- <el-icon :size="16">
+                        <svgIcon name="icon-baoxian"></svgIcon>
+                      </el-icon> -->
+                      <span class=" ">智慧保险</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/bank" style="color: inherit;display: flex;align-items: center;">
+                      <!-- <el-icon :size="16">
+                        <svgIcon name="icon-zhichiyinhang"></svgIcon>
+                      </el-icon> -->
+                      <span class=" ">智慧银行</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/construction" style="color: inherit;display: flex;align-items: center;">
+                      <!-- <el-icon :size="16">
+                        <svgIcon name="icon-zhichiyinhang"></svgIcon>
+                      </el-icon> -->
+                      <span class=" ">智慧工地</span>
                     </NuxtLink>
                   </el-dropdown-item>
 
@@ -89,10 +174,12 @@
             <div class="title">快速链接</div>
             <div class="content-block">
               <div class="content-item">
-                <NuxtLink to="/production" style="color: inherit;">产品中心</NuxtLink>
+                <NuxtLink :class="{ 'item-link-active': isProductionPage }" to="/production/dataServe"
+                  style="color: inherit;">产品中心</NuxtLink>
               </div>
               <div class="content-item">
-                <NuxtLink to="/solution" style="color: inherit;">解决方案</NuxtLink>
+                <NuxtLink :class="{ 'item-link-active': isSolutionPage }" to="/solution/marketing"
+                  style="color: inherit;">解决方案</NuxtLink>
               </div>
               <div class="content-item">
                 <NuxtLink to="/news" style="color: inherit;">新闻资讯</NuxtLink>
@@ -223,6 +310,7 @@ header {
   top: 0;
   z-index: 1;
   background-color: #ffffff;
+  border-bottom: 1px solid #E5E5E5;
 
   .header {
     display: flex;
@@ -314,12 +402,14 @@ header {
   }
 
   .new-header {
-    height: 60px;
+    height: 70px;
     width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+
 
     a.router-link-active {
       color: var(--el-color-primary) !important;
@@ -356,10 +446,16 @@ header {
   }
 }
 
+.item-link-active {
+  color: var(--el-color-primary) !important;
+}
+
 footer {
   // padding-top: 60px;
-  background-color: #2d3240;
+  background-color: #2F3131;
   color: #919899;
+
+
 
   .footer {
     &-detail {
