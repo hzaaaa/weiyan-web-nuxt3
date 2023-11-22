@@ -131,7 +131,9 @@
             <div class="row-item">
               <div class="img-wrap">
 
-                <el-image class="img" :src="`/production/adv${index}-${index}.svg`" fit="fill" />
+                <el-image v-if="index !== 1" class="img" :src="`/production/adv${index}-${index}.svg`" fit="fill" />
+                <el-image v-if="index === 1" style="width: 42px;height: 44px;position: relative;left:-1px" class="img"
+                  :src="`/production/adv${index}-${index}.svg`" fit="fill" />
               </div>
               <div class="right-block">
                 <div class="title">{{ advantageItem.title }}</div>
