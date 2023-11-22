@@ -1,29 +1,29 @@
 <template>
   <NuxtLayout name="base-layout" style="">
+    <client-only>
+
+      <div class="banner">
+        <div class="big-title ">
 
 
-    <div class="banner">
-      <div class="big-title ">
-
-
-        新闻资讯
-      </div>
-    </div>
-    <div class="body">
-      <div class="plane">
-
-        <div class="title">{{ detailsObj.content.newsItem[0].title }}</div>
-        <div class="date"> 发布时间：2017-11-27</div>
-        <div class="" style="display: flex;justify-content: center;">
-
-          <div style="max-width:667px ;" class="h-content"
-            v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div>
+          新闻资讯
         </div>
       </div>
-    </div>
+      <div class="body">
+        <div class="plane">
+
+          <div class="title">{{ detailsObj && detailsObj.content.newsItem[0].title }}</div>
+          <div class="date"> 发布时间：{{ detailsObj && moment(detailsObj.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
+          <div class="" style="display: flex;justify-content: center;">
+
+            <div style="max-width:667px ;" class="h-content"
+              v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div>
+          </div>
+        </div>
+      </div>
 
 
-
+    </client-only>
   </NuxtLayout>
 </template>
 
@@ -37,12 +37,13 @@ onMounted(() => {
   })
 })
 let route = <any>useRoute()
-
-let detailsObj = <any>ref(useState(route.query.articleId))
+const detailsObj = <any>ref(null)
 
 onMounted(() => {
   console.log('route.params', route.params)
+  let itemStr = localStorage.getItem(route.query.articleId);
 
+  detailsObj.value = JSON.parse(itemStr)
 
 })
 </script>
@@ -54,6 +55,9 @@ onMounted(() => {
 }
 
 :deep(.h-content) {
+  line-height: 1.75;
+  letter-spacing: 1px;
+
   img {
     max-width: 667px;
   }

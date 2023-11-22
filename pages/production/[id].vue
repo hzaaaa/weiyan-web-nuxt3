@@ -32,7 +32,7 @@
           <div class="f-row" style="margin-bottom: 20px;">
             <div class="f-col" v-if="productionItem.functionList[0]">
               <!-- <div class="img"></div> -->
-              <el-image class="img" src="/production/function0.png" fit="fill" />
+              <el-image class="img" src="/production/function0.svg" fit="fill" />
               <div class="word-block">
                 <div class="word-title">
                   {{ productionItem.functionList[0].title }}
@@ -42,7 +42,7 @@
             </div>
             <div class="f-col" v-if="productionItem.functionList[1]">
               <!-- <div class="img"></div> -->
-              <el-image class="img" src="/production/function1.png" fit="fill" />
+              <el-image class="img" src="/production/function1.svg" fit="fill" />
               <div class="word-block">
                 <div class="word-title">
                   {{ productionItem.functionList[1].title }}
@@ -55,7 +55,7 @@
           <div class="f-row">
             <div class="f-col" v-if="productionItem.functionList[2]">
               <!-- <div class="img"></div> -->
-              <el-image class="img" src="/production/function2.png" fit="fill" />
+              <el-image class="img" src="/production/function2.svg" fit="fill" />
               <div class="word-block">
                 <div class="word-title">
                   {{ productionItem.functionList[2].title }}
@@ -65,7 +65,7 @@
             </div>
             <div class="f-col" v-if="productionItem.functionList[3]">
               <!-- <div class="img"></div> -->
-              <el-image class="img" src="/production/function3.png" fit="fill" />
+              <el-image class="img" src="/production/function3.svg" fit="fill" />
               <div class="word-block">
                 <div class="word-title">
                   {{ productionItem.functionList[3].title }}
@@ -131,7 +131,9 @@
             <div class="row-item">
               <div class="img-wrap">
 
-                <el-image class="img" :src="`/production/adv${index}-${index}.png`" fit="fill" />
+                <el-image v-if="index !== 1" class="img" :src="`/production/adv${index}-${index}.svg`" fit="fill" />
+                <el-image v-if="index === 1" style="width: 42px;height: 44px;position: relative;left:-1px" class="img"
+                  :src="`/production/adv${index}-${index}.svg`" fit="fill" />
               </div>
               <div class="right-block">
                 <div class="title">{{ advantageItem.title }}</div>

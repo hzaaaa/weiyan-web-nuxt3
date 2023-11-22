@@ -25,7 +25,7 @@
       <div class="grid-class">
         <div class="item" v-for="item in table_list">
 
-          <el-image class="left-img" src="/solution/left-img.png" fit="fill" />
+          <el-image class="left-img" src="/solution/left-img.svg" fit="fill" />
           <div class="right-block">
             <div class="top-title">
               <div>{{ item.title }}</div>

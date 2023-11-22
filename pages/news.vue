@@ -14,41 +14,14 @@
       </div>
       <div class="grid-class">
         <div class="grid-item" v-for="item in newsList" @click="gotoDetails(item)">
-          <!-- <div class="img"></div> -->
-          <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+          <div class="img">
+            <el-image :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+          </div>
           <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
           <div class="title">{{ item.content.newsItem[0].title }}</div>
         </div>
       </div>
-      <!-- <div class="list-block">
-        <template v-for="item in  newsList">
 
-          <div class="item-block">
-            <div class="left-block">
-              <div class="date">{{ moment(item.articleUpdateTime * 1000).format('MM.DD') }}</div>
-              <div class="year-block">
-                <div class="line"></div>
-                <div class="year">
-                  {{ moment(item.articleUpdateTime * 1000).format('YYYY') }}
-                </div>
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="middle-block">
-              <div class="title">{{ item.content.newsItem[0].title }}</div>
-              <div class="content">
-                {{ item.content.newsItem[0].digest ? item.content.newsItem[0].digest + '...' : '' }}
-              </div>
-              <div class="details" @click="gotoDetails(item)">查看详情</div>
-            </div>
-
-            <el-image class="right-block-img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
-          </div>
-
-          <div class="item-line"></div>
-        </template>
-
-      </div> -->
       <div class="pagination-block">
         <el-pagination
           background
@@ -73,7 +46,6 @@ onMounted(() => {
 });
 let router = useRouter();
 const gotoDetails = (item: any) => {
-  // useState(item.articleId, () => item)
   localStorage.setItem(item.articleId, JSON.stringify(item));
   router.push({
     name: "details",
@@ -309,6 +281,19 @@ onMounted(() => {
       border-radius: 10px 10px 10px 10px;
       opacity: 1;
       border: 1px solid #f3f6f6;
+      transition: all 0.2s;
+
+      &:hover {
+        .title {
+          color: var(--el-color-primary);
+        }
+
+        .img {
+          .el-image {
+            transform: scale(1.05);
+          }
+        }
+      }
 
       .img {
         height: 240px;
@@ -316,6 +301,13 @@ onMounted(() => {
         // background: #E20404;
         border-radius: 10px 10px 0px 0px;
         opacity: 1;
+        overflow: hidden;
+
+        .el-image {
+          height: 100%;
+          width: 100%;
+          transition: all 0.2s;
+        }
       }
 
       .date {
