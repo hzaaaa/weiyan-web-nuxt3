@@ -1,10 +1,7 @@
 <template>
   <NuxtLayout name="base-layout">
-
     <div class="banner">
-      <div class="big-title ">
-
-
+      <div class="big-title">
         微言科技受联盟数据专委会<br />
         邀请分享“公共数据金融应用展望”
       </div>
@@ -16,49 +13,47 @@
         <div class="grey-title">NEWS</div>
       </div>
       <div class="grid-class">
-        <div class="grid-item" v-for="item in  newsList" @click="gotoDetails(item)">
+        <div class="grid-item" v-for="item in newsList" @click="gotoDetails(item)">
           <div class="img">
-
             <el-image :src="item.content.newsItem[0].thumbUrl" fit="fill" />
           </div>
-          <div class="date">{{ moment(item.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
+          <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
           <div class="title">{{ item.content.newsItem[0].title }}</div>
         </div>
-
       </div>
 
       <div class="pagination-block">
-        <el-pagination background layout="total,prev, pager, next,jumper" @size-change="handleSizeChange"
-          @current-change="handleCurrentPageChange" :current-page="pageParams.pageNum" :page-size="pageParams.pageSize"
-          :total="pageParams.total" />
+        <el-pagination
+          background
+          layout="total,prev, pager, next,jumper"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentPageChange"
+          :current-page="pageParams.pageNum"
+          :page-size="pageParams.pageSize"
+          :total="pageParams.total"
+        />
       </div>
     </div>
-
-
   </NuxtLayout>
 </template>
 
-<script setup  lang="ts">
-import moment from 'moment';
+<script setup lang="ts">
+import moment from "moment";
 onMounted(() => {
-
   nextTick(() => {
-
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-  })
-})
-let router = useRouter()
+  });
+});
+let router = useRouter();
 const gotoDetails = (item: any) => {
-
-  localStorage.setItem(item.articleId, JSON.stringify(item))
+  localStorage.setItem(item.articleId, JSON.stringify(item));
   router.push({
-    name: 'details',
+    name: "details",
     query: {
-
-      articleId: item.articleId
-    }
-  })
-}
+      articleId: item.articleId,
+    },
+  });
+};
 const pageParams = reactive({
   pageNum: 1,
   pageSize: 6,
@@ -67,47 +62,40 @@ const pageParams = reactive({
 });
 
 const newsList = <any>ref([]);
-const handleSizeChange = () => {
-
-}
+const handleSizeChange = () => {};
 const handleCurrentPageChange = (pageNum: any) => {
   pageParams.pageNum = pageNum;
-  getNewsList()
-}
+  getNewsList();
+};
 
 const getNewsList = async () => {
   let params = <any>{
     pageNumber: pageParams.pageNum,
     pageSize: pageParams.pageSize,
-    sorts: 'article_update_time desc'
-  }
+    sorts: "article_update_time desc",
+  };
   let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
-    method: 'get',
-    query: params
-  })
+    method: "get",
+    query: params,
+  });
 
   newsList.value = data.records;
-
-
   pageParams.total = data.total;
-
-}
+};
 onMounted(() => {
-
   getNewsList();
-})
+});
 </script>
 
 <style lang="scss" scoped>
 * {
   box-sizing: border-box;
-
 }
 
-.news {}
+.news {
+}
 
 .banner {
-
   height: 800px;
   width: 100%;
 
@@ -122,18 +110,13 @@ onMounted(() => {
     font-size: 60px;
     font-family: PingFang SC-Medium, PingFang SC;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 80px;
-    text-shadow: 0px 2px 3px #373D3D;
+    text-shadow: 0px 2px 3px #373d3d;
     -webkit-background-clip: text;
     text-align: center;
-
-
     // -webkit-text-fill-color: transparent;
   }
-
-
-
 }
 
 .body {
@@ -142,7 +125,7 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
 
-  &>div {
+  & > div {
     width: 1200px;
   }
 
@@ -154,17 +137,16 @@ onMounted(() => {
       font-size: 34px;
       font-family: PingFang SC, PingFang SC;
       font-weight: 500;
-      color: #00CDC4;
+      color: #00cdc4;
       line-height: 1.4;
     }
 
     .green-line {
       width: 134px;
       height: 3px;
-      background: #00CDC4;
+      background: #00cdc4;
       border-radius: 0px 0px 0px 0px;
       opacity: 1;
-
     }
 
     .grey-title {
@@ -173,7 +155,7 @@ onMounted(() => {
       font-size: 60px;
       font-family: PingFang SC, PingFang SC;
       font-weight: 600;
-      color: #0D4E4B;
+      color: #0d4e4b;
       line-height: 1.4;
       letter-spacing: 0;
       position: absolute;
@@ -202,7 +184,7 @@ onMounted(() => {
           font-size: 46px;
           font-family: DIN-Bold, DIN;
           font-weight: bold;
-          color: #00CDC4;
+          color: #00cdc4;
           line-height: 1.4;
           -webkit-background-clip: text;
         }
@@ -222,7 +204,7 @@ onMounted(() => {
             font-size: 24px;
             font-family: DIN-Medium, DIN;
             font-weight: 500;
-            color: #7A7A7A;
+            color: #7a7a7a;
             line-height: 1.4;
             -webkit-background-clip: text;
             margin: 0 8px;
@@ -264,7 +246,7 @@ onMounted(() => {
           font-size: 16px;
           font-family: PingFang SC-Regular, PingFang SC;
           font-weight: 400;
-          color: #00CDC4;
+          color: #00cdc4;
           line-height: 1.4;
         }
       }
@@ -281,9 +263,8 @@ onMounted(() => {
       width: 1200px;
       height: 0px;
       opacity: 1;
-      border-bottom: 1px solid #E1E8E8;
+      border-bottom: 1px solid #e1e8e8;
     }
-
   }
 
   .grid-class {
@@ -295,16 +276,14 @@ onMounted(() => {
     .grid-item {
       width: 580px;
       height: 400px;
-      background: #FFFFFF;
+      background: #ffffff;
       box-shadow: 0px 6px 12px 1px rgba(228, 238, 237, 0.52);
       border-radius: 10px 10px 10px 10px;
       opacity: 1;
-      border: 1px solid #F3F6F6;
+      border: 1px solid #f3f6f6;
       transition: all 0.2s;
 
       &:hover {
-
-
         .title {
           color: var(--el-color-primary);
         }
@@ -350,7 +329,6 @@ onMounted(() => {
         color: #151717;
         line-height: 1.4;
       }
-
     }
   }
 

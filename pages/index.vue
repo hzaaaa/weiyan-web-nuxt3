@@ -1,162 +1,205 @@
 <template>
   <NuxtLayout name="base-layout">
-    <client-only>
-      <div class="container">
-        <div id="banner-carousel">
-          <ul id="carousel">
-            <li class="carousel-item" v-for="(item, index) in bannerCarouselItem" :key="index"
-              :class="[item.first ? 'active' : '']">
-              <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
-              <div class="desc-item">
-                <span class="title">{{ item.titleText }}</span>
-                <span class="desc">{{ item.descText }}</span>
-              </div>
-            </li>
-          </ul>
-          <ul id="carousel-nav">
-            <li class="nav-item" v-for="(item, index) in bannerCarouselItem" :key="index"
-              :class="[item.first ? 'active' : '']" @click="handleCarouselNavItemClick(index)"></li>
-          </ul>
+    <div class="container">
+      <div id="banner-carousel">
+        <ul id="carousel">
+          <li
+            class="carousel-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+          >
+            <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
+            <div class="desc-item">
+              <span class="title">{{ item.titleText }}</span>
+              <span class="desc">{{ item.descText }}</span>
+            </div>
+          </li>
+        </ul>
+        <ul id="carousel-nav">
+          <li
+            class="nav-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+            @click="handleCarouselNavItemClick(index)"
+          ></li>
+        </ul>
+      </div>
+
+      <div id="ace-product" class="">
+        <div class="desc-wrapper">
+          <span class="desc-title">三大王牌产品</span>
+          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
         </div>
+        <div class="ace-product-list" v-clickOutside="handleMouseLeaveProduct">
+          <!-- <img class="product-item" src="@/assets/image/home/product_1.png" /> -->
+          <div class="product-item" @mouseover="handleProductClick()">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">数据智能平台</span>
+              <span class="product-desc">数据智能平台数据智能平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" />
+            </div>
 
-        <div id="ace-product" class="">
-          <div class="desc-wrapper">
-            <span class="desc-title">三大王牌产品</span>
-            <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
-            <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 1">
+              <span class="product-name">数据智能平台</span>
+              <span class="product-desc">数据智能平台数据智能平台</span>
+              <div class="arrow-move-block">
+                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img
+                  class="arrow_tow"
+                  src="@/assets/image/home/product_arrow_2.png"
+                />
+              </div>
+
+              <div class="product-btn-wrapper">
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>产品功能</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>应用场景</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>产品优势</span></div>
+              </div>
+            </div>
           </div>
-          <div class="ace-product-list" @mouseleave="handleMouseLeaveProduct()">
-            <!-- <img class="product-item" src="@/assets/image/home/product_1.png" /> -->
-            <div class="product-item">
-              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-                <span class="product-name">数据智能平台</span>
-                <span class="product-desc">数据智能平台数据智能平台</span>
-                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProductClick()" />
+          <div class="product-item" @mouseover="handleProduct2Click()">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">算力管理平台</span>
+              <span class="product-desc">算力管理平台算力管理平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" />
+            </div>
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 2">
+              <span class="product-name">算力管理平台</span>
+              <span class="product-desc">算力管理平台算力管理平台</span>
+              <div class="arrow-move-block">
+                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" />
+                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
+                <!-- <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" /> -->
               </div>
 
-              <div class="product-detail-wrapper" v-if="productDetailIndex == 1">
-                <span class="product-name">数据智能平台</span>
-                <span class="product-desc">数据智能平台数据智能平台</span>
-                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-                <div class="product-btn-wrapper">
-                  <div class="btn-simple"><span>产品功能</span></div>
-                  <div class="btn"><span>应用场景</span></div>
-                  <div class="btn-simple"><span>产品优势</span></div>
-                </div>
+              <div class="product-btn-wrapper">
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>产品功能</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>应用场景</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>产品优势</span></div>
               </div>
             </div>
-            <div class="product-item">
-              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-                <span class="product-name">算力管理平台</span>
-                <span class="product-desc">算力管理平台算力管理平台</span>
-                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct2Click()" />
-              </div>
-              <div class="product-detail-wrapper" v-if="productDetailIndex == 2">
-                <span class="product-name">算力管理平台</span>
-                <span class="product-desc">算力管理平台算力管理平台</span>
-                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-                <div class="product-btn-wrapper">
-                  <div class="btn-simple"><span>产品功能</span></div>
-                  <div class="btn"><span>应用场景</span></div>
-                  <div class="btn-simple"><span>产品优势</span></div>
-                </div>
-              </div>
+          </div>
+          <div class="product-item" @mouseover="handleProduct3Click()">
+            <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
+              <span class="product-name">数据安全平台</span>
+              <span class="product-desc">数据安全平台数据安全平台</span>
+              <img class="arrow" src="@/assets/image/home/product_arrow.png" />
             </div>
-            <div class="product-item">
-              <div class="product-desc-wrapper" v-if="productDetailIndex == 0">
-                <span class="product-name">数据安全平台</span>
-                <span class="product-desc">数据安全平台数据安全平台</span>
-                <img class="arrow" src="@/assets/image/home/product_arrow.png" @click="handleProduct3Click()" />
+            <div class="product-detail-wrapper" v-if="productDetailIndex == 3">
+              <span class="product-name">数据安全平台</span>
+              <span class="product-desc">数据安全平台数据安全平台</span>
+              <div class="arrow-move-block">
+                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img
+                  class="arrow_tow"
+                  src="@/assets/image/home/product_arrow_2.png"
+                />
               </div>
-              <div class="product-detail-wrapper" v-if="productDetailIndex == 3">
-                <span class="product-name">数据安全平台</span>
-                <span class="product-desc">数据安全平台数据安全平台</span>
-                <img class="arrow_tow" src="@/assets/image/home/product_arrow_2.png" />
-                <div class="product-btn-wrapper">
-                  <div class="btn-simple"><span>产品功能</span></div>
-                  <div class="btn"><span>应用场景</span></div>
-                  <div class="btn-simple"><span>产品优势</span></div>
-                </div>
+
+              <div class="product-btn-wrapper">
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>产品功能</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>应用场景</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>产品优势</span></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div id="service-product">
-          <div class="desc-wrapper">
-            <span class="desc-title">专业智能决策服务商，赋能行业发展</span>
-            <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
-            <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
-          </div>
-          <div class="service-cards-wrapper">
-            <div class="s-card">
-              <div class="mask"></div>
-              <span class="card-title">智慧保险</span>
-              <span class="card-desc">覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+      <div id="service-product">
+        <div class="desc-wrapper">
+          <span class="desc-title">专业智能决策服务商，赋能行业发展</span>
+          <span class="desc">打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准 </span>
+          <span class="desc">产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品，形成产品矩阵平台打磨标准产品</span>
+        </div>
+        <div class="service-cards-wrapper">
+          <div class="s-card">
+            <div class="mask">
+              <!-- <span class="card-title">智慧保险</span>
+              <span class="card-desc"
+                >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
                 生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
                 风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
               </span>
               <div class="card-btn" @click="goToSolution">
                 <span>查看详情</span>
                 <img src="@/assets/image/home/arrow_green.png" />
-              </div>
+              </div> -->
             </div>
-            <div class="s-card">
-              <div class="mask"></div>
-              <span class="card-title">智慧银行</span>
-              <span
-                class="card-desc">覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span>
-              <div class="card-btn" @click="goToSolution">
-                <span>查看详情</span>
-                <img src="@/assets/image/home/arrow_green.png" />
-              </div>
+            <span class="card-title">智慧保险</span>
+            <span class="card-desc"
+              >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+              生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
+              风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
+            </span>
+            <div class="card-btn" @click="goToSolution('/solution/insurance')">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
-            <div class="s-card" style="margin-right: 0">
-              <div class="mask"></div>
-              <span class="card-title">智慧农业</span>
-              <span
-                class="card-desc">通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span>
-              <div class="card-btn" @click="goToSolution">
-                <span>查看详情</span>
-                <img src="@/assets/image/home/arrow_green.png" />
-              </div>
+          </div>
+          <div class="s-card">
+            <div class="mask"></div>
+            <span class="card-title">智慧银行</span>
+            <span class="card-desc"
+              >覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span
+            >
+            <div class="card-btn" @click="goToSolution('/solution/bank')">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
-            <div class="b-card market">
-              <div class="mask"></div>
-              <span class="card-title">智能营销</span>
-              <span class="card-desc">秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span>
-              <div class="card-btn" @click="goToSolution">
-                <span>查看详情</span>
-                <img src="@/assets/image/home/arrow_green.png" />
-              </div>
+          </div>
+          <div class="s-card" style="margin-right: 0">
+            <div class="mask"></div>
+            <span class="card-title">智慧农业</span>
+            <span class="card-desc"
+              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+            >
+            <div class="card-btn" @click="goToSolution('/solution/agriculture')">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
-            <div class="b-card construction" style="margin-right: 0">
-              <div class="mask"></div>
-              <span class="card-title">智慧工地</span>
-              <span
-                class="card-desc">以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span>
-              <div class="card-btn" @click="goToSolution">
-                <span>查看详情</span>
-                <img src="@/assets/image/home/arrow_green.png" />
-              </div>
+          </div>
+          <div class="b-card market">
+            <div class="mask"></div>
+            <span class="card-title">智能营销</span>
+            <span class="card-desc"
+              >秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span
+            >
+            <div class="card-btn" @click="goToSolution('/solution/marketing')">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
+            </div>
+          </div>
+          <div class="b-card construction" style="margin-right: 0">
+            <div class="mask"></div>
+            <span class="card-title">智慧工地</span>
+            <span class="card-desc"
+              >以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span
+            >
+            <div class="card-btn" @click="goToSolution('/solution/construction')">
+              <span>查看详情</span>
+              <img src="@/assets/image/home/arrow_green.png" />
             </div>
           </div>
         </div>
-        <div id="operate-customer">
-          <div class="desc-wrapper">
-            <span class="desc-title">合作用户</span>
-          </div>
-          <div class="customer-wrapper">
-            <div class="customer" v-for="(item, index) in customerItemList" :key="index">
-              <img :src="`/${item.imgSrc}${item.imgType}`" />
-            </div>
+      </div>
+      <div id="operate-customer">
+        <div class="desc-wrapper">
+          <span class="desc-title">合作用户</span>
+        </div>
+        <div class="customer-wrapper">
+          <div class="customer" v-for="(item, index) in customerItemList" :key="index">
+            <img :src="`/${item.imgSrc}${item.imgType}`" />
           </div>
         </div>
-        <div id="news-info">
-          <div class="desc-wrapper">
-            <span class="desc-title">新闻资讯</span>
-          </div>
-          <div class="news-wrapper">
+      </div>
+      <div id="news-info">
+        <div class="desc-wrapper">
+          <span class="desc-title">新闻资讯</span>
+        </div>
+        <div class="news-wrapper">
+          <client-only>
             <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
               <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
               <div class="news-info-content">
@@ -164,14 +207,14 @@
                 <div class="title">{{ item.content.newsItem[0].title }}</div>
               </div>
             </div>
-          </div>
-          <div class="more-new-btn" @click="goToNews">
-            <span>查看更多</span>
-            <img src="@/assets/image/home/arrow_white.png" />
-          </div>
+          </client-only>
+        </div>
+        <div class="more-new-btn" @click="goToNews">
+          <span>查看更多</span>
+          <img src="@/assets/image/home/arrow_white.png" />
         </div>
       </div>
-    </client-only>
+    </div>
   </NuxtLayout>
 </template>
 
@@ -267,13 +310,18 @@ const handleProductClick = () => {
 
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_active_1.png")})`;
   // productItemDomList[0].style.width = "1551px";
-  productItemDomList[0].style.width = "80.59%";
+  productItemDomList[0].style.width = "80.78%";
+  // productItemDomList[0].classList.add("active");
+  // productItemDomList[0].style.backgroundPosition = "center bottom";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%)`;
   // productItemDomList[1].style.left = "1346px";
-  productItemDomList[1].style.left = "69.94%";
+  productItemDomList[1].style.left = "70.05%";
+  productItemDomList[1].style.clipPath = `polygon(45.17% 0%, 100% 0%, 62.93% 100%, 0% 100%)`;
   // productItemDomList[1].style.width = "456px";
-  productItemDomList[1].style.width = "23.69%";
+  productItemDomList[1].style.width = "23.75%";
   // productItemDomList[2].style.width = "289px";
-  productItemDomList[2].style.width = "15.01%";
+  productItemDomList[2].style.width = "15.05%";
+  productItemDomList[2].style.clipPath = `polygon(58.13% 0%, 100% 0%, 100% 100%, 0% 100%)`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_2.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_3.png")})`;
   productDetailIndex.value = 1;
@@ -285,13 +333,16 @@ const handleProduct3Click = () => {
 
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_active_3.png")})`;
   // productItemDomList[2].style.width = "1551px";
-  productItemDomList[2].style.width = "80.59%";
+  productItemDomList[2].style.width = "80.78%";
+  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 13.28% 100%)`;
   // productItemDomList[1].style.left = "122px";
   productItemDomList[1].style.left = "6.33%";
   // productItemDomList[1].style.width = "456px";
   productItemDomList[1].style.width = "23.69%";
+  productItemDomList[1].style.clipPath = `polygon(0% 0%, 54.82% 0%, 100% 100%, 36.84% 100%)`;
   // productItemDomList[0].style.width = "289px";
   productItemDomList[0].style.width = "15.01%";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 41.52% 0%, 100% 100%, 0% 100%)`;
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_1.png")})`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_2.png")})`;
   productDetailIndex.value = 3;
@@ -304,12 +355,15 @@ const handleProduct2Click = () => {
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_active_2.png")})`;
   // productItemDomList[1].style.width = "1680px";
   productItemDomList[1].style.width = "87.29%";
+  productItemDomList[1].style.clipPath = `polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)`;
   // productItemDomList[1].style.left = "122px";
-  productItemDomList[1].style.left = "6.33%";
+  productItemDomList[1].style.left = "6.4%";
   // productItemDomList[0].style.width = "289px";
   productItemDomList[0].style.width = "15.01%";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 41.52% 100%, 0% 100%)`;
   // productItemDomList[2].style.width = "289px";
   productItemDomList[2].style.width = "15.01%";
+  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 58.47% 100%)`;
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_1.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_3.png")})`;
   productDetailIndex.value = 2;
@@ -320,12 +374,15 @@ const handleMouseLeaveProduct = () => {
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_1.png")})`;
   // productItemDomList[0].style.width = "640px";
   productItemDomList[0].style.width = "33.25%";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 85.43% 100%, 0% 100%)`;
   // productItemDomList[1].style.left = "534px";
   productItemDomList[1].style.left = "27.74%";
   // productItemDomList[1].style.width = "750px";
   productItemDomList[1].style.width = "38.97%";
+  productItemDomList[1].style.clipPath = `polygon(12% 0%, 100% 0%, 90% 100%, 0% 100%)`;
   // productItemDomList[2].style.width = "727px";
   productItemDomList[2].style.width = " 37.77%";
+  productItemDomList[2].style.clipPath = `polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%)`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_2.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_3.png")})`;
   productDetailIndex.value = 0;
@@ -454,15 +511,48 @@ const goToNews = (item: any) => {
     name: "news",
   });
 };
-const goToSolution = (item: any) => {
-  router.push({
-    name: "solution",
+
+const goToProduct = async (name: any) => {
+  await navigateTo({
+    path: name,
+
+    // query: {
+    //   dom: "function",
+    // },
   });
+};
+
+const goToSolution = async (name: any) => {
+  await navigateTo({
+    path: name,
+
+    // query: {
+    //   dom: "function",
+    // },
+  });
+};
+
+const containerDom = ref<any>(null);
+const containerDomWidth = ref<any>(0);
+
+const getContainerDom = () => {
+  containerDom.value = document.getElementsByClassName("container")[0];
+  console.log(containerDom.value);
+  containerDomWidth.value = containerDom.value.offsetWidth;
+  console.log("containerDomWidth.value: ", containerDomWidth.value);
+};
+const changeProductListStyle = () => {
+  const productListDom = <HTMLElement>document.getElementsByClassName("ace-product-list")[0];
+  const height = (600 / 1920) * containerDomWidth.value;
+  console.log("height: ", height);
+  productListDom.style.height = `${height}px`;
 };
 onMounted(() => {
   nextTick(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   });
+  window.addEventListener("resize", getContainerDom);
+  // getContainerDom();
   clearInterval(timer);
   clearTimeout(timeOuter);
   indexURL.value = window.location.href + "article/";
@@ -481,17 +571,26 @@ onMounted(() => {
         carouselIndexLoop();
         carouselMove();
       }, 5000);
+      getContainerDom();
     });
   }, 500);
   getNewsList();
 });
+
+watch(
+  () => containerDomWidth.value,
+  () => {
+    changeProductListStyle();
+  }
+);
 onUnmounted(() => {
   clearInterval(timer);
   clearTimeout(timeOuter);
+  window.removeEventListener("resize", getContainerDom);
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
   #banner-carousel {
     margin: auto;
@@ -613,9 +712,11 @@ onUnmounted(() => {
 
     .ace-product-list {
       // width: 1924.5px;
-      min-width: 1924.5px;
+      // min-width: 1924.5px;
       width: 100%;
+
       height: 600px;
+
       // margin: auto;
 
       position: relative;
@@ -627,7 +728,7 @@ onUnmounted(() => {
         align-items: center;
         position: absolute;
         transition: all 0.5s;
-
+        // object-fit: cover;
         &:first-of-type {
           // width: 534px;
           // width: 640px;
@@ -635,9 +736,13 @@ onUnmounted(() => {
           background-image: url("@/assets/image/home/product_1.png");
           height: 100%;
           background-size: cover;
-
+          clip-path: polygon(0% 0%, 100% 0%, 85.43% 100%, 0% 100%);
+          background-position: center;
           background-repeat: no-repeat;
-
+          // &.active {
+          //   width: 80.78%;
+          //   clip-path: polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%);
+          // }
           .product-detail-wrapper {
             margin-left: 144px;
           }
@@ -650,9 +755,10 @@ onUnmounted(() => {
           height: 100%;
           background-size: cover;
           background-repeat: no-repeat;
+          background-position: center;
           // left: 534px;
           left: 27.74%;
-
+          clip-path: polygon(12% 0%, 100% 0%, 90% 100%, 0% 100%);
           .product-detail-wrapper {
             margin-left: 300px;
           }
@@ -666,7 +772,8 @@ onUnmounted(() => {
           right: 0;
           background-size: cover;
           background-repeat: no-repeat;
-
+          background-position: center;
+          clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
           .product-detail-wrapper {
             margin-left: 342px;
           }
@@ -697,18 +804,76 @@ onUnmounted(() => {
             height: 53px;
           }
 
-          img.arrow_tow {
+          .arrow-move-block {
             margin-top: 28px;
             width: 32px;
             height: 11px;
+            overflow: hidden;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
+            position: relative;
+            img.arrow_tow {
+              width: 32px;
+              height: 11px;
+              position: absolute;
+              left: -42px;
+              // margin-right: 10px;
+              animation: moveRight 2s infinite;
+              -webkit-animation: moveRight 2s infinite;
+              // animation-delay: -1.5s;
+              // -webkit-animation-delay: -1.5s;
+              &.first {
+                // left: -42px;
+                animation-delay: 1s;
+                -webkit-animation-delay: 1s;
+              }
+            }
+            // &:first-child {
+            //   animation-delay: 0.1s;
+            //   -webkit-animation-delay: 0.1s;
+            // }
+
+            // &:nth-child(2) {
+            //   animation-delay: 0s;
+            //   -webkit-animation-delay: 0s;
+            // }
+            // &:last-child {
+            // animation-delay: 0s;
+            // -webkit-animation-delay: 0s;
+            // margin-right: 0;
+            // }
+          }
+          // img.arrow_tow {
+          //   // margin-top: 28px;
+          //   width: 32px;
+          //   height: 11px;
+          // }
+        }
+        @keyframes moveRight {
+          0% {
+            transform: translateX(0px);
+            // opacity: 1;
+          }
+          // 40% {
+          //   transform: translateX(11px);
+          // }
+          50% {
+            transform: translateX(42px);
+          }
+          // 80% {
+          //   transform: translateX(33px);
+          // }
+          100% {
+            transform: translateX(84px);
+            // opacity: 0;
           }
         }
-
         .product-detail-wrapper {
           align-items: flex-start;
-          align-self: start;
+          align-self: center;
           margin-right: auto;
-          margin-top: 148px;
+          // margin-top: 148px;
 
           .product-btn-wrapper {
             margin-top: 110px;
@@ -732,10 +897,11 @@ onUnmounted(() => {
 
             .btn-simple {
               border: 1px solid #ffffff;
-            }
 
-            .btn {
-              background-color: #00cdc4;
+              &:hover {
+                background-color: #00cdc4;
+                border: none;
+              }
             }
           }
         }
@@ -754,17 +920,22 @@ onUnmounted(() => {
       display: flex;
       flex-wrap: wrap;
 
-      div[class$="-card"] {
+      div[class$="-card"],
+      .s-card,
+      .b-card {
         position: relative;
-
+        // transition: all 1s ease-in-out;
+        overflow: hidden;
         .mask {
           width: 100%;
-          height: 100%;
+          // height: 100%;
+          height: 0px;
           position: absolute;
+          bottom: 0;
           display: flex;
           justify-content: center;
           align-items: center;
-          transition: all 0.5s;
+          transition: all 0.5s ease-in-out;
         }
 
         .card-title {
@@ -779,6 +950,7 @@ onUnmounted(() => {
           top: 0;
           bottom: 0;
           margin: auto;
+          transition: all 1s ease-in-out;
         }
 
         .card-desc {
@@ -788,13 +960,16 @@ onUnmounted(() => {
           font-weight: 300;
           color: #ffffff;
           position: absolute;
+          line-height: 24px;
           left: 0;
           right: 0;
           top: 0;
           bottom: 0;
+          transform: translateX(-385px);
           margin: auto;
           padding: 0 28px;
           opacity: 0;
+          transition: all 1s ease-in-out;
         }
 
         .card-btn {
@@ -807,11 +982,16 @@ onUnmounted(() => {
           align-items: center;
           position: absolute;
           left: 0;
+          transform: translateX(-385px);
           right: 0;
           bottom: 70px;
 
           margin: auto;
           opacity: 0;
+          transition: all 1s ease-in-out;
+          &:nth-of-type(2) {
+            bottom: 50px;
+          }
 
           span {
             font-size: 14px;
@@ -829,25 +1009,31 @@ onUnmounted(() => {
 
         &:hover {
           .mask {
-            background: linear-gradient(180deg,
-                rgba(0, 205, 196, 0.52) 0%,
-                #11afa8 30%,
-                rgba(11, 186, 178, 0.98) 62%,
-                rgba(0, 205, 196, 0.55) 100%);
+            background: linear-gradient(
+              180deg,
+              rgba(0, 205, 196, 0.52) 0%,
+              #11afa8 30%,
+              rgba(11, 186, 178, 0.98) 62%,
+              rgba(0, 205, 196, 0.55) 100%
+            );
+            height: 400px;
             opacity: 0.8;
           }
 
           .card-title {
-            top: 69px;
-            bottom: auto;
+            // top: 69px;
+            // bottom: auto;
+            transform: translateY(-126px);
           }
 
           .card-desc {
             opacity: 1;
+            transform: translateX(0px);
           }
 
           .card-btn {
             opacity: 1;
+            transform: translateX(0px);
           }
         }
       }
@@ -893,97 +1079,9 @@ onUnmounted(() => {
           background-image: url("@/assets/image/home/construction_site.png");
         }
 
-        .mask {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.5s;
-        }
-
-        .card-title {
-          width: fit-content;
-          height: fit-content;
-          font-size: 28px;
-          font-weight: 400;
-          color: #ffffff;
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          margin: auto;
-        }
-
-        .card-desc {
-          width: fit-content;
-          height: fit-content;
-          font-size: 16px;
-          font-weight: 300;
-          color: #ffffff;
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          margin: auto;
-          padding: 0 28px;
-          opacity: 0;
-        }
-
-        .card-btn {
-          width: 120px;
-          height: 36px;
-          background: #ffffff;
-          border-radius: 4px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 70px;
-
-          margin: auto;
-          opacity: 0;
-
-          span {
-            font-size: 14px;
-
-            font-weight: 400;
-            color: #00cdc4;
-            margin-right: 10px;
-          }
-
-          img {
-            width: 14px;
-            height: 5px;
-          }
-        }
-
         &:hover {
-          .mask {
-            background: linear-gradient(180deg,
-                rgba(0, 205, 196, 0.52) 0%,
-                #11afa8 30%,
-                rgba(11, 186, 178, 0.98) 62%,
-                rgba(0, 205, 196, 0.55) 100%);
-            opacity: 0.8;
-          }
-
           .card-title {
-            top: 69px;
-            bottom: auto;
-          }
-
-          .card-desc {
-            opacity: 1;
-          }
-
-          .card-btn {
-            opacity: 1;
+            transform: translateY(-100px);
           }
         }
       }
@@ -1004,13 +1102,23 @@ onUnmounted(() => {
       .customer {
         width: 224px;
         height: 86px;
-        border-radius: 8px 8px 8px 8px;
+        border-radius: 8px;
         border: 1px solid #d9e8e7;
         margin-right: 20px;
         margin-bottom: 20px;
+        overflow: hidden;
 
+        img {
+          transform: scale(1.1);
+          transition: all 0.5s ease-in-out;
+        }
         &:nth-of-type(5n) {
           margin-right: 0;
+        }
+        &:hover {
+          img {
+            transform: scale(1.2);
+          }
         }
       }
     }

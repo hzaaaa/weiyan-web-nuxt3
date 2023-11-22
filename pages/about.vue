@@ -44,6 +44,14 @@
         <div class="title">发展历程</div>
         <div class="history-wrapper">
           <div class="map-road"></div>
+          <div
+            class="road-point"
+            v-for="(item, index) in roadPointList"
+            :key="index"
+            :class="[`${item}`]"
+            @mouseover="changeRoadDescStyle(index)"
+            @mouseleave="recoverRoadDescStyle(index)"
+          ></div>
           <div class="road-desc first">
             <span class="year">2017年</span>
             <span class="desc">4月公司成立</span>
@@ -88,33 +96,33 @@
         </div>
       </div>
       <div class="honorary-qualifications-wrapper">
+        <!-- <div id="honorary-carousel"> -->
+        <ul id="carousel-nav">
+          <li
+            class="nav-item"
+            v-for="(item, index) in honoraryCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+            @click="handleCarouselNavItemClick(index)"
+          >
+            {{ item.descText }}
+          </li>
+        </ul>
         <div class="title">荣誉资质</div>
-        <div id="honorary-carousel">
-          <ul id="carousel-nav">
-            <li
-              class="nav-item"
-              v-for="(item, index) in honoraryCarouselItem"
-              :key="index"
-              :class="[item.first ? 'active' : '']"
-              @click="handleCarouselNavItemClick(index)"
-            >
-              {{ item.descText }}
-            </li>
-          </ul>
-          <ul id="carousel">
-            <li
-              class="carousel-item"
-              v-for="(item, index) in honoraryCarouselItem"
-              :key="index"
-              :class="[item.first ? 'active' : '']"
-            >
-              <el-image :src="getAssetsFile(`${item.imgSrc}${index}${item.imgType}`)" class="carousel-img" fit="fill" />
-              <div class="desc-item">
-                <span class="desc">{{ item.descText }}</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <ul id="carousel">
+          <li
+            class="carousel-item"
+            v-for="(item, index) in honoraryCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+          >
+            <el-image :src="getAssetsFile(`${item.imgSrc}${index}${item.imgType}`)" class="carousel-img" fit="fill" />
+            <div class="desc-item">
+              <span class="desc">{{ item.descText }}</span>
+            </div>
+          </li>
+        </ul>
+        <!-- </div> -->
       </div>
     </div>
   </NuxtLayout>
@@ -168,6 +176,24 @@ const seniorIntroList = [
   },
 ];
 
+const changeRoadDescStyle = (index: any) => {
+  console.log(index);
+  const roadDescDom = document.querySelectorAll(".road-desc") as NodeListOf<HTMLElement>;
+  console.log("roadDescDom: ", roadDescDom);
+  roadDescDom[index].childNodes.forEach((item: any) => {
+    // item.style.color = "#00CDC4";
+    // item.style.transform = "scale(1.1)";
+    item.classList.add("active");
+  });
+};
+const recoverRoadDescStyle = (index: any) => {
+  console.log(index);
+  const roadDescDom = document.querySelectorAll(".road-desc") as NodeListOf<HTMLElement>;
+  console.log("roadDescDom: ", roadDescDom);
+  roadDescDom[index].childNodes.forEach((item: any) => {
+    item.classList.remove("active");
+  });
+};
 const honoraryCarouselItem = ref<any[]>([
   {
     imgSrc: "about/honor_",
@@ -261,6 +287,8 @@ const handleCarouselNavItemClick = (index: number) => {
   }, 5000);
 };
 
+const roadPointList = ["one", "tow", "three", "four", "fifth", "six", "seven"];
+
 onMounted(() => {
   nextTick(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -291,7 +319,7 @@ onUnmounted(() => {
   clearTimeout(timeOuter);
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
 }
@@ -363,7 +391,7 @@ onUnmounted(() => {
         .desc {
           width: 445px;
           font-size: 16px;
-
+          line-height: 22px;
           font-weight: 400;
           color: #151717;
           margin-bottom: 18px;
@@ -396,6 +424,7 @@ onUnmounted(() => {
         background: #f8f8f8;
         width: 585px;
         height: 446px;
+        width: 600px;
         // background: #ffffff;
         // box-shadow: 0px 4px 10px 1px rgba(226, 226, 226, 0.5);
         display: flex;
@@ -405,6 +434,7 @@ onUnmounted(() => {
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
+        margin-bottom: 43px;
         .top {
           padding: 25px 0 30px 36px;
           height: 154px;
@@ -435,12 +465,20 @@ onUnmounted(() => {
           flex: 1;
           padding: 23px 28px 23px 36px;
           .desc-list {
+            padding-left: 10px;
             .list-item {
               line-height: 30px;
               font-size: 16px;
 
               font-weight: 400;
               color: #151717;
+              &::marker {
+                // content: "";
+                // width: 4px;
+                // height: 4px;
+                background-color: #505353;
+                color: #505353;
+              }
             }
           }
         }
@@ -462,7 +500,7 @@ onUnmounted(() => {
     }
     .history-wrapper {
       width: 1515px;
-      height: 730px;
+      height: 682px;
       background-image: url("@/assets/image/about/map_bg.png");
       background-size: cover;
       background-position: center center;
@@ -470,32 +508,84 @@ onUnmounted(() => {
       position: relative;
       .map-road {
         position: absolute;
-        width: 1213px;
+        width: 1174px;
         height: 259px;
         background-image: url("@/assets/image/about/map_road.png");
-        background-size: cover;
+        background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
         top: 200px;
         left: 154px;
+      }
+      .road-point {
+        width: 26px;
+        height: 26px;
+        background: #ffffff;
+        box-shadow: 0px 2px 4px 1px #c8eceb;
+        border-radius: 50%;
+        border: 4px solid #00cdc4;
+        position: absolute;
+        transition: all 0.5s;
+        &:hover {
+          border-color: #fff;
+          background: #00cdc4;
+          box-shadow: 0px 2px 4px 1px #c8eceb;
+        }
+        &.one {
+          top: 383px;
+          left: 187px;
+        }
+        &.tow {
+          top: 385px;
+          left: 333px;
+        }
+        &.three {
+          top: 300px;
+          left: 503px;
+        }
+        &.four {
+          top: 338px;
+          left: 681px;
+        }
+        &.fifth {
+          top: 215px;
+          left: 903px;
+        }
+        &.six {
+          top: 284px;
+          left: 1114px;
+        }
+        &.seven {
+          top: 224px;
+          left: 1260px;
+        }
       }
       .road-desc {
         display: flex;
         flex-direction: column;
         align-items: center;
         position: absolute;
-
         .year {
           font-size: 22px;
           margin-bottom: 12px;
           font-weight: 500;
           color: #151717;
+          transition: all 0.5s;
+          &.active {
+            color: #00cdc4;
+            transform: scale(1.1);
+          }
         }
         .desc {
           font-size: 16px;
           line-height: 24px;
           font-weight: 400;
           color: #505353;
+          transition: all 0.5s;
+          &.active {
+            color: #00cdc4;
+            transform: scale(1.1);
+          }
         }
         &.first {
           top: 456px;
@@ -523,77 +613,89 @@ onUnmounted(() => {
           left: 940px;
         }
         &.seventh {
-          top: 288px;
-          left: 1142px;
+          top: 300px;
+          left: 1104px;
         }
       }
     }
   }
   .honorary-qualifications-wrapper {
     width: 100%;
-    height: 560px;
+    height: 620px;
     background-image: url("@/assets/image/about/honorary_bg.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 53px;
+    // flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+
     .title {
       font-size: 42px;
-
+      align-self: flex-start;
       font-weight: 500;
       color: #ffffff;
-      margin-bottom: 82px;
+      margin-bottom: 92px;
+      padding-top: 64px;
     }
-    #honorary-carousel {
-      width: 808px;
-      display: flex;
-      #carousel {
-        position: relative;
-        // width: fit-content;
-        // height: fit-content;
-        flex: 1;
-        .carousel-item {
-          position: absolute;
-          opacity: 0;
-          transition: all 0.5s;
-          // width: 100%;
+    // #honorary-carousel {
+    // width: 845px;
+    // width: 100%;
+    // display: flex;
+    // padding-left: 58px;
+    // justify-content: space-between;
+    #carousel {
+      margin-top: 215px;
+      position: relative;
+      // width: fit-content;
+      // height: fit-content;
+      // flex: 1;
+      height: 302px;
+      width: 376px;
+      // width: fit-content;
+      .carousel-item {
+        position: absolute;
+        opacity: 0;
+        transition: all 0.5s;
+        // width: 100%;
+        width: auto;
+        // height: 230px;
+        height: auto;
+        // right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .el-image.carousel-img {
           width: auto;
-          height: 230px;
-          right: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          .el-image.carousel-img {
-            width: auto;
-            height: 100%;
-            // object-fit: cover;
-            margin-bottom: 12px;
+          // height: 100%;
+          height: auto;
+          // object-fit: cover;
+          margin-bottom: 12px;
+        }
+        .desc-item {
+          color: #fff;
+          // display: flex;
+          // flex-direction: column;
+          // .title {
+          //   font-size: 60px;
+          //   font-weight: 500;
+          // }
+          .desc {
+            font-size: 14px;
+            font-family: PingFang SC, PingFang SC;
+            font-weight: 400;
+            color: #ffffff;
           }
-          .desc-item {
-            color: #fff;
-            // display: flex;
-            // flex-direction: column;
-            // .title {
-            //   font-size: 60px;
-            //   font-weight: 500;
-            // }
-            .desc {
-              font-size: 14px;
-              font-family: PingFang SC, PingFang SC;
-              font-weight: 400;
-              color: #ffffff;
-            }
-          }
-          &.active {
-            opacity: 1;
-          }
+        }
+        &.active {
+          opacity: 1;
         }
       }
     }
+    // }
     #carousel-nav {
+      margin-top: 215px;
       // position: absolute;
       // display: flex;
       // bottom: 50px;
@@ -601,6 +703,7 @@ onUnmounted(() => {
       // right: 0;
       // margin: 0 auto;
       width: fit-content;
+      // margin-right: 205px;
       // list-style: none;
 
       .nav-item {
