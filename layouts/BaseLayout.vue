@@ -182,7 +182,7 @@
                   style="color: inherit;">解决方案</NuxtLink>
               </div>
               <div class="content-item">
-                <NuxtLink to="/news" style="color: inherit;">新闻资讯</NuxtLink>
+                <NuxtLink :class="{ 'item-link-active': isNewsPage }" to="/news" style="color: inherit;">新闻资讯</NuxtLink>
               </div>
               <div class="content-item">
                 <NuxtLink to="/about" style="color: inherit;">关于我们</NuxtLink>
