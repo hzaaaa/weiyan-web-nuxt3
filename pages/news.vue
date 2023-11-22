@@ -49,7 +49,7 @@ onMounted(() => {
 })
 let router = useRouter()
 const gotoDetails = (item: any) => {
-  // useState(item.articleId, () => item)
+
   localStorage.setItem(item.articleId, JSON.stringify(item))
   router.push({
     name: 'details',
