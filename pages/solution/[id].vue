@@ -1,17 +1,18 @@
 <template>
   <NuxtLayout name="base-layout">
+    <ClientOnly>
+      <div class="banner" :style="{ backgroundImage: 'url(' + itemImg() + ')' }">
+        <div class="big-title ">
 
-    <div class="banner">
-      <div class="big-title ">
 
 
-
-        {{ solutionItem.title }}解决方案
+          {{ solutionItem.title }}解决方案
+        </div>
+        <div class="small">
+          智慧农业解决方案智慧农业解决方案智慧农业解决方案智慧农业
+        </div>
       </div>
-      <div class="small">
-        智慧农业解决方案智慧农业解决方案智慧农业解决方案智慧农业
-      </div>
-    </div>
+    </ClientOnly>
     <div class="body">
       <div class="profile">
         <div class="title">
@@ -56,7 +57,7 @@
             <el-carousel-item>
               <div class="item0">
 
-                <el-image class="left-img" src="/solution/item0.png" fit="fill" />
+                <el-image class="left-img" :src="`/solution/${routeId}/item0.png`" fit="fill" />
                 <div class="right-block">
 
                   <el-image class="logo" src="/solution/logo.png" fit="fill" />
@@ -71,16 +72,16 @@
             <el-carousel-item>
               <!-- <div class="item1"> -->
 
-              <el-image class="item1" src="/solution/item1.png" fit="fill" />
+              <el-image class="item1" :src="`/solution/${routeId}/item1.png`" fit="fill" />
 
-              <!-- </div> -->
+
             </el-carousel-item>
             <el-carousel-item>
               <!-- <div class="item1"> -->
 
-              <el-image class="item1" src="/solution/item2.png" fit="fill" />
+              <el-image class="item1" :src="`/solution/${routeId}/item2.png`" fit="fill" />
 
-              <!-- </div> -->
+
             </el-carousel-item>
           </el-carousel>
           <!-- <div @click="nextItemClick" class="right-btn"></div> -->
@@ -98,6 +99,10 @@ const route = useRoute();
 let solutionItem = solutionInfoList.find((item) => item.id === route.params.id);
 if (!solutionItem) {
   solutionItem = solutionInfoList[solutionInfoList.length - 1];
+}
+let routeId = route.params.id;
+const itemImg = () => {
+  return getAssetsFile(`solution/banner_${routeId}.png`)
 }
 onMounted(() => {
 
@@ -127,7 +132,8 @@ const nextItemClick = () => {
   height: 800px;
   width: 100%;
 
-  background: url("@/assets/image/solution/banner.png") no-repeat;
+  // background: url("@/assets/image/solution/banner.png") no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: relative;

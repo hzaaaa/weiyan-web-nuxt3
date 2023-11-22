@@ -98,7 +98,7 @@
                 <el-dropdown-menu>
                   <el-dropdown-item>
 
-                    <NuxtLink to="/solution/marketing" style="color: inherit;display: flex;align-items: center;">
+                    <NuxtLink to="/solution/marketing" style="color: inherit;display: flex;align-items: center; ">
                       <!-- <el-icon :size="16">
                         <svgIcon name="icon-_shichangyingxiao"></svgIcon>
                       </el-icon> -->
@@ -174,10 +174,12 @@
             <div class="title">快速链接</div>
             <div class="content-block">
               <div class="content-item">
-                <!-- <NuxtLink to="/production" style="color: inherit;">产品中心</NuxtLink> -->
+                <NuxtLink :class="{ 'item-link-active': isProductionPage }" to="/production/dataServe"
+                  style="color: inherit;">产品中心</NuxtLink>
               </div>
               <div class="content-item">
-                <!-- <NuxtLink to="/solution" style="color: inherit;">解决方案</NuxtLink> -->
+                <NuxtLink :class="{ 'item-link-active': isSolutionPage }" to="/solution/marketing"
+                  style="color: inherit;">解决方案</NuxtLink>
               </div>
               <div class="content-item">
                 <NuxtLink to="/news" style="color: inherit;">新闻资讯</NuxtLink>
@@ -444,10 +446,16 @@ header {
   }
 }
 
+.item-link-active {
+  color: var(--el-color-primary) !important;
+}
+
 footer {
   // padding-top: 60px;
   background-color: #2F3131;
   color: #919899;
+
+
 
   .footer {
     &-detail {

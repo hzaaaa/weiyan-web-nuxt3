@@ -1,16 +1,16 @@
 <template>
   <NuxtLayout name="base-layout">
     <ClientOnly>
-      <!-- <div class="banner" :style="{backgroundImage:`url("@/assets/image/production/${routeId}_banner.png")`}"> -->
+
       <div class="banner" :style="{ backgroundImage: 'url(' + itemImg() + ')' }">
         <div class="big-title ">
-          <div>
+          <!-- <div>
 
             {{ productionItem.title }}
           </div>
           <div class="small">
             数据订阅平台文案数据订阅平台文案 数据订阅平台文案
-          </div>
+          </div> -->
         </div>
       </div>
     </ClientOnly>
@@ -91,7 +91,14 @@
                     {{ sceneItem.title }}
                   </div>
                 </div>
-                <div v-if="index !== (productionItem.sceneList.length - 1)" class="line"></div>
+                <div
+                  v-if="index !== (productionItem.sceneList.length - 1) && sceneShow !== `scene${index}` && sceneShow !== `scene${index + 1}`"
+                  class="line">
+                </div>
+                <div
+                  v-if="index !== (productionItem.sceneList.length - 1) && !(sceneShow !== `scene${index}` && sceneShow !== `scene${index + 1}`)"
+                  class="line" style="border-bottom-color: #00cdc4 ;">
+                </div>
               </template>
 
 
@@ -180,7 +187,7 @@ onMounted(() => {
 
 }
 
-$routeId :v-bind("$routeId");
+
 
 .banner {
   // min-height: 500px;
@@ -200,7 +207,7 @@ $routeId :v-bind("$routeId");
     top: 32.32%;
     left: 18.91%;
     height: 400px;
-    width: 512px;
+    // width: 512px;
     font-size: 60px;
     font-family: PingFang SC-Medium, PingFang SC;
     font-weight: 500;
