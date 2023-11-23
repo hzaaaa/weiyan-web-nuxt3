@@ -10,7 +10,7 @@
 
       <div class="new-header">
 
-        <el-image class="logo" src="/top/logo.png" fit="fill" />
+        <el-image class="logo" style="cursor: pointer" @click="gotoHome" src="/top/logo.png" fit="fill" />
         <div class="nav">
 
           <ClientOnly>
@@ -163,7 +163,7 @@
         <div class="footer-detail">
           <div class="col0">
 
-            <el-image class="logo" src="/bottom/logo.png" fit="fill" />
+            <el-image class="logo" style="cursor: pointer" @click="gotoHome" src="/bottom/logo.png" fit="fill" />
             <div class="phone-block">
 
               <el-image class="phone-img" src="/bottom/phone.png" fit="fill" />
@@ -219,6 +219,10 @@
 <script setup lang="ts">
 import { ArrowDown } from "@element-plus/icons-vue";
 const route = useRoute();
+const router = useRouter();
+const gotoHome = () => {
+  router.push('/')
+}
 onMounted(() => {
   if (route.path.startsWith("/details")) {
     isNewsPage.value = true;
@@ -435,6 +439,7 @@ header {
         line-height: 1.4;
         display: flex;
         align-items: center;
+        cursor: pointer;
       }
 
       .item-link-active {

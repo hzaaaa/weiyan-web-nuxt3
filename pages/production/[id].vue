@@ -212,7 +212,7 @@ onUnmounted(() => {
   width: 100%;
 
   // background:  no-repeat;
-  // background-image: url("@/assets/image/production/#{v-bind('$routeId')}_banner.png");
+
   background-repeat: no-repeat;
   // background: v-bind("$props.size") no-repeat;
   background-position: center;
@@ -399,6 +399,8 @@ onUnmounted(() => {
           .item {
             width: 100%;
             height: 80px;
+            cursor: pointer;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -415,7 +417,7 @@ onUnmounted(() => {
 
           .line {
             width: 270px;
-            height: 1px;
+            // height: 1px;
             opacity: 1;
             border-bottom: 1px solid #b8dedb;
           }
@@ -561,6 +563,7 @@ onUnmounted(() => {
     color: #ffffff;
     line-height: 1.4;
     -webkit-background-clip: text;
+    cursor: pointer;
   }
 }
 </style>

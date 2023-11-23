@@ -254,6 +254,7 @@ getCityList();
   font-weight: normal;
   color: #00CDC4;
   line-height: 22px;
+  cursor: pointer;
 }
 
 :deep(.el-dialog) {
@@ -328,6 +329,7 @@ getCityList();
       font-weight: normal;
       color: #FFFFFF;
       line-height: 22px;
+      cursor: pointer;
 
     }
   }
