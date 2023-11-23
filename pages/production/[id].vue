@@ -1,9 +1,8 @@
 <template>
   <NuxtLayout name="base-layout">
     <ClientOnly>
-
       <div class="banner" :style="{ backgroundImage: 'url(' + itemImg() + ')' }">
-        <div class="big-title ">
+        <div class="big-title">
           <!-- <div>
 
             {{ productionItem.title }}
@@ -23,13 +22,10 @@
           {{ productionItem.desc }}
         </div>
       </div>
-      <div class="function">
-        <div class="has-pre-title">
-          产品功能
-        </div>
+      <div class="function" id="function-block">
+        <div class="has-pre-title">产品功能</div>
         <div class="f-block">
-
-          <div class="f-row" style="margin-bottom: 20px;">
+          <div class="f-row" style="margin-bottom: 20px">
             <div class="f-col" v-if="productionItem.functionList[0]">
               <!-- <div class="img"></div> -->
               <el-image class="img" src="/production/function0.svg" fit="fill" />
@@ -50,7 +46,6 @@
                 <div class="content">{{ productionItem.functionList[1].content }}</div>
               </div>
             </div>
-
           </div>
           <div class="f-row">
             <div class="f-col" v-if="productionItem.functionList[2]">
@@ -76,36 +71,42 @@
           </div>
         </div>
       </div>
-      <div class="scene">
-        <div class="has-pre-title">
-          应用场景
-        </div>
+      <div class="scene" id="scene-block">
+        <div class="has-pre-title">应用场景</div>
         <div class="content-block">
           <div class="left-block-wrap">
             <div class="left-block">
-              <template v-for="sceneItem, index in productionItem.sceneList">
-
-                <div class=" item" @mouseenter="sceneShow = `scene${index}`" @click="sceneShow = `scene${index}`"
-                  :class="sceneShow === `scene${index}` ? 'active-item' : ''">
+              <template v-for="(sceneItem, index) in productionItem.sceneList">
+                <div
+                  class="item"
+                  @mouseenter="sceneShow = `scene${index}`"
+                  @click="sceneShow = `scene${index}`"
+                  :class="sceneShow === `scene${index}` ? 'active-item' : ''"
+                >
                   <div class="title">
                     {{ sceneItem.title }}
                   </div>
                 </div>
                 <div
-                  v-if="index !== (productionItem.sceneList.length - 1) && sceneShow !== `scene${index}` && sceneShow !== `scene${index + 1}`"
-                  class="line">
-                </div>
+                  v-if="
+                    index !== productionItem.sceneList.length - 1 &&
+                    sceneShow !== `scene${index}` &&
+                    sceneShow !== `scene${index + 1}`
+                  "
+                  class="line"
+                ></div>
                 <div
-                  v-if="index !== (productionItem.sceneList.length - 1) && !(sceneShow !== `scene${index}` && sceneShow !== `scene${index + 1}`)"
-                  class="line" style="border-bottom-color: #00cdc4 ;">
-                </div>
+                  v-if="
+                    index !== productionItem.sceneList.length - 1 &&
+                    !(sceneShow !== `scene${index}` && sceneShow !== `scene${index + 1}`)
+                  "
+                  class="line"
+                  style="border-bottom-color: #00cdc4"
+                ></div>
               </template>
-
-
             </div>
           </div>
-          <div v-for="sceneItem, index in productionItem.sceneList" class="right-block"
-            v-show="sceneShow === `scene${index}`">
+          <div v-for="(sceneItem, index) in productionItem.sceneList" class="right-block" v-show="sceneShow === `scene${index}`">
             <div class="content-top">
               <div class="title">
                 {{ sceneItem.title }}
@@ -117,79 +118,93 @@
 
             <el-image class="content-img" :src="`/production/${routeId}/scene${index}.png`" fit="fill" />
           </div>
-
-
         </div>
       </div>
-      <div class="advantage">
-        <div class="has-pre-title">
-          产品优势
-        </div>
+      <div class="advantage" id="advantage-block">
+        <div class="has-pre-title">产品优势</div>
         <div class="content-wrap">
-          <template v-for="advantageItem, index in productionItem.advantageList.slice(0, 3)">
-
+          <template v-for="(advantageItem, index) in productionItem.advantageList.slice(0, 3)">
             <div class="row-item">
               <div class="img-wrap">
-
                 <el-image v-if="index !== 1" class="img" :src="`/production/adv${index}-${index}.svg`" fit="fill" />
-                <el-image v-if="index === 1" style="width: 42px;height: 44px;position: relative;left:-1px" class="img"
-                  :src="`/production/adv${index}-${index}.svg`" fit="fill" />
+                <el-image
+                  v-if="index === 1"
+                  style="width: 42px; height: 44px; position: relative; left: -1px"
+                  class="img"
+                  :src="`/production/adv${index}-${index}.svg`"
+                  fit="fill"
+                />
               </div>
               <div class="right-block">
                 <div class="title">{{ advantageItem.title }}</div>
                 <div class="content-word">{{ advantageItem.content }}</div>
               </div>
             </div>
-            <div class="line" v-if="(productionItem.advantageList.slice(0, 3).length - 1) !== index"></div>
+            <div class="line" v-if="productionItem.advantageList.slice(0, 3).length - 1 !== index"></div>
           </template>
-
         </div>
       </div>
     </div>
     <div class="bottom">
       <div class="title">全线产品持续上新，期待与您合作</div>
-      <div class="btn" @click="openContactDialogClick">
-        立即联系
-      </div>
+      <div class="btn" @click="openContactDialogClick">立即联系</div>
       <contactDialog ref="contactDialogRef"></contactDialog>
     </div>
   </NuxtLayout>
 </template>
 
-<script setup  lang="ts">
+<script setup lang="ts">
 import { productionInfoList } from "@/assets/text/production.json";
 
 const route = useRoute();
+let timeOuter = null;
 let routeId = route.params.id;
 let productionItem = productionInfoList.find((item) => item.id === route.params.id);
 if (!productionItem) {
   productionItem = productionInfoList[productionInfoList.length - 1];
 }
 
-const sceneShow = ref('scene0');//scene1  scene2
+const sceneShow = ref("scene0"); //scene1  scene2
 const contactDialogRef = ref(null);
 const openContactDialogClick = () => {
-  contactDialogRef.value.acceptParams({})
-}
+  contactDialogRef.value.acceptParams({});
+};
 const itemImg = () => {
-  return getAssetsFile(`production/banner_${routeId}.png`)
-}
+  return getAssetsFile(`production/banner_${routeId}.png`);
+};
 onMounted(() => {
-
   nextTick(() => {
     // debugger
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-  })
-})
+    clearTimeout(timeOuter);
+    timeOuter = setTimeout(() => {
+      nextTick(() => {
+        const scrollDomId = sessionStorage.getItem("scrollDom");
+        console.log("scrollDomId: ", scrollDomId);
+        if (scrollDomId) {
+          const scrollDom = document.getElementById(scrollDomId);
+          console.log("scrollDom: ", scrollDom);
+          const scrollHeight = scrollDom.offsetTop;
+          // scrollDom.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.scrollTo({
+            top: scrollHeight - 70,
+            behavior: "smooth",
+          });
+          sessionStorage.setItem("scrollDom", "");
+        }
+      });
+    }, 500);
+  });
+});
+onUnmounted(() => {
+  clearTimeout(timeOuter);
+});
 </script>
 
 <style lang="scss" scoped>
 * {
   box-sizing: border-box;
-
 }
-
-
 
 .banner {
   // min-height: 500px;
@@ -213,38 +228,33 @@ onMounted(() => {
     font-size: 60px;
     font-family: PingFang SC-Medium, PingFang SC;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 1.4;
     -webkit-background-clip: text;
-
-
     // -webkit-text-fill-color: transparent;
     .small {
       margin-top: 32px;
       font-size: 32px;
       font-family: PingFang SC-Light, PingFang SC;
       font-weight: 300;
-      color: #EEF1F1;
+      color: #eef1f1;
       line-height: 1.4;
       -webkit-background-clip: text;
-      text-wrap: wrap
+      text-wrap: wrap;
     }
   }
-
 }
 
 .body {
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  &>div {
+  & > div {
     width: 1200px;
   }
 
   .profile {
-
     .title {
       font-size: 42px;
       font-family: PingFang SC-Medium, PingFang SC;
@@ -257,7 +267,6 @@ onMounted(() => {
     }
 
     .content {
-
       font-size: 16px;
       font-family: PingFang SC-Regular, PingFang SC;
       font-weight: 400;
@@ -267,8 +276,6 @@ onMounted(() => {
       margin-top: 57px;
       margin-bottom: 95px;
     }
-
-
   }
 
   .has-pre-title {
@@ -286,32 +293,28 @@ onMounted(() => {
       display: block;
       width: 4px;
       height: 22px;
-      background: #00CDC4;
+      background: #00cdc4;
       border-radius: 0px 0px 0px 0px;
       opacity: 1;
-      content: '';
+      content: "";
       margin-right: 10px;
     }
   }
 
   .function {
-
-
     .f-block {
       margin-bottom: 90px;
 
       .f-row {
         display: flex;
         justify-content: space-between;
-
-
         .f-col {
           width: 590px;
           height: 160px;
-          background: #FFFFFF;
+          background: #ffffff;
           border-radius: 2px 2px 2px 2px;
           opacity: 1;
-          border: 1px solid #C2E6E5;
+          border: 1px solid #c2e6e5;
 
           display: flex;
 
@@ -319,7 +322,6 @@ onMounted(() => {
             width: 50px;
             height: 50px;
             margin: 40px 18px 0 32px;
-
           }
 
           .word-block {
@@ -349,7 +351,6 @@ onMounted(() => {
           }
         }
       }
-
     }
   }
 
@@ -362,8 +363,6 @@ onMounted(() => {
       .left-block-wrap {
         width: 278px;
         margin-right: 39px;
-
-
         .left-block {
           width: 270px;
           height: 100%;
@@ -372,15 +371,10 @@ onMounted(() => {
           opacity: 1;
 
           .active-item {
-
             background-color: #00cdc4 !important;
             position: relative;
-
-
             .title {
-
-              color: #FFFFFF !important;
-
+              color: #ffffff !important;
             }
 
             &::after {
@@ -396,7 +390,7 @@ onMounted(() => {
               border-top-width: 4px;
               border-bottom-width: 4px;
               border-color: transparent transparent transparent #00cdc4;
-              content: '';
+              content: "";
 
               box-sizing: border-box;
             }
@@ -425,7 +419,7 @@ onMounted(() => {
             width: 270px;
             // height: 1px;
             opacity: 1;
-            border-bottom: 1px solid #B8DEDB;
+            border-bottom: 1px solid #b8dedb;
           }
         }
       }
@@ -466,16 +460,15 @@ onMounted(() => {
         }
       }
     }
-
   }
 
   .advantage {
     .content-wrap {
       // height: 376px;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 2px 2px 2px 2px;
       opacity: 1;
-      border: 1px solid #C2E6E5;
+      border: 1px solid #c2e6e5;
       width: 100%;
       margin-bottom: 91px;
 
@@ -485,8 +478,6 @@ onMounted(() => {
 
         .img-wrap {
           width: 108px;
-
-
           .img {
             width: 40px;
             height: 40px;
@@ -528,11 +519,10 @@ onMounted(() => {
         margin-left: 108px;
         height: 0px;
         opacity: 1;
-        border-bottom: 1px solid #C2E6E5;
+        border-bottom: 1px solid #c2e6e5;
       }
     }
   }
-
 }
 
 .bottom {
@@ -551,7 +541,7 @@ onMounted(() => {
     font-size: 36px;
     font-family: PingFang SC-Medium, PingFang SC;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 1.4;
     -webkit-background-clip: text;
     margin-top: 69px;
@@ -563,14 +553,14 @@ onMounted(() => {
     height: 44px;
     border-radius: 4px 4px 4px 4px;
     opacity: 1;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
     font-family: PingFang SC-Regular, PingFang SC;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 1.4;
     -webkit-background-clip: text;
     cursor: pointer;
