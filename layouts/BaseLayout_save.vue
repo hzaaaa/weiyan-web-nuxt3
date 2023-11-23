@@ -1,6 +1,5 @@
 <template>
   <div id="container">
-    <!-- layout 不支持路由更换 样式过渡 注释不能写  container 上面（error)-->
     <!-- <div class="header-top" :style="{ display: headerTopDisplay }">
       <div class="inner">
         <span><i></i>BD@weiyankeji.cn</span><span><i></i>0755-8279 5265</span>
@@ -12,20 +11,19 @@
       <div class="new-header">
 
         <el-image class="logo" style="cursor: pointer" @click="gotoHome" src="/top/logo.png" fit="fill" />
-        <div class="nav" style="position: relative;">
+        <div class="nav">
 
           <ClientOnly>
-
-            <NuxtLink class="item-link" :class="{ 'item-link-active': route.path === '/' }" to="/">首页</NuxtLink>
+            <NuxtLink class="item-link" to="/">首页</NuxtLink>
 
             <el-popover placement="bottom" title=" " :width="990" trigger="hover" popper-class="popover-menu-class">
               <template #reference>
                 <div class="item-link" :class="{ 'item-link-active': isProductionPage }">
                   产品中心
 
-                  <!-- <el-icon class="el-icon--right">
+                  <el-icon class="el-icon--right">
                     <arrow-down />
-                  </el-icon> -->
+                  </el-icon>
                 </div>
               </template>
               <template #default>
@@ -118,14 +116,83 @@
                 </div>
               </template>
             </el-popover>
+            <!-- <el-dropdown>
+              <div class="item-link" :class="{ 'item-link-active': isProductionPage }">
+                产品中心
+
+                <el-icon class="el-icon--right">
+                  <arrow-down />
+                </el-icon>
+              </div>
+
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataServe" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据服务平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataGovernance" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据治理平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataAssets" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据资产管理平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/privacyComputing" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 隐私计算平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/strategy" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 策略平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataSubscription" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据订阅平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/Modeling" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 建模平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/dataIndicators" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> 数据指标平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/production/AIComputingPower" style="color: inherit;display: flex;align-items: center;">
+                      <span class=" "> AI算力管理平台 </span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown> -->
             <el-popover placement="bottom" title=" " :width="282" trigger="hover" popper-class="popover-menu-class">
               <template #reference>
                 <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">
                   解决方案
 
-                  <!-- <el-icon class="el-icon--right">
+                  <el-icon class="el-icon--right">
                     <arrow-down />
-                  </el-icon> -->
+                  </el-icon>
                 </div>
               </template>
               <template #default>
@@ -176,10 +243,62 @@
                 </div>
               </template>
             </el-popover>
-            <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage || route.path === '/news' }">
-              新闻资讯</NuxtLink>
-            <NuxtLink class="item-link" :class="{ 'item-link-active': route.path === '/about' }" to="/about">关于我们
-            </NuxtLink>
+            <!-- <el-dropdown>
+              <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">
+
+                解决方案
+                <el-icon class="el-icon--right">
+                  <arrow-down />
+                </el-icon>
+              </div>
+
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/marketing" style="color: inherit;display: flex;align-items: center; ">
+
+                      <span class=" ">智慧营销</span>
+                    </NuxtLink>
+
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/agriculture" style="color: inherit;display: flex;align-items: center;">
+
+                      <span class=" ">智慧农业</span>
+                    </NuxtLink>
+
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/insurance" style="color: inherit;display: flex;align-items: center;">
+
+                      <span class=" ">智慧保险</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/bank" style="color: inherit;display: flex;align-items: center;">
+
+                      <span class=" ">智慧银行</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+
+                    <NuxtLink to="/solution/construction" style="color: inherit;display: flex;align-items: center;">
+                      <el-icon :size="16">
+                        <svgIcon name="icon-zhichiyinhang"></svgIcon>
+                      </el-icon>
+                      <span class=" ">智慧工地</span>
+                    </NuxtLink>
+                  </el-dropdown-item>
+
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown> -->
+            <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage }">新闻资讯</NuxtLink>
+            <NuxtLink class="item-link" to="/about">关于我们</NuxtLink>
           </ClientOnly>
         </div>
       </div>
@@ -284,15 +403,6 @@ const isNewsPage = ref(false);
 const isSolutionPage = ref(false);
 const isProductionPage = ref(false);
 let headerTopDisplay = ref("");
-
-onMounted(() => {
-
-  nextTick(() => {
-
-
-
-  })
-})
 </script>
 
 <style scoped lang="scss">
@@ -470,9 +580,6 @@ header {
     .nav {
       display: flex;
 
-
-
-
       .item-link {
         margin-left: 60px;
         font-size: 16px;
@@ -480,30 +587,13 @@ header {
         font-weight: 400;
         color: #363636;
         line-height: 1.4;
-        // display: flex;
+        display: flex;
         align-items: center;
         cursor: pointer;
-        position: relative;
-
-
       }
 
       .item-link-active {
         color: var(--el-color-primary);
-
-        &::after {
-          // position: absolute;
-          // bottom: -10px;
-          // left: 0;
-          margin-top: 10px;
-          content: '';
-          height: 3px;
-          background: #00CDC4;
-          border-radius: 0px 0px 0px 0px;
-          opacity: 1;
-          width: 100%;
-          display: block;
-        }
       }
 
 
@@ -727,10 +817,6 @@ footer {
           line-height: 1.4;
           margin-bottom: 22px;
           margin-right: 34px;
-
-          &:hover {
-            color: var(--el-color-primary);
-          }
         }
       }
     }
