@@ -328,18 +328,18 @@ const handleProductClick = () => {
 
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_active_1.png")})`;
   // productItemDomList[0].style.width = "1551px";
-  productItemDomList[0].style.width = "80.78%";
+  productItemDomList[0].style.width = "80.73%";
   // productItemDomList[0].classList.add("active");
   // productItemDomList[0].style.backgroundPosition = "center bottom";
-  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%)`;
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 86.77% 100%, 0% 100%)`;
   // productItemDomList[1].style.left = "1346px";
   productItemDomList[1].style.left = "70.05%";
-  productItemDomList[1].style.clipPath = `polygon(45.17% 0%, 100% 0%, 62.93% 100%, 0% 100%)`;
+  productItemDomList[1].style.clipPath = `polygon(45.18% 0%, 100% 0%, 63.07% 100%, 0% 100%)`;
   // productItemDomList[1].style.width = "456px";
-  productItemDomList[1].style.width = "23.75%";
+  productItemDomList[1].style.width = "23.69%";
   // productItemDomList[2].style.width = "289px";
-  productItemDomList[2].style.width = "15.05%";
-  productItemDomList[2].style.clipPath = `polygon(58.13% 0%, 100% 0%, 100% 100%, 0% 100%)`;
+  productItemDomList[2].style.width = "15.03%";
+  productItemDomList[2].style.clipPath = `polygon(58.25% 0%, 100% 0%, 100% 100%, 0% 100%)`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_2.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_1_3.png")})`;
   productDetailIndex.value = 1;
@@ -351,16 +351,16 @@ const handleProduct3Click = () => {
 
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_active_3.png")})`;
   // productItemDomList[2].style.width = "1551px";
-  productItemDomList[2].style.width = "80.78%";
-  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 13.28% 100%)`;
+  productItemDomList[2].style.width = "80.73%";
+  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 13.26% 100%)`;
   // productItemDomList[1].style.left = "122px";
-  productItemDomList[1].style.left = "6.33%";
+  productItemDomList[1].style.left = "6.25%";
   // productItemDomList[1].style.width = "456px";
-  productItemDomList[1].style.width = "23.69%";
-  productItemDomList[1].style.clipPath = `polygon(0% 0%, 54.82% 0%, 100% 100%, 36.84% 100%)`;
+  productItemDomList[1].style.width = "23.71%";
+  productItemDomList[1].style.clipPath = `polygon(0% 0%, 54.89% 0%, 100% 100%, 36.91% 100%)`;
   // productItemDomList[0].style.width = "289px";
-  productItemDomList[0].style.width = "15.01%";
-  productItemDomList[0].style.clipPath = `polygon(0% 0%, 41.52% 0%, 100% 100%, 0% 100%)`;
+  productItemDomList[0].style.width = "15.03%";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 41.58% 0%, 100% 100%, 0% 100%)`;
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_1.png")})`;
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_3_2.png")})`;
   productDetailIndex.value = 3;
@@ -372,16 +372,16 @@ const handleProduct2Click = () => {
 
   productItemDomList[1].style.backgroundImage = `url(${getAssetsFile("home/product_active_2.png")})`;
   // productItemDomList[1].style.width = "1680px";
-  productItemDomList[1].style.width = "87.29%";
-  productItemDomList[1].style.clipPath = `polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)`;
+  productItemDomList[1].style.width = "87.44%";
+  productItemDomList[1].style.clipPath = `polygon(10.01% 0%, 89.99% 0%, 100% 100%, 0% 100%)`;
   // productItemDomList[1].style.left = "122px";
-  productItemDomList[1].style.left = "6.4%";
+  productItemDomList[1].style.left = "6.275%";
   // productItemDomList[0].style.width = "289px";
-  productItemDomList[0].style.width = "15.01%";
-  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 41.52% 100%, 0% 100%)`;
+  productItemDomList[0].style.width = "15.03%";
+  productItemDomList[0].style.clipPath = `polygon(0% 0%, 100% 0%, 41.58% 100%, 0% 100%)`;
   // productItemDomList[2].style.width = "289px";
-  productItemDomList[2].style.width = "15.01%";
-  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 58.47% 100%)`;
+  productItemDomList[2].style.width = "15.03%";
+  productItemDomList[2].style.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 58.25% 100%)`;
   productItemDomList[0].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_1.png")})`;
   productItemDomList[2].style.backgroundImage = `url(${getAssetsFile("home/product_collapse_2_3.png")})`;
   productDetailIndex.value = 2;
@@ -751,11 +751,11 @@ onUnmounted(() => {
         &:first-of-type {
           // width: 534px;
           // width: 640px;
-          width: 33.25%;
+          width: 33.33%;
           background-image: url("@/assets/image/home/product_1.png");
           height: 100%;
           background-size: cover;
-          clip-path: polygon(0% 0%, 100% 0%, 85.43% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 0%, 82.96% 100%, 0% 100%);
           background-position: center;
           background-repeat: no-repeat;
           // &.active {
@@ -769,15 +769,15 @@ onUnmounted(() => {
 
         &:nth-of-type(2) {
           // width: 750px;
-          width: 38.97%;
+          width: 39.06%;
           background-image: url("@/assets/image/home/product_2.png");
           height: 100%;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
           // left: 534px;
-          left: 27.74%;
-          clip-path: polygon(12% 0%, 100% 0%, 90% 100%, 0% 100%);
+          left: 27.65%;
+          clip-path: polygon(14.2% 0%, 100% 0%, 88.26% 100%, 0% 100%);
           .product-detail-wrapper {
             margin-left: 300px;
           }
@@ -785,14 +785,14 @@ onUnmounted(() => {
 
         &:last-of-type {
           // width: 727px;
-          width: 37.77%;
+          width: 37.86%;
           background-image: url("@/assets/image/home/product_3.png");
           height: 100%;
           right: 0;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
-          clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(11.91% 0%, 100% 0%, 100% 100%, 0% 100%);
           .product-detail-wrapper {
             margin-left: 342px;
           }
