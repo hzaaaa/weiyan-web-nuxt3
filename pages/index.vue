@@ -3,8 +3,12 @@
     <div class="container">
       <div id="banner-carousel">
         <ul id="carousel">
-          <li class="carousel-item" v-for="(item, index) in bannerCarouselItem" :key="index"
-            :class="[item.first ? 'active' : '']">
+          <li
+            class="carousel-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+          >
             <img :src="`/${item.imgSrc}${index}${item.imgType}`" class="carousel-img" />
             <div class="desc-item">
               <span class="title">{{ item.titleText }}</span>
@@ -13,8 +17,13 @@
           </li>
         </ul>
         <ul id="carousel-nav">
-          <li class="nav-item" v-for="(item, index) in bannerCarouselItem" :key="index"
-            :class="[item.first ? 'active' : '']" @click="handleCarouselNavItemClick(index)"></li>
+          <li
+            class="nav-item"
+            v-for="(item, index) in bannerCarouselItem"
+            :key="index"
+            :class="[item.first ? 'active' : '']"
+            @click="handleCarouselNavItemClick(index)"
+          ></li>
         </ul>
       </div>
 
@@ -37,14 +46,22 @@
               <span class="product-name">数据智能平台</span>
               <span class="product-desc">数据智能平台数据智能平台</span>
               <div class="arrow-move-block">
-                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img class="arrow_tow"
-                  src="@/assets/image/home/product_arrow_2.png" />
+                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img
+                  class="arrow_tow"
+                  src="@/assets/image/home/product_arrow_2.png"
+                />
               </div>
 
               <div class="product-btn-wrapper">
-                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>产品功能</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>应用场景</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/dataGovernance')"><span>产品优势</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance', 'function-block')">
+                  <span>产品功能</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance', 'scene-block')">
+                  <span>应用场景</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/dataGovernance', 'advantage-block')">
+                  <span>产品优势</span>
+                </div>
               </div>
             </div>
           </div>
@@ -64,9 +81,15 @@
               </div>
 
               <div class="product-btn-wrapper">
-                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>产品功能</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>应用场景</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower')"><span>产品优势</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower', 'function-block')">
+                  <span>产品功能</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower', 'scene-block')">
+                  <span>应用场景</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/AIComputingPower', 'advantage-block')">
+                  <span>产品优势</span>
+                </div>
               </div>
             </div>
           </div>
@@ -80,14 +103,22 @@
               <span class="product-name">数据安全平台</span>
               <span class="product-desc">数据安全平台数据安全平台</span>
               <div class="arrow-move-block">
-                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img class="arrow_tow"
-                  src="@/assets/image/home/product_arrow_2.png" />
+                <img class="arrow_tow first" src="@/assets/image/home/product_arrow_2.png" /><img
+                  class="arrow_tow"
+                  src="@/assets/image/home/product_arrow_2.png"
+                />
               </div>
 
               <div class="product-btn-wrapper">
-                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>产品功能</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>应用场景</span></div>
-                <div class="btn-simple" @click="goToProduct('/production/privacyComputing')"><span>产品优势</span></div>
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing', 'function-block')">
+                  <span>产品功能</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing', 'scene-block')">
+                  <span>应用场景</span>
+                </div>
+                <div class="btn-simple" @click="goToProduct('/production/privacyComputing', 'advantage-block')">
+                  <span>产品优势</span>
+                </div>
               </div>
             </div>
           </div>
@@ -115,7 +146,8 @@
               </div> -->
             </div>
             <span class="card-title">智慧保险</span>
-            <span class="card-desc">覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
+            <span class="card-desc"
+              >覆盖车辆/个人的车险模型产品：以保险公司自有承保理赔数据 + 国家部委数据 +
               生态合作伙伴合规数据联合建模，形成适用于各类保险业务板块的模型产品(风险评级 +
               风险因子），为保险公司保前风险评估、保中风险管理、保后理赔反欺诈提供一站式数字化服务。
             </span>
@@ -127,8 +159,9 @@
           <div class="s-card">
             <div class="mask"></div>
             <span class="card-title">智慧银行</span>
-            <span
-              class="card-desc">覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span>
+            <span class="card-desc"
+              >覆盖个人/企业全品类的模型产品：以金融机构自有数据+生态合作伙伴合规数据联合建模，形成适用于各类风险人群、各业务场景的模型产，为金融机构贷前授信、贷中管理、贷后催收一站式智能决策提供更多维度依据，助力银行从人工审批为主的信贷1.0到:全面实现自动化审批的信贷3.0升级，全面升级智慧银行，支持实体经济发展。</span
+            >
             <div class="card-btn" @click="goToSolution('/solution/bank')">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
@@ -137,8 +170,9 @@
           <div class="s-card" style="margin-right: 0">
             <div class="mask"></div>
             <span class="card-title">智慧农业</span>
-            <span
-              class="card-desc">通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span>
+            <span class="card-desc"
+              >通过智慧农业大数据平台，实现园区内虫情、孢子、气象、墒情、灌溉、苗情、灾情、视频监控、生产、溯源等14大子模块的全方位管理和把控，实现以数据监测为基础，远程控制为核心的物联网集成管理。</span
+            >
             <div class="card-btn" @click="goToSolution('/solution/agriculture')">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
@@ -147,7 +181,9 @@
           <div class="b-card market">
             <div class="mask"></div>
             <span class="card-title">智能营销</span>
-            <span class="card-desc">秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span>
+            <span class="card-desc"
+              >秉承"智创服务内容+产品技术数据"的营销理念，为金融、互联网应用、电子商务、游戏、教育、消费品等多个行业品牌，提供全链路服务体系。</span
+            >
             <div class="card-btn" @click="goToSolution('/solution/marketing')">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
@@ -156,8 +192,9 @@
           <div class="b-card construction" style="margin-right: 0">
             <div class="mask"></div>
             <span class="card-title">智慧工地</span>
-            <span
-              class="card-desc">以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span>
+            <span class="card-desc"
+              >以智慧工地大屏BI和人员一码通为承载，帮助从政府/总包方/工地管理统筹牵引，有效制定策略，并为工地人员提供个性化有效便捷的信息化工具，发挥整体合力，高效完成全业务运营工作，实现人员、设备、物料、工艺、环保、安全、质量、进度全面智慧监管。</span
+            >
             <div class="card-btn" @click="goToSolution('/solution/construction')">
               <span>查看详情</span>
               <img src="@/assets/image/home/arrow_green.png" />
@@ -456,7 +493,7 @@ const customerItemList = [
 
 let router = useRouter();
 const gotoDetails = (item: any) => {
-  localStorage.setItem(item.articleId, JSON.stringify(item))
+  useState(item.articleId, () => item);
   router.push({
     name: "details",
     query: {
@@ -493,7 +530,7 @@ const goToNews = (item: any) => {
   });
 };
 
-const goToProduct = async (name: any) => {
+const goToProduct = async (name: any, dom) => {
   await navigateTo({
     path: name,
 
@@ -501,6 +538,7 @@ const goToProduct = async (name: any) => {
     //   dom: "function",
     // },
   });
+  sessionStorage.setItem("scrollDom", dom);
 };
 
 const goToSolution = async (name: any) => {
@@ -709,7 +747,6 @@ onUnmounted(() => {
         align-items: center;
         position: absolute;
         transition: all 0.5s;
-
         // object-fit: cover;
         &:first-of-type {
           // width: 534px;
@@ -721,7 +758,6 @@ onUnmounted(() => {
           clip-path: polygon(0% 0%, 100% 0%, 85.43% 100%, 0% 100%);
           background-position: center;
           background-repeat: no-repeat;
-
           // &.active {
           //   width: 80.78%;
           //   clip-path: polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%);
@@ -742,7 +778,6 @@ onUnmounted(() => {
           // left: 534px;
           left: 27.74%;
           clip-path: polygon(12% 0%, 100% 0%, 90% 100%, 0% 100%);
-
           .product-detail-wrapper {
             margin-left: 300px;
           }
@@ -758,7 +793,6 @@ onUnmounted(() => {
           background-repeat: no-repeat;
           background-position: center;
           clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
-
           .product-detail-wrapper {
             margin-left: 342px;
           }
@@ -798,7 +832,6 @@ onUnmounted(() => {
             // align-items: center;
             // justify-content: center;
             position: relative;
-
             img.arrow_tow {
               width: 32px;
               height: 11px;
@@ -807,7 +840,6 @@ onUnmounted(() => {
               // margin-right: 10px;
               animation: moveRight 2s infinite;
               -webkit-animation: moveRight 2s infinite;
-
               // animation-delay: -1.5s;
               // -webkit-animation-delay: -1.5s;
               &.first {
@@ -816,7 +848,6 @@ onUnmounted(() => {
                 -webkit-animation-delay: 1s;
               }
             }
-
             // &:first-child {
             //   animation-delay: 0.1s;
             //   -webkit-animation-delay: 0.1s;
@@ -832,27 +863,23 @@ onUnmounted(() => {
             // margin-right: 0;
             // }
           }
-
           // img.arrow_tow {
           //   // margin-top: 28px;
           //   width: 32px;
           //   height: 11px;
           // }
         }
-
         @keyframes moveRight {
           0% {
             transform: translateX(0px);
             // opacity: 1;
           }
-
           // 40% {
           //   transform: translateX(11px);
           // }
           50% {
             transform: translateX(42px);
           }
-
           // 80% {
           //   transform: translateX(33px);
           // }
@@ -861,7 +888,6 @@ onUnmounted(() => {
             // opacity: 0;
           }
         }
-
         .product-detail-wrapper {
           align-items: flex-start;
           align-self: center;
@@ -893,7 +919,8 @@ onUnmounted(() => {
 
               &:hover {
                 background-color: #00cdc4;
-                border: none;
+                border-color: transparent;
+                cursor: pointer;
               }
             }
           }
@@ -919,7 +946,6 @@ onUnmounted(() => {
         position: relative;
         // transition: all 1s ease-in-out;
         overflow: hidden;
-
         .mask {
           width: 100%;
           // height: 100%;
@@ -983,7 +1009,9 @@ onUnmounted(() => {
           margin: auto;
           opacity: 0;
           transition: all 1s ease-in-out;
-
+          &:hover {
+            cursor: pointer;
+          }
           &:nth-of-type(2) {
             bottom: 50px;
           }
@@ -1004,11 +1032,13 @@ onUnmounted(() => {
 
         &:hover {
           .mask {
-            background: linear-gradient(180deg,
-                rgba(0, 205, 196, 0.52) 0%,
-                #11afa8 30%,
-                rgba(11, 186, 178, 0.98) 62%,
-                rgba(0, 205, 196, 0.55) 100%);
+            background: linear-gradient(
+              180deg,
+              rgba(0, 205, 196, 0.52) 0%,
+              #11afa8 30%,
+              rgba(11, 186, 178, 0.98) 62%,
+              rgba(0, 205, 196, 0.55) 100%
+            );
             height: 400px;
             opacity: 0.8;
           }
@@ -1105,11 +1135,9 @@ onUnmounted(() => {
           transform: scale(1.1);
           transition: all 0.5s ease-in-out;
         }
-
         &:nth-of-type(5n) {
           margin-right: 0;
         }
-
         &:hover {
           img {
             transform: scale(1.2);
@@ -1147,6 +1175,7 @@ onUnmounted(() => {
         .el-image.img {
           width: 380px;
           height: 200px;
+          transition: all 0.5s;
         }
 
         &:nth-of-type(3n) {
@@ -1175,6 +1204,9 @@ onUnmounted(() => {
         }
 
         &:hover {
+          .el-image.img {
+            transform: scale(1.1);
+          }
           .title {
             color: #00cdc4;
           }

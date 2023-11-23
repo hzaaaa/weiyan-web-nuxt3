@@ -103,7 +103,7 @@
             v-for="(item, index) in honoraryCarouselItem"
             :key="index"
             :class="[item.first ? 'active' : '']"
-            @click="handleCarouselNavItemClick(index)"
+            @mouseover="handleCarouselNavItemClick(index)"
           >
             {{ item.descText }}
           </li>
@@ -384,7 +384,7 @@ onUnmounted(() => {
         align-items: center;
         .title {
           font-size: 42px;
-          margin-bottom: 41px;
+          margin-bottom: 30px;
           font-weight: 500;
           color: #151717;
         }
@@ -527,6 +527,7 @@ onUnmounted(() => {
         position: absolute;
         transition: all 0.5s;
         &:hover {
+          cursor: pointer;
           border-color: #fff;
           background: #00cdc4;
           box-shadow: 0px 2px 4px 1px #c8eceb;
@@ -716,6 +717,9 @@ onUnmounted(() => {
         font-weight: 400;
         transition: all 0.5s;
         padding-left: 8px;
+        &:hover {
+          cursor: pointer;
+        }
         &::marker {
           content: "♦️";
           color: white;
