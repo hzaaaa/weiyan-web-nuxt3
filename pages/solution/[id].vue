@@ -9,7 +9,7 @@
           {{ solutionItem.title }}解决方案
         </div>
         <div class="small">
-          智慧农业解决方案智慧农业解决方案智慧农业解决方案智慧农业
+          {{ solutionItem.title }}解决方案{{ solutionItem.title }}解决方案{{ solutionItem.title }}解决方案
         </div>
       </div>
     </ClientOnly>
@@ -29,12 +29,12 @@
           <div class="right-block">
             <div class="top-title">
               <div>{{ item.title }}</div>
-              <div v-if="item.ishot" class="hot">热销</div>
+              <!-- <div v-if="item.ishot" class="hot">热销</div> -->
             </div>
             <div class="bottom-word">{{ item.content }}</div>
           </div>
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <div class="left-img"></div>
           <div class="right-block">
             <div class="top-title">
@@ -43,7 +43,7 @@
             </div>
             <div class="bottom-word">敬请期待...</div>
           </div>
-        </div>
+        </div> -->
 
       </div>
       <div class="case">
@@ -61,8 +61,7 @@
                 <div class="right-block">
 
                   <el-image class="logo" src="/solution/logo.png" fit="fill" />
-                  <div class="text">
-                    {{ solutionItem.caseList[0] }}
+                  <div class="text" v-html="solutionItem.caseList[0]">
 
                   </div>
                   <div class="quote">“</div>

@@ -13,11 +13,14 @@
         <div class="plane">
 
           <div class="title">{{ detailsObj && detailsObj.content.newsItem[0].title }}</div>
-          <div class="date"> 发布时间：{{ detailsObj && moment(detailsObj.articleUpdateTime * 1000).format('YYYY-MM-DD') }}</div>
+          <div class="date"> 发布时间：{{ detailsObj && moment(detailsObj.articleUpdateTime * 1000).format('YYYY-MM-DD') }}
+          </div>
           <div class="" style="display: flex;justify-content: center;">
 
-            <div style="max-width:667px ;" class="h-content"
-              v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div>
+            <!-- <div style="max-width:667px ;" class="h-content"
+              v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div> -->
+            <!-- <div style="max-width:667px ;" class="h-content" v-html="text && text.replace(/referrer/g, '')"></div> -->
+            <div style="max-width:667px ;" class="h-content" v-html="text"></div>
           </div>
         </div>
       </div>
@@ -29,8 +32,12 @@
 
 <script setup  lang="ts">
 import moment from 'moment';
-onMounted(() => {
 
+// debugger
+const text = <any>ref(null);
+
+onMounted(() => {
+  fetch('/text.html').then(res => res.text()).then((data: any) => text.value = data.replace(/data-src/g, 'src').replace(/name="referrer"/g, ''))
   nextTick(() => {
 
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -47,7 +54,16 @@ onMounted(() => {
 
 })
 </script>
+<style>
+.rich_media_content {
+  visibility: visible !important;
+}
 
+.rich_media_title,
+.rich_media_meta_list {
+  display: none !important;
+}
+</style>
 <style lang="scss" scoped>
 * {
   box-sizing: border-box;

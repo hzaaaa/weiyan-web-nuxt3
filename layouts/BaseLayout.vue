@@ -18,9 +18,10 @@
 
             <NuxtLink class="item-link" :class="{ 'item-link-active': route.path === '/' }" to="/">首页</NuxtLink>
 
-            <el-popover placement="bottom" title=" " :width="990" trigger="hover" popper-class="popover-menu-class">
+            <el-popover @show="hoverProduction = true" @before-leave="hoverProduction = false" placement="bottom"
+              title=" " :width="990" trigger="hover" popper-class="popover-menu-class">
               <template #reference>
-                <div class="item-link" :class="{ 'item-link-active': isProductionPage }">
+                <div class="item-link" :class="{ 'item-link-active': isProductionPage || hoverProduction }">
                   产品中心
 
                   <!-- <el-icon class="el-icon--right">
@@ -118,9 +119,10 @@
                 </div>
               </template>
             </el-popover>
-            <el-popover placement="bottom" title=" " :width="282" trigger="hover" popper-class="popover-menu-class">
+            <el-popover @show="hoverSolution = true" @before-leave="hoverSolution = false" placement="bottom" title=" "
+              :width="282" trigger="hover" popper-class="popover-menu-class">
               <template #reference>
-                <div class="item-link" :class="{ 'item-link-active': isSolutionPage }">
+                <div class="item-link" :class="{ 'item-link-active': isSolutionPage || hoverSolution }">
                   解决方案
 
                   <!-- <el-icon class="el-icon--right">
@@ -176,7 +178,8 @@
                 </div>
               </template>
             </el-popover>
-            <NuxtLink class="item-link" to="/news" :class="{ 'item-link-active': isNewsPage || route.path === '/news' }">
+            <NuxtLink class="item-link" to="/news"
+              :class="{ 'item-link-active': isNewsPage || route.path === '/news' || route.path === '/news/' }">
               新闻资讯</NuxtLink>
             <NuxtLink class="item-link" :class="{ 'item-link-active': route.path === '/about' }" to="/about">关于我们
             </NuxtLink>
@@ -254,6 +257,8 @@ const router = useRouter();
 const gotoHome = () => {
   router.push('/')
 }
+const hoverProduction = ref(false);
+const hoverSolution = ref(false);
 onMounted(() => {
   if (route.path.startsWith("/details")) {
     isNewsPage.value = true;
@@ -485,6 +490,23 @@ header {
         cursor: pointer;
         position: relative;
 
+        &:hover {
+          color: var(--el-color-primary);
+
+          &::after {
+            // position: absolute;
+            // bottom: -10px;
+            // left: 0;
+            margin-top: 10px;
+            content: '';
+            height: 3px;
+            background: #00CDC4;
+            border-radius: 0px 0px 0px 0px;
+            opacity: 1;
+            width: 100%;
+            display: block;
+          }
+        }
 
       }
 
@@ -706,7 +728,7 @@ footer {
         width: 220px;
         height: 0px;
         opacity: 1;
-        border: 1px solid #D2DBDB;
+        border-bottom: 1px solid #D2DBDB;
         margin-top: 15px;
         margin-bottom: 19px;
       }
