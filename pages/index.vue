@@ -200,7 +200,7 @@
         <div class="news-wrapper">
           <client-only>
             <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
-              <el-image class="img" :src="item.postUrl" fit="fill" />
+              <el-image class="img" :src="item.postUrl" fit="cover" />
               <div class="news-info-content">
                 <div class="date">{{ item.articlePublishTime }}</div>
                 <div class="title">{{ item.title }}</div>
