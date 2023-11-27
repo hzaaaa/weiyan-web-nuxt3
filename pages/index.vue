@@ -200,7 +200,7 @@
         <div class="news-wrapper">
           <client-only>
             <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
-              <el-image class="img" :src="item.postUrl" fit="fill" />
+              <el-image class="img" :src="item.postUrl" fit="cover" />
               <div class="news-info-content">
                 <div class="date">{{ item.articlePublishTime }}</div>
                 <div class="title">{{ item.title }}</div>
@@ -474,7 +474,7 @@ const customerItemList = [
 
 let router = useRouter();
 const gotoDetails = (item: any) => {
-  useState(item.articleId, () => item);
+  localStorage.setItem(item.articleId, JSON.stringify(item));
   router.push({
     name: "details",
     query: {
@@ -1200,6 +1200,8 @@ onUnmounted(() => {
         }
 
         &:hover {
+          cursor: pointer;
+
           .el-image.img {
             transform: scale(1.1);
           }
