@@ -474,11 +474,11 @@ const customerItemList = [
 
 let router = useRouter();
 const gotoDetails = (item: any) => {
-  localStorage.setItem(item.articleId, JSON.stringify(item));
+
   router.push({
     name: "details",
     query: {
-      articleId: item.articleId,
+      articleId: item.id,
     },
   });
 };
