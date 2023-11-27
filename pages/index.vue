@@ -474,7 +474,7 @@ const customerItemList = [
 
 let router = useRouter();
 const gotoDetails = (item: any) => {
-  useState(item.articleId, () => item);
+  localStorage.setItem(item.articleId, JSON.stringify(item));
   router.push({
     name: "details",
     query: {
@@ -1200,6 +1200,8 @@ onUnmounted(() => {
         }
 
         &:hover {
+          cursor: pointer;
+
           .el-image.img {
             transform: scale(1.1);
           }
