@@ -200,10 +200,10 @@
         <div class="news-wrapper">
           <client-only>
             <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="gotoDetails(item)">
-              <el-image class="img" :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+              <el-image class="img" :src="item.postUrl" fit="fill" />
               <div class="news-info-content">
-                <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
-                <div class="title">{{ item.content.newsItem[0].title }}</div>
+                <div class="date">{{ item.articlePublishTime }}</div>
+                <div class="title">{{ item.title }}</div>
               </div>
             </div>
           </client-only>
@@ -494,7 +494,7 @@ const getNewsList = async () => {
   let params = <any>{
     pageNumber: pageParams.pageNum,
     pageSize: pageParams.pageSize,
-    sorts: "article_update_time desc",
+    sorts: "article_publish_time desc",
   };
   let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
     method: "get",
