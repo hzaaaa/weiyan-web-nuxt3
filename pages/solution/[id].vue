@@ -54,34 +54,32 @@
           <!-- <div @click="preItemClick" class="left-btn"></div> -->
           <el-image @click="preItemClick" class="left-btn" src="/solution/left-arrow.png" fit="fill" />
           <el-carousel ref="carouselRef" indicator-position="none" arrow="never" class="carousel" :autoplay="true">
-            <el-carousel-item>
+            <el-carousel-item v-for="(item, index) in solutionItem.caseList">
               <div class="item0">
 
-                <el-image class="left-img" :src="`/solution/${routeId}/item0.png`" fit="fill" />
+                <el-image class="left-img" :src="`/solution/${routeId}/item${index}.png`" fit="fill" />
                 <div class="right-block">
 
                   <el-image class="logo" src="/solution/logo.png" fit="fill" />
-                  <div class="text" v-html="solutionItem.caseList[0]">
-
+                  <div class="text">
+                    {{ item }}
                   </div>
                   <div class="quote">“</div>
                 </div>
               </div>
             </el-carousel-item>
-            <el-carousel-item>
-              <!-- <div class="item1"> -->
+            <template v-if="solutionItem.caseList.length < 3">
 
-              <el-image class="item1" :src="`/solution/${routeId}/item1.png`" fit="fill" />
+              <el-carousel-item v-for="itemI in (3 - solutionItem.caseList.length)">
+                <!-- <div class="item1"> -->
 
-
-            </el-carousel-item>
-            <el-carousel-item>
-              <!-- <div class="item1"> -->
-
-              <el-image class="item1" :src="`/solution/${routeId}/item2.png`" fit="fill" />
+                <el-image class="item1" :src="`/solution/${routeId}/item${itemI - 1 + solutionItem.caseList.length}.png`"
+                  fit="fill" />
 
 
-            </el-carousel-item>
+              </el-carousel-item>
+            </template>
+
           </el-carousel>
           <!-- <div @click="nextItemClick" class="right-btn"></div> -->
           <el-image @click="nextItemClick" class="right-btn" src="/solution/right-arrow.png" fit="fill" />
@@ -347,7 +345,7 @@ const nextItemClick = () => {
         .left-img {
           width: 610px;
           height: 400px;
-          background: #E20404;
+          // background: #E20404;
           border-radius: 10px 10px 10px 10px;
           opacity: 1;
           margin-right: 22px;

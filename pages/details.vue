@@ -12,15 +12,15 @@
       <div class="body">
         <div class="plane">
 
-          <div class="title">{{ detailsObj && detailsObj.content.newsItem[0].title }}</div>
-          <div class="date"> 发布时间：{{ detailsObj && moment(detailsObj.articleUpdateTime * 1000).format('YYYY-MM-DD') }}
+          <div class="title">{{ detailsObj && detailsObj.title }}</div>
+          <div class="date"> 发布时间：{{ detailsObj && detailsObj.articlePublishTime }}
           </div>
           <div class="" style="display: flex;justify-content: center;">
 
             <!-- <div style="max-width:667px ;" class="h-content"
               v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div> -->
             <!-- <div style="max-width:667px ;" class="h-content" v-html="text && text.replace(/referrer/g, '')"></div> -->
-            <div style="max-width:667px ;" class="h-content" v-html="text"></div>
+            <div style="max-width:667px ;" class="h-content" v-html="detailsObj && detailsObj.content"></div>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ import moment from 'moment';
 const text = <any>ref(null);
 
 onMounted(() => {
-  fetch('/text.html').then(res => res.text()).then((data: any) => text.value = data.replace(/data-src/g, 'src').replace(/name="referrer"/g, ''))
+  // fetch('/text.html').then(res => res.text()).then((data: any) => text.value = data.replace(/data-src/g, 'src').replace(/name="referrer"/g, ''))
   nextTick(() => {
 
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -45,12 +45,22 @@ onMounted(() => {
 })
 let route = <any>useRoute()
 const detailsObj = <any>ref(null)
-
+const getNewsDetails = async (articleId: any) => {
+  let params = <any>{
+    id: articleId
+  };
+  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/infp`, {
+    method: "get",
+    query: params,
+  });
+  data.content = data.content.replace(/data-src/g, 'src').replace(/name="referrer"/g, '')
+  detailsObj.value = data;
+}
 onMounted(() => {
   console.log('route.params', route.params)
-  let itemStr = localStorage.getItem(route.query.articleId);
-
-  detailsObj.value = JSON.parse(itemStr)
+  // let itemStr = localStorage.getItem(route.query.articleId);
+  getNewsDetails(route.query.articleId)
+  // detailsObj.value = JSON.parse(itemStr)
 
 })
 </script>

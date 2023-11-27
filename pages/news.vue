@@ -15,10 +15,11 @@
       <div class="grid-class">
         <div class="grid-item" v-for="item in newsList" @click="gotoDetails(item)">
           <div class="img">
-            <el-image :src="item.content.newsItem[0].thumbUrl" fit="fill" />
+            <el-image :src="item.postUrl" fit="cover" />
           </div>
-          <div class="date">{{ moment(item.articleUpdateTime * 1000).format("YYYY-MM-DD") }}</div>
-          <div class="title">{{ item.content.newsItem[0].title }}</div>
+          <!-- <div class="date">{{ moment(item.articlePublishTime * 1000).format("YYYY-MM-DD") }}</div> -->
+          <div class="date">{{ item.articlePublishTime }}</div>
+          <div class="title">{{ item.title }}</div>
         </div>
       </div>
 
@@ -44,7 +45,7 @@ const gotoDetails = (item: any) => {
   router.push({
     name: "details",
     query: {
-      articleId: item.articleId,
+      articleId: item.id,
     },
   });
 };
@@ -66,7 +67,7 @@ const getNewsList = async () => {
   let params = <any>{
     pageNumber: pageParams.pageNum,
     pageSize: pageParams.pageSize,
-    sorts: "article_update_time desc",
+    sorts: "article_publish_time desc",
   };
   let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
     method: "get",
