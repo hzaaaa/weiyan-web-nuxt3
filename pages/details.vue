@@ -13,9 +13,12 @@
         <div class="plane">
 
           <div class="title">{{ detailsObj && detailsObj.title }}</div>
-          <div class="date"> 发布时间：{{ detailsObj && detailsObj.articlePublishTime }}
+          <div class="date" v-if="detailsObj && detailsObj.articlePublishTime"> 发布时间：{{ detailsObj &&
+            detailsObj.articlePublishTime }}
           </div>
-          <div class="" style="display: flex;justify-content: center;">
+          <div class="" style="display: flex;justify-content: center;      padding:25px 30px;
+    margin-bottom: 30px;
+    background-color: #fafafa;">
 
             <!-- <div style="max-width:667px ;" class="h-content"
               v-html="detailsObj && detailsObj.content.newsItem[0].content.replace(/data-src/g, 'src')"></div> -->
@@ -157,6 +160,7 @@ onMounted(() => {
     line-height: 1.4;
     margin-top: 50px;
     margin-bottom: 7px;
+    max-width: 1000px;
   }
 
   .date {
@@ -165,7 +169,7 @@ onMounted(() => {
     font-weight: 400;
     color: #B5B5B5;
     line-height: 1.4;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
 
