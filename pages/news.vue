@@ -12,7 +12,7 @@
         <div class="green-line"></div>
         <div class="grey-title">NEWS</div>
       </div>
-      <div class="grid-class">
+      <div class="grid-class" ref="gridRef">
         <div class="grid-item" v-for="item in newsList" @click="gotoDetails(item)">
           <div class="img">
             <el-image :src="item.postUrl" fit="cover" />
@@ -32,12 +32,15 @@
   </NuxtLayout>
 </template>
 
+
 <script setup lang="ts">
 import moment from "moment";
+definePageMeta({
+
+})
+let route = useRoute()
 onMounted(() => {
-  nextTick(() => {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-  });
+
 });
 let router = useRouter();
 const gotoDetails = (item: any) => {
@@ -62,22 +65,36 @@ const handleCurrentPageChange = (pageNum: any) => {
   pageParams.pageNum = pageNum;
   getNewsList();
 };
-
+const gridRef = <any>ref(null)
 const getNewsList = async () => {
   let params = <any>{
     pageNumber: pageParams.pageNum,
     pageSize: pageParams.pageSize,
     sorts: "article_publish_time desc",
   };
-  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+  let { data, code } = <any>await $fetch(`/api/publish/article/page`, {
     method: "get",
     query: params,
   });
 
+  if (sessionStorage.getItem('news_pageNum')) {
+    // debugger
+    setTimeout(() => {
+
+      document.body.scrollTop = document.documentElement.scrollTop = 1000;
+    }, 0)
+  } else {
+    setTimeout(() => {
+
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }, 0)
+  }
+  sessionStorage.setItem('news_pageNum', pageParams.pageNum + '');
   newsList.value = data.records;
   pageParams.total = data.total;
 };
 onMounted(() => {
+  pageParams.pageNum = parseInt(sessionStorage.getItem('news_pageNum')) || 1;
   getNewsList();
 });
 </script>
