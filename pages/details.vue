@@ -52,7 +52,7 @@ const getNewsDetails = async (articleId: any) => {
   let params = <any>{
     id: articleId
   };
-  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/infp`, {
+  let { data, code } = <any>await $fetch(`/api/publish/article/infp`, {
     method: "get",
     query: params,
   });

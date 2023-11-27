@@ -1,6 +1,17 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 
 export default defineNuxtConfig({
+  nitro: {
+    // 用于客户端代理
+    devProxy: {
+      '/api': {
+        target: 'http://172.16.1.44:8189', // 这里是接口地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      }
+    },
+
+  },
   // plugins: [{ src: "@/plugins/baiduTJ" }],
   // css: ["@/assets/styles/common.css"],
   plugins: [{ src: "@/plugins/directives", ssr: false }],
@@ -67,5 +78,6 @@ export default defineNuxtConfig({
       ],
       script: [{ src: "https://hm.baidu.com/hm.js?ef4978975287b26defd919021350932e" }],
     },
+
   },
 });

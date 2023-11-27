@@ -260,6 +260,10 @@ const gotoHome = () => {
 const hoverProduction = ref(false);
 const hoverSolution = ref(false);
 onMounted(() => {
+  if (route.path.startsWith("/details") || route.path.startsWith("/news")) {
+  } else {
+    sessionStorage.removeItem('news_pageNum')
+  }
   if (route.path.startsWith("/details")) {
     isNewsPage.value = true;
   } else {

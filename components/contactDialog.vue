@@ -160,7 +160,7 @@ const queryVerifyCode = async () => {
   let params = <any>{
     contactTelnumber: inputInfo.value.contactTelnumber
   }
-  let { data, code, msg } = <any>await $fetch(`http://172.16.1.44:8189/sms/send `, {
+  let { data, code, msg } = <any>await $fetch(`/api/sms/send `, {
     method: 'post',
     body: params
   })
@@ -191,7 +191,7 @@ const submit = async () => {
       let params = <any>{
         ...inputInfo.value
       }
-      let { data, code, msg } = <any>await $fetch(`http://172.16.1.44:8189/opinionsFeedback/add `, {
+      let { data, code, msg } = <any>await $fetch(`/api/opinionsFeedback/add `, {
         method: 'post',
         body: params
       })
@@ -225,7 +225,7 @@ const getCityList = async () => {
     pid: 1,// 0查询所有国家 1查询中国
     sorts: 'pinyin asc,pinyin asc'
   }
-  let { data } = <any>await $fetch(`http://172.16.1.44:8189/world/area/list`, {
+  let { data } = <any>await $fetch(`/api/world/area/list`, {
     method: 'get',
     query: params
   })

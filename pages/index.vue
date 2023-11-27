@@ -496,7 +496,7 @@ const getNewsList = async () => {
     pageSize: pageParams.pageSize,
     sorts: "article_publish_time desc",
   };
-  let { data, code } = <any>await $fetch(`http://172.16.1.44:8189/publish/article/page`, {
+  let { data, code } = <any>await $fetch(`/api/publish/article/page`, {
     method: "get",
     query: params,
   });
