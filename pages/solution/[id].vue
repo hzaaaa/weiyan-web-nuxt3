@@ -17,6 +17,9 @@
       <div class="profile">
         <div class="title">
           方案描述
+          <div class="bg-word">
+            PROGRAMME
+          </div>
         </div>
         <div class="content1 content">
           {{ solutionItem.desc }}
@@ -49,6 +52,9 @@
       <div class="case">
         <div class="title">
           客户案例
+          <div class="bg-word">
+            CUSTOMER CASES
+          </div>
         </div>
         <div class="carousel-wrap">
           <!-- <div @click="preItemClick" class="left-btn"></div> -->
@@ -126,7 +132,7 @@ const nextItemClick = () => {
 
 .banner {
 
-  height: 800px;
+  height: 500px;
   width: 100%;
 
   // background: url("@/assets/image/solution/banner.png") no-repeat;
@@ -137,28 +143,26 @@ const nextItemClick = () => {
   overflow: hidden;
 
   .big-title {
-    margin-top: 268px;
-    font-size: 60px;
-    font-family: PingFang SC-Medium, PingFang SC;
-    font-weight: 500;
+    margin-top: 179px;
+    margin-left: 383px;
+
+    font-size: 46px;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
     color: #FFFFFF;
-    line-height: 1.4;
-    -webkit-background-clip: text;
-    text-align: center;
-
-
-    // -webkit-text-fill-color: transparent;
+    line-height: 1.4 // -webkit-text-fill-color: transparent;
   }
 
   .small {
-    margin-top: 15px;
-    font-size: 38px;
-    font-family: PingFang SC-Light, PingFang SC;
+    margin-top: 21px;
+    margin-left: 383px;
+
+    font-size: 18px;
+    font-family: PingFang SC, PingFang SC;
     font-weight: 300;
     color: #EEF1F1;
     line-height: 1.4;
-    -webkit-background-clip: text;
-    text-align: center;
+    width: 576px;
   }
 
 }
@@ -176,27 +180,70 @@ const nextItemClick = () => {
   .profile {
 
     .title {
-      font-size: 42px;
-      font-family: PingFang SC-Medium, PingFang SC;
+      font-size: 36px;
+      font-family: PingFang SC, PingFang SC;
       font-weight: 500;
       color: #151717;
       line-height: 1.4;
-      -webkit-background-clip: text;
-      margin-top: 75px;
+
+      margin-top: 69px;
       text-align: center;
+      display: flex;
+      justify-content: center;
+
+      position: relative;
+
+      .bg-word {
+        position: absolute;
+
+        font-size: 42px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 600;
+        color: #0D4E4B;
+        line-height: 1.4;
+        letter-spacing: 0;
+        z-index: -1;
+        opacity: 0.06;
+        top: -18px;
+      }
+
+      &::before {
+        width: 15px;
+        height: 15px;
+        background: #00CDC4;
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+        margin-right: 9px;
+        display: block;
+        content: '';
+        margin-bottom: 9px;
+        align-self: flex-end;
+      }
+
+      &::after {
+        width: 15px;
+        height: 15px;
+        background: #00CDC4;
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+        display: block;
+        margin-left: 9px;
+        content: '';
+        margin-bottom: 9px;
+        align-self: flex-end;
+      }
     }
 
     .content {
 
       font-size: 16px;
-      font-family: PingFang SC-Regular, PingFang SC;
+      font-family: PingFang SC, PingFang SC;
       font-weight: 400;
       color: #151717;
-      line-height: 1.4;
-      -webkit-background-clip: text;
-      margin-top: 28px;
+      line-height: 24px;
+      margin-top: 61px;
 
-      margin-bottom: 70px;
+      margin-bottom: 78px;
     }
 
 
@@ -280,18 +327,62 @@ const nextItemClick = () => {
   }
 
   .case {
+    .title {}
+
     .title {
-      font-size: 42px;
-      font-family: PingFang SC-Medium, PingFang SC;
-      font-weight: 500;
-      color: #000000;
-      line-height: 1.4;
-      -webkit-background-clip: text;
-      text-align: center;
       margin-bottom: 90px;
+      font-size: 36px;
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 500;
+      color: #151717;
+      line-height: 1.4;
 
+      margin-top: 69px;
       text-align: center;
+      display: flex;
+      justify-content: center;
 
+      position: relative;
+
+      .bg-word {
+        position: absolute;
+
+        font-size: 42px;
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 600;
+        color: #0D4E4B;
+        line-height: 1.4;
+        letter-spacing: 0;
+        z-index: -1;
+        opacity: 0.06;
+        top: -18px;
+      }
+
+      &::before {
+        width: 15px;
+        height: 15px;
+        background: #00CDC4;
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+        margin-right: 9px;
+        display: block;
+        content: '';
+        margin-bottom: 9px;
+        align-self: flex-end;
+      }
+
+      &::after {
+        width: 15px;
+        height: 15px;
+        background: #00CDC4;
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+        display: block;
+        margin-left: 9px;
+        content: '';
+        margin-bottom: 9px;
+        align-self: flex-end;
+      }
     }
 
     .carousel-wrap {
