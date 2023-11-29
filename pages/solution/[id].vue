@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="base-layout">
+  <NuxtLayout name="base-layout-solution">
     <ClientOnly>
       <div class="banner" :style="{ backgroundImage: 'url(' + itemImg() + ')' }">
         <div class="big-title ">
@@ -26,9 +26,9 @@
         </div>
       </div>
       <div class="grid-class">
-        <div class="item" v-for="item in table_list">
+        <div class="item" v-for="(item, index) in table_list">
 
-          <el-image class="left-img" src="/solution/left-img.svg" fit="fill" />
+          <el-image class="left-img" :src="`/solution/${routeId}/sys_item${index}.svg`" fit="fill" />
           <div class="right-block">
             <div class="top-title">
               <div>{{ item.title }}</div>
@@ -37,16 +37,7 @@
             <div class="bottom-word">{{ item.content }}</div>
           </div>
         </div>
-        <!-- <div class="item">
-          <div class="left-img"></div>
-          <div class="right-block">
-            <div class="top-title">
-              <div> 更多产品持续上线中</div>
 
-            </div>
-            <div class="bottom-word">敬请期待...</div>
-          </div>
-        </div> -->
 
       </div>
       <div class="case">
@@ -59,7 +50,7 @@
         <div class="carousel-wrap">
           <!-- <div @click="preItemClick" class="left-btn"></div> -->
           <el-image @click="preItemClick" class="left-btn" src="/solution/left-arrow.png" fit="fill" />
-          <el-carousel ref="carouselRef" indicator-position="none" arrow="never" class="carousel" :autoplay="true">
+          <el-carousel ref="carouselRef" indicator-position="none" arrow="never" class="carousel" :autoplay="false">
             <el-carousel-item v-for="(item, index) in solutionItem.caseList">
               <div class="item0">
 
@@ -435,11 +426,12 @@ const nextItemClick = () => {
 
         .left-img {
           width: 610px;
+          width: 730px;
           height: 400px;
           // background: #E20404;
           border-radius: 10px 10px 10px 10px;
           opacity: 1;
-          margin-right: 22px;
+          // margin-right: 22px;
 
         }
 
@@ -463,11 +455,11 @@ const nextItemClick = () => {
             margin-left: 52px;
             margin-right: 39px;
 
-            font-size: 18px;
-            font-family: PingFang SC-Regular, PingFang SC;
+            font-size: 16px;
+            font-family: PingFang SC, PingFang SC;
             font-weight: 400;
             color: #151717;
-            line-height: 26px;
+            line-height: 24px;
           }
 
           .quote {
