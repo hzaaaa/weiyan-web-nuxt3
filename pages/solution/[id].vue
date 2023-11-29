@@ -50,7 +50,7 @@
         <div class="carousel-wrap">
           <!-- <div @click="preItemClick" class="left-btn"></div> -->
           <el-image @click="preItemClick" class="left-btn" src="/solution/left-arrow.png" fit="fill" />
-          <el-carousel ref="carouselRef" indicator-position="none" arrow="never" class="carousel" :autoplay="false">
+          <el-carousel ref="carouselRef" indicator-position="none" arrow="never" class="carousel" :autoplay="true">
             <el-carousel-item v-for="(item, index) in solutionItem.caseList">
               <div class="item0">
 
