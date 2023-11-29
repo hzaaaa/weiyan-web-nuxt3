@@ -1,11 +1,7 @@
 <template>
   <div id="container">
     <!-- layout 不支持路由更换 样式过渡 注释不能写  container 上面（error)-->
-    <!-- <div class="header-top" :style="{ display: headerTopDisplay }">
-      <div class="inner">
-        <span><i></i>BD@weiyankeji.cn</span><span><i></i>0755-8279 5265</span>
-      </div>
-    </div> -->
+
     <header>
 
 
@@ -305,54 +301,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.header-top {
-  border-bottom: 1px solid #efefef;
-  width: 100%;
-  height: 49px;
-
-  .inner {
-    margin: 0 auto;
-    width: 1200px;
-
-    span {
-      line-height: 50px;
-      font-weight: 300;
-      font-size: 14px;
-      color: #8a8e99;
-
-      &:first-child {
-        margin-right: 20px;
-
-        i {
-          display: inline-block;
-          position: relative;
-          top: -1px;
-          margin-right: 10px;
-          width: 30px;
-          height: 14px;
-          background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/email.png") no-repeat;
-          background-size: 100% 100%;
-          vertical-align: middle;
-        }
-      }
-
-      &:last-child {
-        i {
-          display: inline-block;
-          position: relative;
-          top: -2px;
-          margin-right: 10px;
-          width: 16px;
-          height: 16px;
-          background: url("https://fecdn.weiyankeji.cn/project/simple/wywebsite/1.16/images/index/phone.png") no-repeat;
-          background-size: 100% 100%;
-          vertical-align: middle;
-        }
-      }
-    }
-  }
-}
-
 * {
   box-sizing: border-box;
   outline: none !important;
